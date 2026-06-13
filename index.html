@@ -292,44 +292,76 @@
 <section id="videos" class="sec sec-alt" style="padding-bottom:28px;">
   <p class="eyebrow fu">Mira el trabajo</p>
   <h2 class="sec-title fu">Resultados reales</h2>
-  <p class="body-txt fu" style="margin-bottom:14px;">Videos reales de sesiones con pacientes.</p>
-  <div class="vid-scroll-wrap fu">
-    <div class="vid-scroll" id="vid-scroll">
+  <p class="body-txt fu" style="margin-bottom:14px;">Sesiones reales con pacientes de Quiromasajes GAP.</p>
 
-      <div class="vid-thumb-card" onclick="openVid('assets/video1.mp4','Masaje Terapéutico')">
-        <div class="vid-thumb-bg" style="background:linear-gradient(135deg,#0E3D50,#1A5F7A);">
-          <svg viewBox="0 0 24 24" width="48" height="48" fill="rgba(255,255,255,0.9)"><path d="M8 5v14l11-7z"/></svg>
+  <div class="vid-car-wrap fu">
+    <button class="vid-arr vid-arr-l" onclick="moveVid(-1)" aria-label="Video anterior">‹</button>
+    <div class="vid-car" id="vid-car">
+      <div class="vid-trk" id="vid-trk">
+
+        <!-- VIDEO 1 -->
+        <div class="vid-slide" onclick="openVid('assets/video1.mp4','Masaje Terapéutico')">
+          <div class="vid-thumb-bg" style="background:linear-gradient(135deg,#0E3D50,#1A5F7A);">
+            <div class="vid-play-btn">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="vid-num">1</div>
+          </div>
+          <div class="vid-slide-label">Masaje Terapéutico</div>
+          <div class="vid-slide-sub">▶ Reproducir</div>
         </div>
-        <div class="vid-thumb-label">Masaje Terapéutico</div>
-        <div class="vid-thumb-dur">▶ Ver video</div>
-      </div>
 
-      <div class="vid-thumb-card" onclick="openVid('assets/video2.mp4','Ajuste Quiropráctico')">
-        <div class="vid-thumb-bg" style="background:linear-gradient(135deg,#3d0808,#8B1A1A);">
-          <svg viewBox="0 0 24 24" width="48" height="48" fill="rgba(255,255,255,0.9)"><path d="M8 5v14l11-7z"/></svg>
+        <!-- VIDEO 2 -->
+        <div class="vid-slide" onclick="openVid('assets/video2.mp4','Ajuste Quiropráctico')">
+          <div class="vid-thumb-bg" style="background:linear-gradient(135deg,#3d0808,#8B1A1A);">
+            <div class="vid-play-btn">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="vid-num">2</div>
+          </div>
+          <div class="vid-slide-label">Ajuste Quiropráctico</div>
+          <div class="vid-slide-sub">▶ Reproducir</div>
         </div>
-        <div class="vid-thumb-label">Ajuste Quiropráctico</div>
-        <div class="vid-thumb-dur">▶ Ver video</div>
-      </div>
 
-      <div class="vid-thumb-card" onclick="openVid('assets/video3.mp4','Reflexología')">
-        <div class="vid-thumb-bg" style="background:linear-gradient(135deg,#0a2d3d,#1A5F7A);">
-          <svg viewBox="0 0 24 24" width="48" height="48" fill="rgba(255,255,255,0.9)"><path d="M8 5v14l11-7z"/></svg>
+        <!-- VIDEO 3 -->
+        <div class="vid-slide" onclick="openVid('assets/video3.mp4','Reflexología')">
+          <div class="vid-thumb-bg" style="background:linear-gradient(135deg,#0a2d3d,#1A5F7A);">
+            <div class="vid-play-btn">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="vid-num">3</div>
+          </div>
+          <div class="vid-slide-label">Reflexología</div>
+          <div class="vid-slide-sub">▶ Reproducir</div>
         </div>
-        <div class="vid-thumb-label">Reflexología</div>
-        <div class="vid-thumb-dur">▶ Ver video</div>
-      </div>
 
-      <div class="vid-thumb-card" onclick="openVid('assets/video4.mp4','Masaje Vibratorio')">
-        <div class="vid-thumb-bg" style="background:linear-gradient(135deg,#2d1a00,#6B3A00);">
-          <svg viewBox="0 0 24 24" width="48" height="48" fill="rgba(255,255,255,0.9)"><path d="M8 5v14l11-7z"/></svg>
+        <!-- VIDEO 4 -->
+        <div class="vid-slide" onclick="openVid('assets/video4.mp4','Masaje Vibratorio')">
+          <div class="vid-thumb-bg" style="background:linear-gradient(135deg,#1a2d1a,#2E6B2E);">
+            <div class="vid-play-btn">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="vid-num">4</div>
+          </div>
+          <div class="vid-slide-label">Masaje Vibratorio</div>
+          <div class="vid-slide-sub">▶ Reproducir</div>
         </div>
-        <div class="vid-thumb-label">Masaje Vibratorio</div>
-        <div class="vid-thumb-dur">▶ Ver video</div>
-      </div>
 
+      </div>
     </div>
+    <button class="vid-arr vid-arr-r" onclick="moveVid(1)" aria-label="Video siguiente">›</button>
   </div>
+
+  <!-- Indicadores -->
+  <div class="vid-dots" id="vid-dots">
+    <button class="vdot vdot-on" onclick="goVid(0)" aria-label="Video 1"></button>
+    <button class="vdot" onclick="goVid(1)" aria-label="Video 2"></button>
+    <button class="vdot" onclick="goVid(2)" aria-label="Video 3"></button>
+    <button class="vdot" onclick="goVid(3)" aria-label="Video 4"></button>
+  </div>
+  <p style="font-size:11px;color:var(--ink-m);text-align:center;margin-top:8px;">
+    Desliza o usa las flechas · Los videos se cargan al tocar
+  </p>
 </section>
 
 <!-- VIDEO MODAL -->
