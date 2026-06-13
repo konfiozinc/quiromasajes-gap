@@ -65,7 +65,7 @@ if(ts&&tdots.length){
 }
 
 // ── Video carousel ─────────────────────────────────────
-var vidCur = 0, vidTotal = 4, vidTimer, vidPaused = false;
+var vidCur = 0, vidTotal = 6, vidTimer, vidPaused = false;
 function goVid(n) {
   vidCur = ((n % vidTotal) + vidTotal) % vidTotal;
   var trk = document.getElementById('vid-trk');
