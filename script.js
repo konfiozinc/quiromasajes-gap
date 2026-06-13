@@ -64,13 +64,36 @@ if(ts&&tdots.length){
   });
 }
 
-// Video toggle
-function toggleVid(card){
-  var vid=card.querySelector('video');
-  var overlay=card.querySelector('.vid-overlay');
-  if(vid.paused){vid.play();overlay.style.opacity='0';}
-  else{vid.pause();overlay.style.opacity='1';}
+// ── Video carousel ─────────────────────────────────────
+var vidCur = 0, vidTotal = 4, vidTimer, vidPaused = false;
+function goVid(n) {
+  vidCur = ((n % vidTotal) + vidTotal) % vidTotal;
+  var trk = document.getElementById('vid-trk');
+  if (trk) trk.style.transform = 'translateX(-' + (vidCur * 100) + '%)';
+  document.querySelectorAll('.vdot').forEach(function(d, i) { d.classList.toggle('vdot-on', i === vidCur); });
+  resetVidTimer();
 }
+function moveVid(dir) { goVid(vidCur + dir); }
+function resetVidTimer() {
+  clearInterval(vidTimer);
+  if (!vidPaused) vidTimer = setInterval(function() { goVid(vidCur + 1); }, 5000);
+}
+resetVidTimer();
+// Swipe on video carousel
+(function() {
+  var el = document.getElementById('vid-car');
+  if (!el) return;
+  var sx = 0;
+  el.addEventListener('touchstart', function(e) {
+    sx = e.touches[0].clientX;
+    vidPaused = true; clearInterval(vidTimer);
+  }, { passive: true });
+  el.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) moveVid(dx < 0 ? 1 : -1);
+    setTimeout(function() { vidPaused = false; resetVidTimer(); }, 4000);
+  }, { passive: true });
+})();
 
 // Certificate modal
 function openModal(el){
@@ -175,6 +198,8 @@ function openVid(src, title) {
   document.getElementById('vid-modal-title').textContent = title;
   modal.classList.add('on');
   document.body.style.overflow = 'hidden';
+  // Pause autoplay while watching
+  vidPaused = true; clearInterval(vidTimer);
   player.play().catch(function() {});
 }
 function closeVid() {
@@ -183,6 +208,8 @@ function closeVid() {
   player.src = '';
   document.getElementById('vid-modal').classList.remove('on');
   document.body.style.overflow = '';
+  // Resume autoplay
+  vidPaused = false; resetVidTimer();
 }
 
 // ── Hero particles ─────────────────────────────────────
