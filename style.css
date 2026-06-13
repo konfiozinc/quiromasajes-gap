@@ -240,3 +240,20 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 #cal-modal{align-items:flex-end!important}
 #cal-modal .modal-box{border-radius:var(--r-lg) var(--r-lg) 0 0!important;width:100%;max-width:480px;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)!important}
 #cal-modal.on .modal-box{transform:translateY(0)!important}
+/* ── SERVICIOS CON IMAGEN ── */
+.svc-img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--r-lg) var(--r-lg) 0 0;display:block}
+
+/* ── TARIFAS Y PROMOCIONES ── */
+.promo-card{background:linear-gradient(135deg,#8B1A1A,#C0392B);color:#fff;border-radius:16px;padding:24px 20px;text-align:center;margin:0 4px 28px;box-shadow:0 6px 28px rgba(139,26,26,.35)}
+.promo-badge{font-size:13px;font-weight:700;letter-spacing:.08em;opacity:.9;margin-bottom:10px}
+.promo-title{font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;line-height:1.3;margin-bottom:6px}
+.promo-sub{font-size:14px;opacity:.85;margin-bottom:12px;letter-spacing:.04em}
+.promo-duracion{font-size:13px;opacity:.8;margin-bottom:14px}
+.promo-precio{font-size:32px;font-weight:700;letter-spacing:-.01em}
+
+.tarifas-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 4px}
+.tarifa-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px 14px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.tarifa-icon{font-size:26px;margin-bottom:6px}
+.tarifa-nombre{font-size:13px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:6px}
+.tarifa-tiempo{font-size:11px;color:var(--ink-m);margin-bottom:8px}
+.tarifa-precio{font-size:20px;font-weight:700;color:#8B1A1A}
