@@ -193,20 +193,30 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 .sdot-on{background:var(--teal);transform:scale(1.35)}
 
 /* ── VIDEO CAROUSEL ── */
-.vid-car-wrap{position:relative;display:flex;align-items:center;gap:0;margin-top:4px}
+.vid-car-wrap{position:relative;display:flex;align-items:center;margin-top:4px}
 .vid-car{overflow:hidden;flex:1}
 .vid-trk{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
 .vid-slide{flex:0 0 100%;padding:0 20px;box-sizing:border-box;cursor:pointer}
-.vid-thumb-bg{width:100%;aspect-ratio:4/3;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.25)}
-.vid-play-btn{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;transition:transform .18s,background .18s}
-.vid-slide:active .vid-play-btn{transform:scale(.92);background:rgba(255,255,255,.35)}
-.vid-num{position:absolute;top:12px;left:16px;font-size:11px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase}
-.vid-slide-label{font-family:'Playfair Display',Georgia,serif;font-size:17px;font-weight:600;color:var(--ink);text-align:center;margin-top:12px}
+/* thumbnail container */
+.vid-thumb-wrap{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 22px rgba(0,0,0,.28)}
+.vid-canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--r-lg);display:block;z-index:1}
+.vid-thumb-fallback{position:absolute;inset:0;z-index:0}
+/* show canvas when it has content */
+.vid-canvas.loaded{z-index:2}
+/* play button overlay */
+.vid-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);border:2.5px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;transition:transform .18s,background .18s}
+.vid-slide:hover .vid-play-btn,.vid-slide:active .vid-play-btn{background:rgba(139,26,26,.7);transform:translate(-50%,-50%) scale(1.08)}
+/* counter badge */
+.vid-counter{position:absolute;top:10px;right:12px;z-index:3;background:rgba(0,0,0,.55);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:20px;backdrop-filter:blur(4px)}
+/* label */
+.vid-slide-label{font-family:'Playfair Display',Georgia,serif;font-size:17px;font-weight:600;color:var(--ink);text-align:center;margin-top:13px}
 .vid-slide-sub{font-size:12px;color:var(--ink-m);text-align:center;margin-top:3px}
-.vid-arr{position:absolute;top:38%;transform:translateY(-50%);z-index:10;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(0,0,0,.14);border:none;font-size:20px;color:var(--teal);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+/* arrows */
+.vid-arr{position:absolute;top:40%;transform:translateY(-50%);z-index:10;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(0,0,0,.14);border:none;font-size:22px;color:var(--teal);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
 .vid-arr:active{background:var(--off)}
 .vid-arr-l{left:-4px}
 .vid-arr-r{right:-4px}
+/* dots */
 .vid-dots{display:flex;justify-content:center;gap:7px;margin-top:14px}
 .vdot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all .2s;padding:0}
 .vdot-on{background:var(--teal);transform:scale(1.35)}
