@@ -179,6 +179,9 @@ function goSvc(n) {
   svcCur = ((n % svcTotal) + svcTotal) % svcTotal;
   document.getElementById('svc-trk').style.transform = 'translateX(-' + (svcCur * 100) + '%)';
   document.querySelectorAll('.sdot').forEach(function(d, i) { d.classList.toggle('sdot-on', i === svcCur); });
+  document.querySelectorAll('.chip').forEach(function(c) {
+    c.classList.toggle('chip-active', Number(c.dataset.idx) === svcCur);
+  });
   resetSvcTimer();
 }
 function moveSvc(dir) { goSvc(svcCur + dir); }
