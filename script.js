@@ -1,154 +1,228 @@
-/* ═══════════════════════════════════════════
-   QUIROMASAJES.GAP — script.js
-   ═══════════════════════════════════════════ */
+// Fade-up on scroll
+(function(){
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.fu').forEach(function(e){e.classList.add('in')});return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.fu').forEach(function(e){io.observe(e);});
+})();
 
-// ── Scroll-triggered fade-up ──────────────
-const fadeEls = document.querySelectorAll('.fade-up');
-if ('IntersectionObserver' in window) {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  fadeEls.forEach(el => io.observe(el));
-} else {
-  fadeEls.forEach(el => el.classList.add('visible'));
-}
-
-// ── Testimonials slider dots ──────────────
-const slider   = document.getElementById('test-slider');
-const dots     = document.querySelectorAll('.slider-dot');
-const cards    = document.querySelectorAll('.testimonial-card');
-
-if (slider && dots.length) {
-  const updateDots = () => {
-    const idx = Math.round(slider.scrollLeft / slider.offsetWidth);
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-  };
-  slider.addEventListener('scroll', updateDots, { passive: true });
-  updateDots();
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      slider.scrollTo({ left: i * slider.offsetWidth, behavior: 'smooth' });
-    });
+// Animated counters (trigger when hero visible)
+function runCounters(){
+  document.querySelectorAll('.counter').forEach(function(el){
+    var target=parseInt(el.dataset.target)||0,prefix=el.dataset.prefix||'';
+    var step=Math.ceil(target/110),cur=0;
+    var t=setInterval(function(){
+      cur=Math.min(cur+step,target);
+      el.textContent=prefix+cur.toLocaleString('es-CO');
+      if(cur>=target)clearInterval(t);
+    },16);
   });
 }
+var heroObs=new IntersectionObserver(function(e){
+  if(e[0].isIntersecting){runCounters();heroObs.disconnect();}
+},{threshold:0.3});
+heroObs.observe(document.getElementById('hero'));
 
-// ── Nav smooth scroll ─────────────────────
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+// Auto-sliding carousels
+function autoSlide(id,w,ms){
+  var track=document.getElementById(id);
+  if(!track)return;
+  var orig=track.children.length;
+  Array.from(track.children).forEach(function(s){track.appendChild(s.cloneNode(true));});
+  var pos=0,gap=12,total=orig;
+  setInterval(function(){
+    pos++;
+    if(pos>=total){
+      track.style.transition='none';pos=0;
+      track.style.transform='translateX(0)';
+      track.getBoundingClientRect();
+      track.style.transition='transform .5s cubic-bezier(.4,0,.2,1)';
     }
-  });
+    track.style.transform='translateX(-'+(pos*(w+gap))+'px)';
+  },ms);
+}
+document.addEventListener('DOMContentLoaded',function(){
+  autoSlide('cert-track',200,3200);
+  autoSlide('svc-track',270,2900);
 });
 
-// ── vCard / Save contact ──────────────────
-const saveBtn = document.getElementById('save-contact-btn');
-if (saveBtn) {
-  saveBtn.addEventListener('click', () => {
-    const vcard = [
-      'BEGIN:VCARD',
-      'VERSION:3.0',
-      'FN:Germán Agudelo – QUIROMASAJES.GAP',
-      'ORG:QUIROMASAJES.GAP',
-      'TEL;TYPE=CELL:+573213735117',
-      'URL:https://www.instagram.com/quiromasajes1986',
-      'NOTE:Quiropraxia\\, Quiromasajes y Terapias Complementarias. Servicio a domicilio en Soacha y Bogotá D.C.',
-      'END:VCARD'
-    ].join('\n');
-    const blob = new Blob([vcard], { type: 'text/vcard' });
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href     = url;
-    a.download = 'german-quiromasajes.vcf';
-    a.click();
-    URL.revokeObjectURL(url);
+// Testimonials dots
+var ts=document.getElementById('test-slider');
+var tdots=document.querySelectorAll('#tdots .dot');
+if(ts&&tdots.length){
+  ts.addEventListener('scroll',function(){
+    var i=Math.round(ts.scrollLeft/ts.offsetWidth);
+    tdots.forEach(function(d,j){d.classList.toggle('on',i===j);});
+  },{passive:true});
+  tdots.forEach(function(d,i){
+    d.addEventListener('click',function(){
+      ts.scrollTo({left:i*ts.offsetWidth,behavior:'smooth'});
+    });
   });
 }
 
-// ── FAQ accordion ──
-function toggleFaq(btn) {
-  const answer = btn.nextElementSibling;
-  const isOpen = answer.classList.contains('open');
-  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-  document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
-  if (!isOpen) {
-    answer.classList.add('open');
-    btn.classList.add('open');
-  }
+// Video toggle
+function toggleVid(card){
+  var vid=card.querySelector('video');
+  var overlay=card.querySelector('.vid-overlay');
+  if(vid.paused){vid.play();overlay.style.opacity='0';}
+  else{vid.pause();overlay.style.opacity='1';}
 }
 
-// ── Modal Certificaciones ──────────────
-function openModal(el) {
-  const title = el.getAttribute('data-title');
-  const emoji = el.querySelector('.cert-emoji')?.textContent || '📜';
-  const img   = el.querySelector('img');
+// Certificate modal
+function openModal(el){
+  var img=el.querySelector('img');
+  var title=el.dataset.title||'';
+  var box=document.getElementById('modal-img');
+  box.innerHTML='';
+  if(img){var i=document.createElement('img');i.src=img.src;i.alt=title;box.appendChild(i);}
+  document.getElementById('modal-title').textContent=title;
+  document.getElementById('cert-modal').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('cert-modal').classList.remove('on');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 
-  document.getElementById('cert-modal-title').textContent = title || '';
-  const modalImg = document.getElementById('cert-modal-img');
-  document.getElementById('cert-modal-emoji').textContent = emoji;
+// Save contact vCard
+document.getElementById('save-btn').addEventListener('click',function(){
+  var v='BEGIN:VCARD\nVERSION:3.0\nFN:Germán Agudelo – QUIROMASAJES.GAP\nORG:QUIROMASAJES.GAP\nTEL;TYPE=CELL:+573213735117\nURL:https://www.instagram.com/quiromasajes1986\nNOTE:Quiropraxia\\, Masajes. Soacha y Bogotá D.C.\nEND:VCARD';
+  var b=new Blob([v],{type:'text/vcard'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='german-quiromasajes.vcf';a.click();
+});
 
-  if (img) {
-    // If real image exists, show it
-    const newImg = document.createElement('img');
-    newImg.src = img.src;
-    newImg.alt = title;
-    newImg.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:8px;';
-    modalImg.innerHTML = '';
-    modalImg.appendChild(newImg);
-  } else {
-    modalImg.innerHTML = `<span id="cert-modal-emoji" style="font-size:80px;">${emoji}</span>`;
+// MAPA — estrategia múltiple sin iframes ni URLs externas que disparen popup
+function abrirMapa(){
+  // 1. intent: abre Google Maps nativo en Android sin confirmación
+  var intent='intent://maps.google.com/?q=Soacha+Cundinamarca+Colombia#Intent;scheme=https;package=com.google.android.apps.maps;end';
+  // 2. geo: URI — interceptado nativamente por Android
+  var geo='geo:4.5921,-74.2155?q=Soacha,Cundinamarca,Colombia&zoom=12';
+  // 3. Fallback universal
+  var web='https://maps.google.com/?q=Soacha+Cundinamarca+Colombia';
+
+  // Detectar Android
+  var isAndroid=/android/i.test(navigator.userAgent);
+  var isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+
+  if(isAndroid){
+    // En Android: geo: es interceptado por el OS antes de que el WebView lo procese
+    window.location.href=geo;
+  } else if(isIOS){
+    window.location.href='maps://?q=Soacha+Cundinamarca+Colombia';
+  } else{
+    window.open(web,'_blank','noopener,noreferrer');
   }
+}
+// ── Services carousel ──────────────────────────────────
+var svcCur = 0, svcTotal = 10, svcTimer;
+function goSvc(n) {
+  svcCur = ((n % svcTotal) + svcTotal) % svcTotal;
+  document.getElementById('svc-trk').style.transform = 'translateX(-' + (svcCur * 100) + '%)';
+  document.querySelectorAll('.sdot').forEach(function(d, i) { d.classList.toggle('sdot-on', i === svcCur); });
+  resetSvcTimer();
+}
+function moveSvc(dir) { goSvc(svcCur + dir); }
+function resetSvcTimer() {
+  clearInterval(svcTimer);
+  svcTimer = setInterval(function() { goSvc(svcCur + 1); }, 4000);
+}
+resetSvcTimer();
 
-  document.getElementById('cert-modal').classList.add('active');
+// Swipe on services
+(function() {
+  var el = document.getElementById('svc-car');
+  if (!el) return;
+  var sx = 0;
+  el.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) moveSvc(dx < 0 ? 1 : -1);
+  }, { passive: true });
+})();
+
+// ── Auto testimonials ──────────────────────────────────
+(function() {
+  var ts = document.getElementById('test-slider');
+  var dots = document.querySelectorAll('#tdots .dot');
+  if (!ts) return;
+  var cur = 0, total = ts.querySelectorAll('.test-card').length, timer, paused = false;
+  function goTest(n) {
+    cur = ((n % total) + total) % total;
+    ts.scrollTo({ left: cur * ts.offsetWidth, behavior: 'smooth' });
+    dots.forEach(function(d, i) { d.classList.toggle('on', i === cur); });
+  }
+  function start() { timer = setInterval(function() { if (!paused) goTest(cur + 1); }, 6000); }
+  ts.addEventListener('touchstart', function() { paused = true; }, { passive: true });
+  ts.addEventListener('touchend', function() { setTimeout(function() { paused = false; }, 3000); }, { passive: true });
+  ts.addEventListener('scroll', function() {
+    var i = Math.round(ts.scrollLeft / ts.offsetWidth);
+    dots.forEach(function(d, j) { d.classList.toggle('on', i === j); });
+    cur = i;
+  }, { passive: true });
+  start();
+})();
+
+// ── Video modal ────────────────────────────────────────
+function openVid(src, title) {
+  var player = document.getElementById('vid-player');
+  var modal  = document.getElementById('vid-modal');
+  player.src = src;
+  document.getElementById('vid-modal-title').textContent = title;
+  modal.classList.add('on');
   document.body.style.overflow = 'hidden';
+  player.play().catch(function() {});
 }
-
-function closeModal(e) {
-  if (e.target === document.getElementById('cert-modal')) closeCertModal();
-}
-function closeCertModal() {
-  document.getElementById('cert-modal').classList.remove('active');
+function closeVid() {
+  var player = document.getElementById('vid-player');
+  player.pause();
+  player.src = '';
+  document.getElementById('vid-modal').classList.remove('on');
   document.body.style.overflow = '';
 }
-// Close on Escape
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCertModal(); });
 
-// ── Contador animado (trust block) ─────
-function animateCounters() {
-  document.querySelectorAll('.counter').forEach(el => {
-    const target = parseInt(el.getAttribute('data-target')) || 0;
-    const prefix = el.getAttribute('data-prefix') || '';
-    const duration = 1800;
-    const step = Math.ceil(target / (duration / 16));
-    let current = 0;
-    const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      el.textContent = prefix + current.toLocaleString('es-CO');
-      if (current >= target) clearInterval(timer);
-    }, 16);
-  });
-}
-
-// Trigger counters when trust section enters viewport
-const trustSection = document.getElementById('trust');
-if (trustSection && 'IntersectionObserver' in window) {
-  let counted = false;
-  const counterObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !counted) {
-        counted = true;
-        animateCounters();
-        counterObs.unobserve(trustSection);
-      }
+// ── Hero particles ─────────────────────────────────────
+(function(){
+  var cv=document.getElementById('hero-particles');
+  if(!cv)return;
+  var ctx=cv.getContext('2d');
+  var hero=document.getElementById('hero');
+  function resize(){cv.width=hero.offsetWidth;cv.height=hero.offsetHeight;}
+  resize();
+  var pts=Array.from({length:28},function(){return{
+    x:Math.random()*cv.width,y:Math.random()*cv.height,
+    r:Math.random()*1.8+.4,
+    vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,
+    a:Math.random()
+  };});
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    pts.forEach(function(p){
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>cv.width)p.vx*=-1;
+      if(p.y<0||p.y>cv.height)p.vy*=-1;
+      p.a=.4+.6*Math.sin(Date.now()/1800+p.x);
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,'+p.a.toFixed(2)+')';
+      ctx.fill();
     });
-  }, { threshold: 0.3 });
-  counterObs.observe(trustSection);
+    requestAnimationFrame(draw);
+  }
+  draw();
+  window.addEventListener('resize',resize,{passive:true});
+})();
+
+// ── Calendly modal ─────────────────────────────────────
+function openCalendly(){
+  document.getElementById('cal-modal').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeCalendly(){
+  document.getElementById('cal-modal').classList.remove('on');
+  document.body.style.overflow='';
 }
