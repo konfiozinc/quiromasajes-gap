@@ -192,16 +192,24 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 .sdot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all .2s;padding:0}
 .sdot-on{background:var(--teal);transform:scale(1.35)}
 
-/* ── VIDEO THUMBNAILS ── */
-.vid-scroll-wrap{overflow:hidden}
-.vid-scroll{display:flex;gap:12px;padding:4px 20px 8px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.vid-scroll::-webkit-scrollbar{display:none}
-.vid-thumb-card{flex:0 0 160px;scroll-snap-align:start;border-radius:var(--r-lg);overflow:hidden;cursor:pointer;box-shadow:0 2px 16px rgba(0,0,0,.15);transition:transform .18s}
-.vid-thumb-card:active{transform:scale(.97)}
-.vid-thumb-bg{width:100%;aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;position:relative}
-.vid-thumb-bg svg{filter:drop-shadow(0 2px 8px rgba(0,0,0,.3))}
-.vid-thumb-label{background:#111;color:#fff;font-size:11px;font-weight:600;padding:7px 10px;line-height:1.3}
-.vid-thumb-dur{background:#222;color:rgba(255,255,255,.6);font-size:10px;padding:4px 10px}
+/* ── VIDEO CAROUSEL ── */
+.vid-car-wrap{position:relative;display:flex;align-items:center;gap:0;margin-top:4px}
+.vid-car{overflow:hidden;flex:1}
+.vid-trk{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
+.vid-slide{flex:0 0 100%;padding:0 20px;box-sizing:border-box;cursor:pointer}
+.vid-thumb-bg{width:100%;aspect-ratio:4/3;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.25)}
+.vid-play-btn{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;transition:transform .18s,background .18s}
+.vid-slide:active .vid-play-btn{transform:scale(.92);background:rgba(255,255,255,.35)}
+.vid-num{position:absolute;top:12px;left:16px;font-size:11px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase}
+.vid-slide-label{font-family:'Playfair Display',Georgia,serif;font-size:17px;font-weight:600;color:var(--ink);text-align:center;margin-top:12px}
+.vid-slide-sub{font-size:12px;color:var(--ink-m);text-align:center;margin-top:3px}
+.vid-arr{position:absolute;top:38%;transform:translateY(-50%);z-index:10;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(0,0,0,.14);border:none;font-size:20px;color:var(--teal);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.vid-arr:active{background:var(--off)}
+.vid-arr-l{left:-4px}
+.vid-arr-r{right:-4px}
+.vid-dots{display:flex;justify-content:center;gap:7px;margin-top:14px}
+.vdot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all .2s;padding:0}
+.vdot-on{background:var(--teal);transform:scale(1.35)}
 
 /* ── HERO LOGO FLOAT ANIMATION ── */
 @keyframes logoFloat{0%,100%{transform:translateY(0);filter:drop-shadow(0 4px 16px rgba(26,95,122,.5))}50%{transform:translateY(-6px);filter:drop-shadow(0 10px 24px rgba(26,95,122,.65))}}
