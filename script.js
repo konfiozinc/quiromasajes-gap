@@ -76,10 +76,10 @@ function goVid(n) {
 function moveVid(dir) { goVid(vidCur + dir); }
 function resetVidTimer() {
   clearInterval(vidTimer);
-  if (!vidPaused) vidTimer = setInterval(function() { goVid(vidCur + 1); }, 5000);
+  if (!vidPaused) vidTimer = setInterval(function() { goVid(vidCur + 1); }, 6000);
 }
 resetVidTimer();
-// Swipe on video carousel
+// Swipe + pause on hover
 (function() {
   var el = document.getElementById('vid-car');
   if (!el) return;
@@ -93,6 +93,38 @@ resetVidTimer();
     if (Math.abs(dx) > 40) moveVid(dx < 0 ? 1 : -1);
     setTimeout(function() { vidPaused = false; resetVidTimer(); }, 4000);
   }, { passive: true });
+  el.addEventListener('mouseenter', function() { vidPaused = true; clearInterval(vidTimer); });
+  el.addEventListener('mouseleave', function() { vidPaused = false; resetVidTimer(); });
+})();
+
+// ── Canvas thumbnail — first frame of each video ────────
+(function() {
+  document.querySelectorAll('.vid-slide').forEach(function(slide) {
+    var src    = slide.dataset.src;
+    var canvas = slide.querySelector('.vid-canvas');
+    if (!src || !canvas) return;
+    var ctx = canvas.getContext('2d');
+    var vid = document.createElement('video');
+    vid.src        = src;
+    vid.preload    = 'metadata';
+    vid.muted      = true;
+    vid.playsInline = true;
+    vid.crossOrigin = 'anonymous';
+    vid.addEventListener('loadedmetadata', function() {
+      vid.currentTime = Math.min(0.5, vid.duration * 0.05 || 0.5);
+    });
+    vid.addEventListener('seeked', function() {
+      try {
+        ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
+        canvas.classList.add('loaded');
+      } catch(e) { /* CORS fallback: colored bg stays */ }
+      vid.src = '';
+    });
+    vid.addEventListener('error', function() {
+      console.warn('Video no disponible:', src);
+    });
+    vid.load();
+  });
 })();
 
 // Certificate modal
@@ -190,15 +222,16 @@ resetSvcTimer();
   start();
 })();
 
-// ── Video modal ────────────────────────────────────────
-function openVid(src, title) {
+// ── Video modal ─────────────────────────────────────────
+function openVid(slide) {
+  var src   = slide.dataset ? slide.dataset.src   : slide;
+  var title = slide.dataset ? slide.dataset.title : arguments[1];
   var player = document.getElementById('vid-player');
   var modal  = document.getElementById('vid-modal');
   player.src = src;
   document.getElementById('vid-modal-title').textContent = title;
   modal.classList.add('on');
   document.body.style.overflow = 'hidden';
-  // Pause autoplay while watching
   vidPaused = true; clearInterval(vidTimer);
   player.play().catch(function() {});
 }
@@ -208,7 +241,6 @@ function closeVid() {
   player.src = '';
   document.getElementById('vid-modal').classList.remove('on');
   document.body.style.overflow = '';
-  // Resume autoplay
   vidPaused = false; resetVidTimer();
 }
 
