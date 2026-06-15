@@ -1,5 +1,5 @@
 :root{
-  --red:#8B1A1A;--teal:#1A5F7A;--teal-d:#0E3D50;
+  --red:#8B1A1A;--teal:#1A5F7A;--teal-d:#0E3D50;--turq:#1FD1B8;
   --white:#F8F6F2;--off:#F0EDE8;--ink:#1A1A1A;--ink-s:#4A4A4A;--ink-m:#888;
   --border:rgba(26,95,122,0.13);
   --r:14px;--r-lg:22px;
@@ -16,7 +16,7 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
 .fu.in{opacity:1;transform:none}
 
 /* SECTION */
-.sec{padding:26px 20px}
+.sec{padding:20px 20px}
 .sec-alt{background:var(--off)}
 .eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:5px}
 .eyebrow::before{content:'';width:18px;height:2px;background:var(--teal);border-radius:2px;flex-shrink:0}
@@ -30,7 +30,7 @@ h2.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,6
 @keyframes fabP{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,0.5)}50%{box-shadow:0 4px 28px rgba(37,211,102,0.75),0 0 0 7px rgba(37,211,102,0.1)}}
 
 /* HERO */
-#hero{background:linear-gradient(160deg,var(--teal-d) 0%,#061e2b 50%,#3d0808 100%);padding:48px 20px 40px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
+#hero{background:linear-gradient(160deg,var(--teal-d) 0%,#061e2b 50%,#3d0808 100%);padding:38px 20px 30px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
 #hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 15% 10%,rgba(26,95,122,.35),transparent 65%),radial-gradient(ellipse 60% 70% at 85% 90%,rgba(139,26,26,.3),transparent 65%);pointer-events:none}
 .hero-ring{width:138px;height:138px;border-radius:50%;padding:3px;background:linear-gradient(135deg,rgba(255,255,255,.45),rgba(255,255,255,.08),rgba(26,95,122,.3));box-shadow:0 0 0 1px rgba(255,255,255,.18),0 0 32px rgba(26,95,122,.6),0 0 64px rgba(26,95,122,.22);margin-bottom:22px;z-index:1;overflow:hidden;animation:logoFloat 4s ease-in-out infinite}
 .hero-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center 15%;background:#fff}
@@ -64,11 +64,13 @@ h2.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,6
 .slide-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px;background:#128C7E;color:#fff;border-radius:var(--r);font-size:13px;font-weight:600}
 
 /* CERT SLIDER — portrait cards */
-.cert-card{flex:0 0 200px;background:#fff;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);border:1px solid var(--border);cursor:pointer;transition:transform .15s}
+.cert-card{flex:0 0 210px;background:linear-gradient(160deg,rgba(255,255,255,.9),rgba(255,255,255,.7));backdrop-filter:blur(6px);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 22px rgba(14,61,80,.14),0 0 0 1px rgba(31,209,184,.18);border:1px solid rgba(255,255,255,.5);cursor:pointer;transition:transform .15s,box-shadow .15s}
 .cert-card:active{transform:scale(.97)}
+.cert-card:hover{box-shadow:0 6px 28px rgba(14,61,80,.2),0 0 0 1.5px var(--turq)}
 .cert-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
-.cert-info{padding:10px 12px}
-.cert-name{font-size:12px;font-weight:600;color:var(--ink)}
+.cert-info{padding:11px 13px;position:relative}
+.cert-info::before{content:'';position:absolute;top:0;left:13px;right:13px;height:1px;background:linear-gradient(90deg,var(--turq),transparent)}
+.cert-name{font-size:12.5px;font-weight:700;color:var(--teal-d);padding-top:6px}
 .cert-sub{font-size:10px;color:var(--ink-m);margin-top:2px}
 
 /* VIDEOS */
@@ -165,7 +167,7 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 .vid-trk{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
 .vid-slide{flex:0 0 100%;padding:0 20px;box-sizing:border-box;cursor:pointer}
 /* thumbnail container — estilo Netflix/TikTok (vertical) */
-.vid-thumb-wrap{position:relative;width:100%;max-width:240px;margin:0 auto;aspect-ratio:9/16;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 22px rgba(0,0,0,.28);background:#111}
+.vid-thumb-wrap{position:relative;height:320px;width:180px;max-width:100%;margin:0 auto;aspect-ratio:9/16;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 22px rgba(0,0,0,.28);background:#111}
 .vid-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--r-lg);display:block;z-index:1}
 .vid-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.75) 100%);border-radius:var(--r-lg)}
 /* play button overlay */
@@ -271,3 +273,23 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 .svc-cat-time{font-size:11px;color:var(--ink-m)}
 .svc-cat-price{font-size:15px;font-weight:800;color:#8B1A1A}
 .svc-cat-btn{display:flex;align-items:center;justify-content:center;gap:5px;width:100%;background:#128C7E;color:#fff;border-radius:50px;font-size:12.5px;font-weight:600;padding:8px 12px}
+.svc-domicilio-note{margin-top:12px;text-align:center;font-size:12px;color:var(--ink-m);font-weight:600}
+
+/* ── HERO: identidad del profesional (glassmorphism) ── */
+.hero-id{display:flex;align-items:center;gap:12px;margin-top:18px;z-index:1;width:100%;max-width:330px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:10px 14px;backdrop-filter:blur(8px)}
+.hero-id-photo{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:top center;flex-shrink:0;border:2px solid rgba(255,255,255,.25)}
+.hero-id-name{font-family:'Playfair Display',Georgia,serif;font-size:14px;font-weight:700;color:#fff}
+.hero-id-role{font-size:10.5px;color:rgba(255,255,255,.6);margin-top:2px;line-height:1.4}
+
+/* ── CTA FINAL ── */
+.cta-final{position:relative;text-align:center;background:linear-gradient(160deg,var(--teal-d) 0%,var(--red) 100%);overflow:hidden;padding:34px 24px}
+.cta-final-glow{position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(31,209,184,.35),transparent 70%);top:-80px;right:-60px;filter:blur(10px);pointer-events:none}
+.cta-final-title{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:700;color:#fff;position:relative;z-index:1}
+.cta-final-sub{font-size:13px;color:rgba(255,255,255,.75);margin-top:8px;max-width:300px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+.cta-final-btn{margin:18px auto 0;width:fit-content;position:relative;z-index:1;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.cta-final-foot{font-size:11px;color:rgba(255,255,255,.45);margin-top:16px;letter-spacing:.04em;position:relative;z-index:1}
+
+/* ── COBERTURA: banner de servicio a domicilio ── */
+.cov-banner{position:relative;border-radius:var(--r-lg);overflow:hidden;margin-bottom:12px;box-shadow:0 4px 20px rgba(14,61,80,.15)}
+.cov-banner img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.cov-banner-tag{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;background:linear-gradient(180deg,transparent,rgba(14,61,80,.85));color:#fff;font-size:12.5px;font-weight:700}
