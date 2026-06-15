@@ -143,36 +143,6 @@ function abrirMapa(){
     window.open(web,'_blank','noopener,noreferrer');
   }
 }
-// ── Services carousel ──────────────────────────────────
-var svcCur = 0, svcTotal = 10, svcTimer;
-function goSvc(n) {
-  svcCur = ((n % svcTotal) + svcTotal) % svcTotal;
-  document.getElementById('svc-trk').style.transform = 'translateX(-' + (svcCur * 100) + '%)';
-  document.querySelectorAll('.sdot').forEach(function(d, i) { d.classList.toggle('sdot-on', i === svcCur); });
-  document.querySelectorAll('.chip').forEach(function(c) {
-    c.classList.toggle('chip-active', Number(c.dataset.idx) === svcCur);
-  });
-  resetSvcTimer();
-}
-function moveSvc(dir) { goSvc(svcCur + dir); }
-function resetSvcTimer() {
-  clearInterval(svcTimer);
-  svcTimer = setInterval(function() { goSvc(svcCur + 1); }, 4000);
-}
-resetSvcTimer();
-
-// Swipe on services
-(function() {
-  var el = document.getElementById('svc-car');
-  if (!el) return;
-  var sx = 0;
-  el.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; }, { passive: true });
-  el.addEventListener('touchend', function(e) {
-    var dx = e.changedTouches[0].clientX - sx;
-    if (Math.abs(dx) > 40) moveSvc(dx < 0 ? 1 : -1);
-  }, { passive: true });
-})();
-
 // ── Auto testimonials ──────────────────────────────────
 (function() {
   var ts = document.getElementById('test-slider');

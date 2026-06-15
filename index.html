@@ -24,7 +24,6 @@
 
 <!-- ═══ HERO ═══ -->
 
-
 <section id="hero">
   <canvas id="hero-particles" style="position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;" aria-hidden="true"></canvas>
   <div class="hero-ring hero-ring-enter">
@@ -87,7 +86,7 @@
 <section id="about" class="sec">
   <p class="eyebrow fu">Quién soy</p>
   <h2 class="sec-title fu">Germán Agudelo<br>Terapeuta Certificado</h2>
-  <img src="assets/images/german.webp" alt="Germán Agudelo" class="about-img fu" loading="lazy" loading="lazy">
+  <img src="assets/images/german.webp" alt="Germán Agudelo" class="about-img fu" loading="lazy">
   <p class="body-txt fu">Atención personalizada enfocada en el bienestar físico, la relajación muscular y la recuperación corporal. Formación nacional e internacional en Quiropraxia, Osteopatía y Quirofisiatría.</p>
   <div class="info-pills fu">
     <span class="info-pill">
@@ -107,7 +106,6 @@
       Domingos con cita previa
     </span>
   </div>
-  <p class="body-txt" style="display:none">placeholder</p>
   <div class="spec-grid fu">
     <div class="spec-item"><span class="spec-dot" style="background:#1A5F7A;"></span>Quiropraxia</div>
     <div class="spec-item"><span class="spec-dot" style="background:#1A5F7A;"></span>Osteopatía</div>
@@ -145,221 +143,57 @@
   </div>
 </section>
 
-<section id="services" class="sec" style="padding-bottom:28px;">
+<section id="services" class="sec">
   <p class="eyebrow fu">Lo que ofrezco</p>
   <h2 class="sec-title fu">Servicios</h2>
 
-  <!-- CHIPS — vista rápida de todos los servicios -->
-    <div class="svc-chips fu">
-    <span class="chip chip-red" data-idx="0" onclick="goSvc(0)">⚡ Quiropraxia</span>
-    <span class="chip chip-blue" data-idx="1" onclick="goSvc(1)">🦴 Osteopatía</span>
-    <span class="chip chip-blue" data-idx="2" onclick="goSvc(2)">🔬 Quirofisiatría</span>
-    <span class="chip chip-red" data-idx="3" onclick="goSvc(3)">💪 Quiromasaje Terapéutico</span>
-    <span class="chip chip-blue" data-idx="4" onclick="goSvc(4)">😌 Masaje Relajante</span>
-    <span class="chip chip-blue" data-idx="5" onclick="goSvc(5)">🔓 Descontracturante</span>
-    <span class="chip chip-blue" data-idx="6" onclick="goSvc(6)">🦶 Reflexología</span>
-    <span class="chip chip-blue" data-idx="7" onclick="goSvc(7)">📳 Masaje Vibratorio</span>
-    <span class="chip chip-red" data-idx="8" onclick="goSvc(8)">🪨 Piedras Volcánicas</span>
-    <span class="chip chip-blue" data-idx="9" onclick="goSvc(9)">🏠 Atención a Domicilio</span>
-  </div>
+  <div class="svc-cat-grid fu">
 
-  <!-- CARRUSEL — detalle de cada servicio -->
-  <div class="svc-car-wrap fu" style="margin-top:18px;">
-    <button class="svc-arr sarr-l" onclick="moveSvc(-1)" aria-label="Anterior">‹</button>
-    <div class="svc-car" id="svc-car">
-      <div class="svc-trk" id="svc-trk">
-        <div class="svc-slide">
-          <div class="svc-card">
-            <div class="svc-img-wrap">
-              <img src="assets/gallery/galeria2.webp" alt="Quiropraxia" class="svc-img" loading="lazy">
-              <span class="svc-tag">⚡ Alivio rápido</span>
-            </div>
-            <div class="svc-body">
-              <div class="svc-st">Quiropraxia</div>
-              <div class="svc-sd">Ajuste vertebral y articular preciso para liberar el dolor en minutos.</div>
-              <div class="svc-meta">
-                <span class="svc-time">⏱ 15-20 min aprox</span>
-                <span class="svc-price">$80.000</span>
-              </div>
-              <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20reservar%20una%20sesi%C3%B3n%20de%20Quiropraxia" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-            </div>
-          </div>
+    <div class="svc-cat-card">
+      <img src="assets/gallery/galeria2.webp" alt="Quiropraxia y Osteopatía" class="svc-cat-img" loading="lazy">
+      <div class="svc-cat-body">
+        <div class="svc-cat-title">Quiropraxia &amp; Osteopatía</div>
+        <div class="svc-cat-list">Quiropraxia · Osteopatía · Quirofisiatría</div>
+        <div class="svc-cat-meta">
+          <span class="svc-cat-time">⏱ 15-45 min</span>
+          <span class="svc-cat-price">$80.000-$100.000</span>
         </div>
-        <div class="svc-slide">
-          <div class="svc-card">
-            <div class="svc-img-wrap">
-              <img src="assets/gallery/galeria1.webp" alt="Osteopatía" class="svc-img" loading="lazy">
-              
-            </div>
-            <div class="svc-body">
-              <div class="svc-st">Osteopatía</div>
-              <div class="svc-sd">Terapia manual que trata disfunciones estructurales del cuerpo de forma integral.</div>
-              <div class="svc-meta">
-                <span class="svc-time">⏱ 30-40 min aprox</span>
-                <span class="svc-price">$80.000</span>
-              </div>
-              <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20reservar%20una%20sesi%C3%B3n%20de%20Osteopatía" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-            </div>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-card">
-            <div class="svc-img-wrap">
-              <img src="assets/gallery/galeria3.webp" alt="Quirofisiatría" class="svc-img" loading="lazy">
-              <span class="svc-tag">💎 Premium</span>
-            </div>
-            <div class="svc-body">
-              <div class="svc-st">Quirofisiatría</div>
-              <div class="svc-sd">Evaluación y tratamiento especializado de lesiones musculoesqueléticas.</div>
-              <div class="svc-meta">
-                <span class="svc-time">⏱ 40-45 min aprox</span>
-                <span class="svc-price">$100.000</span>
-              </div>
-              <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20reservar%20una%20sesi%C3%B3n%20de%20Quirofisiatría" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-            </div>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-card">
-            <div class="svc-img-wrap">
-              <img src="assets/gallery/galeria1.webp" alt="Quiromasaje Terapéutico" class="svc-img" loading="lazy">
-              <span class="svc-tag">⭐ Más solicitado</span>
-            </div>
-            <div class="svc-body">
-              <div class="svc-st">Quiromasaje Terapéutico</div>
-              <div class="svc-sd">Alivia contracturas, dolor crónico y lesiones musculares desde la primera sesión.</div>
-              <div class="svc-meta">
-                <span class="svc-time">⏱ 30-40 min aprox</span>
-                <span class="svc-price">$80.000</span>
-              </div>
-              <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20reservar%20una%20sesi%C3%B3n%20de%20Quiromasaje%20Terapéutico" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-            </div>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-card">
-            <div class="svc-img-wrap">
-              <img src="assets/gallery/galeria4.webp" alt="Masaje Relajante" class="svc-img" loading="lazy">
-              <span class="svc-tag">🧘 Relajación</span>
-            </div>
-            <div class="svc-body">
-              <div class="svc-st">Masaje Relajante</div>
-              <div class="svc-sd">Manejo del estrés con técnicas suaves que relajan cuerpo y mente.</div>
-              <div class="svc-meta">
-                <span class="svc-time">⏱ 30-40 min aprox</span>
-                <span class="svc-price">$80.000</span>
-              </div>
-              <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20reservar%20una%20sesi%C3%B3n%20de%20Masaje%20Relajante" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-            </div>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-card">
-            <div class="svc-img-wrap">
-              <img src="assets/gallery/galeria2.webp" alt="Descontracturante" class="svc-img" loading="lazy">
-              
-            </div>
-            <div class="svc-body">
-              <div class="svc-st">Descontracturante</div>
-              <div class="svc-sd">Trabaja nudos musculares profundos eliminando tensiones acumuladas.</div>
-              <div class="svc-meta">
-                <span class="svc-time">⏱ 30-40 min aprox</span>
-                <span class="svc-price">$80.000</span>
-              </div>
-              <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20reservar%20una%20sesi%C3%B3n%20de%20Descontracturante" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-            </div>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-card">
-            <div class="svc-img-wrap">
-              <img src="assets/gallery/galeria1.webp" alt="Reflexología" class="svc-img" loading="lazy">
-              
-            </div>
-            <div class="svc-body">
-              <div class="svc-st">Reflexología</div>
-              <div class="svc-sd">Técnica de presión en puntos reflejos del pie que equilibra el sistema nervioso.</div>
-              <div class="svc-meta">
-                <span class="svc-time">⏱ 30-40 min aprox</span>
-                <span class="svc-price">$80.000</span>
-              </div>
-              <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20reservar%20una%20sesi%C3%B3n%20de%20Reflexología" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-            </div>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-card">
-            <div class="svc-img-wrap">
-              <img src="assets/gallery/galeria3.webp" alt="Masaje Vibratorio" class="svc-img" loading="lazy">
-              
-            </div>
-            <div class="svc-body">
-              <div class="svc-st">Masaje Vibratorio</div>
-              <div class="svc-sd">Vibraciones profundas que descontracturan músculos y mejoran la circulación.</div>
-              <div class="svc-meta">
-                <span class="svc-time">⏱ 30-40 min aprox</span>
-                <span class="svc-price">$80.000</span>
-              </div>
-              <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20reservar%20una%20sesi%C3%B3n%20de%20Masaje%20Vibratorio" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-            </div>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-card">
-            <div class="svc-img-wrap">
-              <img src="assets/gallery/galeria2.webp" alt="Piedras Volcánicas" class="svc-img" loading="lazy">
-              <span class="svc-tag">🔥 Recomendado</span>
-            </div>
-            <div class="svc-body">
-              <div class="svc-st">Piedras Volcánicas</div>
-              <div class="svc-sd">El calor de las piedras basálticas penetra profundo, relajando la musculatura.</div>
-              <div class="svc-meta">
-                <span class="svc-time">⏱ 30-40 min aprox</span>
-                <span class="svc-price">$80.000</span>
-              </div>
-              <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20reservar%20una%20sesi%C3%B3n%20de%20Piedras%20Volcánicas" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-            </div>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-card">
-            <div class="svc-img-wrap">
-              <img src="assets/gallery/galeria4.webp" alt="Atención a Domicilio" class="svc-img" loading="lazy">
-              
-            </div>
-            <div class="svc-body">
-              <div class="svc-st">Atención a Domicilio</div>
-              <div class="svc-sd">Llevamos todo el equipo profesional hasta tu casa u oficina, sin desplazamientos.</div>
-              <div class="svc-meta">
-                <span class="svc-time">⏱ Según el servicio</span>
-                <span class="svc-price">Consultar</span>
-              </div>
-              <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20reservar%20una%20sesi%C3%B3n%20de%20Atención%20a%20Domicilio" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-            </div>
-          </div>
-        </div>
+        <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Quiropraxia%20u%20Osteopat%C3%ADa" target="_blank" rel="noopener" class="svc-cat-btn">Reservar</a>
       </div>
     </div>
-    <button class="svc-arr sarr-r" onclick="moveSvc(1)" aria-label="Siguiente">›</button>
-  </div>
-  <div class="sdots" id="sdots">
-    <button class="sdot sdot-on" onclick="goSvc(0)"></button>
-    <button class="sdot" onclick="goSvc(1)"></button>
-    <button class="sdot" onclick="goSvc(2)"></button>
-    <button class="sdot" onclick="goSvc(3)"></button>
-    <button class="sdot" onclick="goSvc(4)"></button>
-    <button class="sdot" onclick="goSvc(5)"></button>
-    <button class="sdot" onclick="goSvc(6)"></button>
-    <button class="sdot" onclick="goSvc(7)"></button>
-    <button class="sdot" onclick="goSvc(8)"></button>
-    <button class="sdot" onclick="goSvc(9)"></button>
-  </div>
 
+    <div class="svc-cat-card">
+      <img src="assets/gallery/galeria1.webp" alt="Masajes Terapéuticos" class="svc-cat-img" loading="lazy">
+      <div class="svc-cat-body">
+        <div class="svc-cat-title">Masajes Terapéuticos</div>
+        <div class="svc-cat-list">Quiromasaje · Relajante · Descontracturante · Reflexología · Vibratorio · Piedras Volcánicas</div>
+        <div class="svc-cat-meta">
+          <span class="svc-cat-time">⏱ 30-40 min</span>
+          <span class="svc-cat-price">$80.000</span>
+        </div>
+        <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Masajes%20Terap%C3%A9uticos" target="_blank" rel="noopener" class="svc-cat-btn">Reservar</a>
+      </div>
+    </div>
+
+    <div class="svc-cat-card">
+      <img src="assets/gallery/galeria4.webp" alt="Atención a Domicilio" class="svc-cat-img" loading="lazy">
+      <div class="svc-cat-body">
+        <div class="svc-cat-title">🏠 Atención a Domicilio</div>
+        <div class="svc-cat-list">Llevamos camilla y equipo profesional hasta tu hogar u oficina</div>
+        <div class="svc-cat-meta">
+          <span class="svc-cat-time">⏱ Según servicio</span>
+          <span class="svc-cat-price">Consultar</span>
+        </div>
+        <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20agendar%20una%20sesi%C3%B3n%20a%20domicilio" target="_blank" rel="noopener" class="svc-cat-btn">Reservar</a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <section id="tarifas" class="sec">
   <p class="eyebrow fu">Precios</p>
-  <h2 class="sec-title fu">💰 Tarifas y Promociones</h2>
+  <h2 class="sec-title fu">💰 Promoción</h2>
 
   <!-- TARJETA PROMOCIONAL DESTACADA -->
   <div class="promo-card fu">
@@ -376,46 +210,6 @@
       <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       ¡Quiero esta oferta!
     </a>
-  </div>
-
-  <!-- SERVICIOS INDIVIDUALES -->
-  <div class="tarifas-grid fu">
-
-    <div class="tarifa-card">
-      <div class="tarifa-icon">💆</div>
-      <div class="tarifa-nombre">Masaje espalda y cuello</div>
-      <div class="tarifa-tiempo">30 a 40 min aprox</div>
-      <div class="tarifa-precio">$80.000</div>
-    </div>
-
-    <div class="tarifa-card">
-      <div class="tarifa-icon">🦵</div>
-      <div class="tarifa-nombre">Masaje en pies, pantorrillas y piernas</div>
-      <div class="tarifa-tiempo">30 a 40 min aprox</div>
-      <div class="tarifa-precio">$80.000</div>
-    </div>
-
-    <div class="tarifa-card">
-      <div class="tarifa-icon">⚡</div>
-      <div class="tarifa-nombre">Terapia nervio ciático</div>
-      <div class="tarifa-tiempo">40 a 45 min aprox</div>
-      <div class="tarifa-precio">$100.000</div>
-    </div>
-
-    <div class="tarifa-card">
-      <div class="tarifa-icon">🦴</div>
-      <div class="tarifa-nombre">Quiropraxia descontracturante</div>
-      <div class="tarifa-tiempo">15 a 20 min aprox</div>
-      <div class="tarifa-precio">$80.000</div>
-    </div>
-
-    <div class="tarifa-card">
-      <div class="tarifa-icon">😊</div>
-      <div class="tarifa-nombre">Masaje facial, craneal y cuello</div>
-      <div class="tarifa-tiempo">30 a 40 min aprox</div>
-      <div class="tarifa-precio">$80.000</div>
-    </div>
-
   </div>
 </section>
 
@@ -569,33 +363,15 @@
 
 <section id="casos" class="sec">
   <p class="eyebrow fu">Casos de éxito</p>
-  <h2 class="sec-title fu">Resultados de nuestros pacientes</h2>
+  <h2 class="sec-title fu">Resultado de un paciente</h2>
   <div class="casos-grid fu">
 
-    <div class="caso-card">
+<div class="caso-card">
       <img src="assets/images/atencion-paciente.webp" alt="Caso 1 - Dolor lumbar" class="caso-img" loading="lazy">
       <div class="caso-body">
         <span class="caso-num">Caso 1</span>
         <div class="caso-title">Dolor lumbar</div>
         <p class="caso-desc">Paciente con dolor lumbar crónico que afectaba su movilidad diaria. Tras un plan de quiropraxia y masaje terapéutico, recuperó flexibilidad y eliminó el dolor en pocas sesiones.</p>
-      </div>
-    </div>
-
-    <div class="caso-card">
-      <img src="assets/thumbnails/poster5.webp" alt="Caso 2 - Dolor cervical" class="caso-img" loading="lazy">
-      <div class="caso-body">
-        <span class="caso-num">Caso 2</span>
-        <div class="caso-title">Dolor cervical</div>
-        <p class="caso-desc">Tensión cervical por mala postura prolongada en el trabajo. Con sesiones de osteopatía y terapia manual se logró liberar la rigidez y mejorar el rango de movimiento del cuello.</p>
-      </div>
-    </div>
-
-    <div class="caso-card">
-      <img src="assets/thumbnails/poster1.webp" alt="Caso 3 - Contracturas musculares" class="caso-img" loading="lazy">
-      <div class="caso-body">
-        <span class="caso-num">Caso 3</span>
-        <div class="caso-title">Contracturas musculares</div>
-        <p class="caso-desc">Contracturas persistentes en espalda y hombros. El plan combinado de masaje descontracturante y seguimiento a domicilio devolvió la movilidad y redujo notablemente la molestia.</p>
       </div>
     </div>
 
@@ -652,40 +428,26 @@
   <p class="eyebrow fu">Preguntas frecuentes</p>
   <h2 class="sec-title fu">¿Tienes dudas?</h2>
   <div class="faq-list fu">
-    <div class="faq-item">
+<div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
         <span>¿La quiropraxia duele?</span>
         <span class="faq-ic">+</span>
       </button>
       <div class="faq-a"><p>No. Las técnicas se aplican de forma controlada y progresiva. Algunas personas sienten una leve molestia momentánea durante el ajuste, pero no es un procedimiento doloroso y la mayoría siente alivio inmediato.</p></div>
     </div>
-    <div class="faq-item">
+<div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
         <span>¿Atienden a domicilio?</span>
         <span class="faq-ic">+</span>
       </button>
       <div class="faq-a"><p>Sí. Quiromasajes GAP ofrece atención a domicilio en Soacha, Bogotá D.C. y municipios cercanos. También contamos con instalaciones fijas para quienes lo prefieran.</p></div>
     </div>
-    <div class="faq-item">
+<div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
         <span>¿Cuánto dura una sesión?</span>
         <span class="faq-ic">+</span>
       </button>
       <div class="faq-a"><p>La duración varía según el servicio: entre 15 y 45 minutos aproximadamente, dependiendo de la terapia (quiropraxia, osteopatía, masajes, etc.). Puedes ver los tiempos detallados en la sección de Servicios.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        <span>¿Atienden fines de semana?</span>
-        <span class="faq-ic">+</span>
-      </button>
-      <div class="faq-a"><p>Sí, contamos con disponibilidad los fines de semana. Escríbenos por WhatsApp para confirmar el horario exacto según tu zona.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        <span>¿Qué debo llevar a la consulta?</span>
-        <span class="faq-ic">+</span>
-      </button>
-      <div class="faq-a"><p>Solo ropa cómoda. Si el servicio es a domicilio, nosotros llevamos la camilla y todo el equipo necesario para tu sesión.</p></div>
     </div>
   </div>
 </section>
@@ -731,16 +493,6 @@
     <span class="pay-chip">Transferencia</span>
   </div>
   <button class="btn-save fu" id="save-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V8H4v2H2v2h2v2h2v-2h2v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> Guardar Contacto</button>
-</section>
-
-<section id="cta">
-  <div class="cta-inner">
-    <h2 class="fu">¿Listo para aliviar<br>tu dolor hoy?</h2>
-    <p class="fu">Agenda ahora y recibe atención profesional personalizada en la comodidad de tu hogar.</p>
-    <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener" class="btn-cta fu">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> AGENDAR POR WHATSAPP
-    </a>
-  </div>
 </section>
 
 <!-- FOOTER -->

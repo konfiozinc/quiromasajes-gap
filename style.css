@@ -16,11 +16,11 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
 .fu.in{opacity:1;transform:none}
 
 /* SECTION */
-.sec{padding:44px 20px}
+.sec{padding:26px 20px}
 .sec-alt{background:var(--off)}
-.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:5px}
 .eyebrow::before{content:'';width:18px;height:2px;background:var(--teal);border-radius:2px;flex-shrink:0}
-h2.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,6vw,28px);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:18px}
+h2.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,6vw,28px);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:10px}
 .body-txt{font-size:14px;line-height:1.75;color:var(--ink-s)}
 
 /* FAB */
@@ -48,8 +48,8 @@ h2.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,6
 .hero-stat-lbl{font-size:10px;color:rgba(255,255,255,.5);margin-top:3px;letter-spacing:.04em}
 
 /* ABOUT */
-.about-img{width:100%;aspect-ratio:3/4;border-radius:var(--r-lg);object-fit:cover;object-position:center top;margin-bottom:18px;box-shadow:0 8px 32px rgba(0,0,0,.12)}
-.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.about-img{width:100%;aspect-ratio:16/9;border-radius:var(--r-lg);object-fit:cover;object-position:center 25%;margin-bottom:12px;box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
 .spec-item{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#fff;border-radius:var(--r);border:1px solid var(--border);font-size:13px;font-weight:500}
 .spec-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 
@@ -140,12 +140,12 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 .foot-konfio span{color:rgba(255,255,255,.4)}
 
 /* ── INFO PILLS ── */
-.info-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.info-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
 .info-pill{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;background:rgba(26,95,122,0.07);border:1px solid rgba(26,95,122,0.15);border-radius:20px;font-size:11px;font-weight:500;color:var(--ink-s)}
 
 /* ── BENEFICIOS COMPACTOS ── */
-.benefits-compact{display:flex;flex-direction:column;gap:10px;max-width:480px;margin:0 auto}
-.bc-item{display:flex;align-items:center;gap:14px;background:#fff;border-radius:var(--r);padding:13px 15px;border:1px solid var(--border)}
+.benefits-compact{display:flex;flex-direction:column;gap:8px;max-width:480px;margin:0 auto}
+.bc-item{display:flex;align-items:center;gap:12px;background:#fff;border-radius:var(--r);padding:10px 14px;border:1px solid var(--border)}
 .bc-icon{width:42px;height:42px;border-radius:50%;background:var(--off);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .bc-title{font-size:14px;font-weight:600;color:var(--ink)}
 .bc-sub{font-size:12px;color:var(--ink-m);margin-top:1px}
@@ -158,27 +158,6 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 .loc-maps{background:linear-gradient(135deg,#34A853,#2d9445);color:#fff;box-shadow:0 4px 18px rgba(52,168,83,.35)}
 
 /* ── WAZE EN CONTACTO ── */
-
-/* ── SERVICE CHIPS — vista rápida ── */
-.svc-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:4px;padding:0 2px}
-.chip{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;line-height:1;cursor:pointer;transition:transform .15s,box-shadow .15s;-webkit-tap-highlight-color:transparent}
-.chip:active{transform:scale(.95)}
-.chip-active{box-shadow:0 0 0 2px currentColor inset;transform:scale(1.03)}
-.chip-red{background:rgba(139,26,26,.1);border:1.5px solid rgba(139,26,26,.3);color:#8B1A1A}
-.chip-blue{background:rgba(26,95,122,.08);border:1.5px solid rgba(26,95,122,.2);color:#1A5F7A}
-
-.svc-car-wrap{position:relative;display:flex;align-items:center;gap:0;margin-top:4px}
-.svc-car{overflow:hidden;flex:1}
-.svc-trk{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
-.svc-slide{flex:0 0 100%;padding:0 8px;box-sizing:border-box}
-.svc-slide>*+*{margin-top:0}
-.svc-arr{position:absolute;top:24%;transform:translateY(-50%);z-index:10;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 2px 10px rgba(0,0,0,.18);border:none;font-size:18px;color:var(--teal);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
-.svc-arr:active{background:#fff}
-.sarr-l{left:4px}
-.sarr-r{right:4px}
-.sdots{display:flex;justify-content:center;gap:7px;margin-top:16px}
-.sdot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all .2s;padding:0}
-.sdot-on{background:var(--teal);transform:scale(1.35)}
 
 /* ── VIDEO CAROUSEL ── */
 .vid-car-wrap{position:relative;display:flex;align-items:center;margin-top:4px}
@@ -231,7 +210,7 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 
 
 /* ── TARIFAS Y PROMOCIONES ── */
-.promo-card{background:linear-gradient(135deg,#8B1A1A,#C0392B);color:#fff;border-radius:16px;padding:24px 20px;text-align:center;margin:0 4px 28px;box-shadow:0 6px 28px rgba(139,26,26,.35)}
+.promo-card{background:linear-gradient(135deg,#8B1A1A,#C0392B);color:#fff;border-radius:16px;padding:18px 20px;text-align:center;margin:0 4px;box-shadow:0 6px 28px rgba(139,26,26,.35)}
 .promo-badge{font-size:13px;font-weight:700;letter-spacing:.08em;opacity:.9;margin-bottom:10px}
 .promo-title{font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;line-height:1.3;margin-bottom:6px}
 .promo-sub{font-size:14px;opacity:.85;margin-bottom:12px;letter-spacing:.04em}
@@ -240,25 +219,6 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 
 .tarifas-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 4px}
 .tarifa-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px 14px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.07)}
-.tarifa-icon{font-size:26px;margin-bottom:6px}
-.tarifa-nombre{font-size:13px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:6px}
-.tarifa-tiempo{font-size:11px;color:var(--ink-m);margin-bottom:8px}
-.tarifa-precio{font-size:20px;font-weight:700;color:#8B1A1A}
-
-
-/* ── SERVICIOS — tarjetas rediseñadas ── */
-.svc-card{background:#fff;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.08);border:1px solid var(--border)}
-.svc-img-wrap{position:relative;width:100%;aspect-ratio:11/5;overflow:hidden}
-.svc-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.svc-tag{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;backdrop-filter:blur(4px);letter-spacing:.02em;white-space:nowrap}
-.svc-body{padding:12px 14px 14px}
-.svc-st{font-family:'Playfair Display',Georgia,serif;font-size:16px;font-weight:700;color:var(--ink);text-align:left;margin-bottom:4px}
-.svc-sd{font-size:12.5px;color:var(--ink-m);line-height:1.45;text-align:left;margin-bottom:0}
-.svc-meta{display:flex;justify-content:space-between;align-items:center;margin:9px 0 10px;gap:8px}
-.svc-time{font-size:11.5px;color:var(--ink-m);white-space:nowrap}
-.svc-price{font-size:19px;font-weight:800;color:#8B1A1A;background:rgba(139,26,26,.08);padding:3px 11px;border-radius:10px;white-space:nowrap}
-.svc-card .svc-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;background:#128C7E;color:#fff;border-radius:50px;font-size:13.5px;font-weight:600;padding:11px 14px;margin-top:0}
-
 /* ── PROMO: antes/ahora ── */
 .promo-precios{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:4px}
 .promo-antes{font-size:15px;text-decoration:line-through;opacity:.65}
@@ -266,8 +226,8 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 .promo-ahorro{display:inline-block;margin-top:8px;background:rgba(255,255,255,.18);border-radius:20px;padding:5px 14px;font-size:13px;font-weight:600}
 
 /* ── PROBLEMAS QUE RESOLVEMOS ── */
-.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.prob-item{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;font-size:13px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.prob-item{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;font-size:12px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
 
 /* ── VIDEO MODAL PLAYER ── */
 .vid-modal-box{max-width:380px;padding:14px}
@@ -296,5 +256,18 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 /* ── COBERTURA ── */
 .cov-grid{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
 .cov-item{background:#fff;border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-size:12.5px;font-weight:600;color:var(--ink)}
-.cov-map{border-radius:var(--r-lg);overflow:hidden;margin-bottom:16px;box-shadow:0 2px 16px rgba(0,0,0,.07);border:1px solid var(--border)}
+.cov-map{border-radius:var(--r-lg);overflow:hidden;margin-bottom:12px;box-shadow:0 2px 16px rgba(0,0,0,.07);border:1px solid var(--border)}
+.cov-map iframe{height:130px!important}
 .cov-map iframe{display:block}
+
+/* ── SERVICIOS — 3 categorías compactas ── */
+.svc-cat-grid{display:flex;flex-direction:column;gap:12px}
+.svc-cat-card{display:flex;gap:12px;background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.06);padding:0}
+.svc-cat-img{width:104px;flex-shrink:0;aspect-ratio:3/4;object-fit:cover;display:block}
+.svc-cat-body{flex:1;min-width:0;padding:10px 12px 10px 0;display:flex;flex-direction:column;justify-content:center}
+.svc-cat-title{font-family:'Playfair Display',Georgia,serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.svc-cat-list{font-size:11.5px;color:var(--ink-m);line-height:1.45;margin-bottom:6px}
+.svc-cat-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px}
+.svc-cat-time{font-size:11px;color:var(--ink-m)}
+.svc-cat-price{font-size:15px;font-weight:800;color:#8B1A1A}
+.svc-cat-btn{display:flex;align-items:center;justify-content:center;gap:5px;width:100%;background:#128C7E;color:#fff;border-radius:50px;font-size:12.5px;font-weight:600;padding:8px 12px}
