@@ -65,7 +65,7 @@ if(ts&&tdots.length){
 }
 
 // ── Video carousel ─────────────────────────────────────
-var vidCur = 0, vidTotal = 10, vidTimer, vidPaused = false;
+var vidCur = 0, vidTotal = 6, vidTimer, vidPaused = false;
 function goVid(n) {
   vidCur = ((n % vidTotal) + vidTotal) % vidTotal;
   var trk = document.getElementById('vid-trk');
@@ -235,4 +235,12 @@ function toggleFaq(btn) {
   });
   item.classList.toggle('open', !wasOpen);
   btn.querySelector('.faq-ic').textContent = !wasOpen ? '×' : '+';
+}
+
+// ── Galería: revelar los 4 videos restantes ──
+function showMoreVideos() {
+  document.querySelectorAll('.vid-extra').forEach(function(el) { el.classList.remove('vid-extra'); });
+  document.querySelectorAll('.vid-extra-dot').forEach(function(el) { el.classList.remove('vid-extra-dot'); });
+  vidTotal = 10;
+  document.getElementById('vid-more-btn').classList.add('hidden');
 }
