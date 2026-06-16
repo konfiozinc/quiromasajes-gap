@@ -170,7 +170,15 @@
     <div class="vid-car" id="vid-car">
       <div class="vid-trk" id="vid-trk">
 
-        <div class="vid-slide" data-drive="13n3FSzI1bn5xutM1MYkxr-dyaz0lJP8c" data-title="Presentación principal del servicio" onclick="openVid(this)">
+        
+<div class="vid-slide" data-drive="1yzxGaGtAT606Rx2SJkDbQSi-2qDpPOSb" data-title="Presentación del consultorio" onclick="openVid(this)">
+<div class="vid-thumb-wrap">
+<img src="assets/thumbnails/poster1.webp" alt="Video 1" class="vid-poster" loading="lazy">
+<div class="vid-grad"></div><div class="vid-play-btn"></div>
+<div class="vid-counter">1 / 11</div>
+<div class="vid-overlay-label">Video 1 · Presentación del consultorio</div>
+</div><div class="vid-slide-sub">▶ Conoce Quiromasajes GAP</div></div>
+<div class="vid-slide" data-drive="13n3FSzI1bn5xutM1MYkxr-dyaz0lJP8c" data-title="Presentación principal del servicio" onclick="openVid(this)">
           <div class="vid-thumb-wrap">
             <img src="assets/thumbnails/poster1.webp" alt="Presentación principal del servicio" class="vid-poster" loading="lazy">
             <div class="vid-grad"></div>
@@ -254,7 +262,9 @@
             <div class="vid-overlay-label">Video 8 · Resultados o demostración</div>
           </div>
           <div class="vid-slide-sub">▶ Casos reales y mejoras evidentes</div>
-    <div class="vid-slide vid-extra"iv class="vid-slide" data-drive="1yzxGaGtAT606Rx2SJkDbQSi-2qDpPOSb" data-title="Video adicional" onclick="openVid(this)">
+        </div>
+
+        <div class="vid-slide vid-extra" data-drive="1yzxGaGtAT606Rx2SJkDbQSi-2qDpPOSb" data-title="Video adicional" onclick="openVid(this)">
           <div class="vid-thumb-wrap">
             <img src="assets/thumbnails/poster9.webp" alt="Video adicional" class="vid-poster" loading="lazy">
             <div class="vid-grad"></div>
@@ -298,7 +308,7 @@
   <!-- Modal de reproducción (Google Drive embed, lazy) -->
   <div id="vid-modal" class="modal" onclick="if(event.target===this)closeVid()">
     <div class="modal-box vid-modal-box">
-      <button class="modal-close" onclick="closeVid()">← Volver a galería</button>
+      <button class="modal-close" onclick="closeVid()">← Volver a la galería</button>
       <div class="vid-frame-wrap">
         <iframe id="vid-player" class="vid-player" allow="autoplay; fullscreen" allowfullscreen frameborder="0" loading="lazy"></iframe>
       </div>
@@ -412,7 +422,7 @@
 <!-- MODAL CERT -->
 <div id="cert-modal" class="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕</button>
+    <button class="modal-close" onclick="closeModal()">← Volver a la galería</button>
     <div class="modal-img" id="modal-img"></div>
     <div class="modal-title" id="modal-title"></div>
   </div>
@@ -425,7 +435,7 @@
   <div class="modal-box" style="max-width:480px;width:100%;border-radius:var(--r-lg) var(--r-lg) 0 0;padding:0;max-height:90vh;overflow:hidden;margin:0;">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);background:#fff;">
       <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--ink);">Agendar Cita</div>
-      <button class="modal-close" style="position:static;" onclick="closeCalendly()">✕</button>
+      <button class="modal-close" style="position:static;" onclick="closeCalendly()">← Volver a la galería</button>
     </div>
     <div style="padding:20px;background:#fff;">
       <p style="font-size:14px;color:var(--ink-s);margin-bottom:20px;line-height:1.6;">Escoge tu servicio y escríbeme directamente por WhatsApp para confirmar fecha y hora disponible.</p>

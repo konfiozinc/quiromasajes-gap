@@ -314,26 +314,3 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
   .vid-thumb-wrap{height:200px!important;width:112px!important;}
   .vid-modal-box{max-width:300px!important;}
 }
-
-
-/* CTO hotfix videos */
-.vid-car{overflow:hidden!important;}
-.vid-trk{display:flex!important;}
-.vid-slide{min-width:100%!important;flex:0 0 100%!important;max-width:100%!important;}
-.vid-modal-box{max-width:420px!important;}
-.modal-close{
-left:12px!important;
-right:auto!important;
-padding:10px 14px!important;
-border-radius:999px!important;
-font-size:14px!important;
-}
-
-
-/* HOTFIX gallery */
-.vid-car{overflow:hidden!important;width:100%!important;}
-.vid-trk{display:flex!important;width:100%!important;transition:transform .45s ease!important;}
-.vid-slide{flex:0 0 100%!important;min-width:100%!important;max-width:100%!important;box-sizing:border-box!important;}
-.vid-car-wrap{overflow:hidden!important;}
-#vid-modal .open-external,#vid-modal .share-btn{display:none!important;}
-.vid-back-btn{display:flex!important;}
