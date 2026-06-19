@@ -170,24 +170,51 @@ function abrirMapa(){
   start();
 })();
 
-// ── Video modal ─────────────────────────────────────────
+// ── Video modal (CON VIDEO NATIVO Y FALLBACK) ─────────
 function openVid(slide) {
   var driveId = slide.dataset.drive;
   var title   = slide.dataset.title;
   var player  = document.getElementById('vid-player');
   var modal   = document.getElementById('vid-modal');
-  player.src  = 'https://drive.google.com/file/d/' + driveId + '/preview';
+  var fallbackLink = document.getElementById('vid-fallback-link');
+
+  // Asignar la URL de descarga directa (streaming)
+  var directUrl = 'https://drive.google.com/uc?export=download&id=' + driveId;
+  var previewUrl = 'https://drive.google.com/file/d/' + driveId + '/preview';
+
+  // Cargar el video en el elemento nativo
+  player.src = directUrl;
+  player.load();
+
+  // Actualizar título y enlace de fallback
   document.getElementById('vid-modal-title').textContent = title;
+  fallbackLink.href = previewUrl;
+  fallbackLink.textContent = 'Abrir en Google Drive';
+
   modal.classList.add('on');
   document.body.style.overflow = 'hidden';
-  vidPaused = true; clearInterval(vidTimer);
+  vidPaused = true;
+  clearInterval(vidTimer);
+
+  // Intentar reproducción automática
+  var playPromise = player.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(function() {
+      // El usuario debe presionar play manualmente
+    });
+  }
 }
+
 function closeVid() {
   var player = document.getElementById('vid-player');
-  player.src = ''; // detiene la reproducción y libera el iframe
+  player.pause();
+  player.src = ''; // liberar recurso
+  player.load();
+
   document.getElementById('vid-modal').classList.remove('on');
   document.body.style.overflow = '';
-  vidPaused = false; resetVidTimer();
+  vidPaused = false;
+  resetVidTimer();
 }
 
 // ── Hero particles ─────────────────────────────────────
