@@ -246,12 +246,12 @@
   <div class="promo-card">
     <div class="promo-badge">🔥 OFERTA PROMOCIONAL</div>
     <div class="promo-title">Quiropraxia + Masaje Corporal Completo</div>
-    <div class="promo-sub">De pies a cabeza · 1.5 horas</div>
+    <div class="promo-sub">De pies a cabeza · 1.5 horas · Incluye domicilio</div>
     <div class="promo-precios">
-      <span class="promo-antes">$200.000</span>
+      <span class="promo-antes">$250.000</span>
       <span class="promo-ahora">$170.000</span>
     </div>
-    <div class="promo-ahorro">✅ Ahorras $30.000</div>
+    <div class="promo-ahorro">✅ Ahorras $80.000</div>
     <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20la%20promoci%C3%B3n%20completa." target="_blank" rel="noopener" class="btn-wa promo-btn">Quiero esta oferta</a>
   </div>
 </section>
@@ -282,7 +282,7 @@
   </div>
   <div class="contact-row">
     <button class="btn-save contact-save" id="save-btn-bottom">Guardar contacto</button>
-    <a href="#" class="btn-qr" id="qr-btn">QR</a>
+    <button class="btn-qr" id="qr-btn" type="button" aria-label="Compartir / Código QR">QR</button>
   </div>
 </section>
 
@@ -316,6 +316,19 @@
   </div>
 </div>
 
+<!-- Modal de QR / Compartir -->
+<div id="qr-modal" class="modal" onclick="if(event.target===this) closeQr()">
+  <div class="modal-box qr-modal-box">
+    <button class="modal-close" onclick="closeQr()">← Volver</button>
+    <div class="qr-wrap">
+      <div id="qr-canvas-wrap"></div>
+    </div>
+    <div class="modal-title">Escanea para abrir la tarjeta</div>
+    <button class="btn-wa qr-share-btn" id="qr-share-native">Compartir enlace</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="script.js" defer></script>
 </body>
 </html>
