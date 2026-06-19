@@ -105,7 +105,7 @@ function crearSliderFinito(containerId, trackId, dotId, autoTime) {
 
 document.addEventListener('DOMContentLoaded', function() {
   crearSliderFinito('casos-slider', 'casos-track', 'casos-dots', 5000);
-  crearSliderFinito('vid-slider', 'vid-track', 'vid-dots', 4000);
+  crearSliderFinito('vid-slider', 'vid-track', 'vid-dots', 0);
 });
 
 // ===== VIDEOS: REPRODUCCIÓN CON IFRAME (CORREGIDO) =====
@@ -209,9 +209,92 @@ window.closeCert = function() {
   document.body.style.overflow = '';
 };
 
-// ===== BOTÓN QR =====
-document.getElementById('qr-btn').addEventListener('click', function(e) {
-  e.preventDefault();
-  // Mostrar un modal con el QR o redirigir a una URL con el QR
-  alert('Aquí se mostrará el código QR de la tarjeta digital.');
+// ===== BOTÓN QR + COMPARTIR =====
+var qrModal = document.getElementById('qr-modal');
+var pageUrl = window.location.href.split('#')[0].split('?')[0];
+
+function buildQr() {
+  var wrap = document.getElementById('qr-canvas-wrap');
+  wrap.innerHTML = '';
+  if (typeof QRCode === 'undefined') {
+    wrap.innerHTML = '<p style="font-size:13px;color:var(--gris)">No se pudo generar el QR. Verifica tu conexión.</p>';
+    return;
+  }
+  // Genera el QR en alta corrección de error (H) para poder cubrir el centro con el logo
+  new QRCode(wrap, {
+    text: pageUrl,
+    width: 220,
+    height: 220,
+    colorDark: '#0E3D50',
+    colorLight: '#FFFFFF',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+  // Espera a que la librería pinte el <img>/<canvas> y le superpone el logo
+  setTimeout(function() {
+    var qrImg = wrap.querySelector('img, canvas');
+    if (!qrImg) return;
+
+    var size = 220;
+    var canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    var ctx = canvas.getContext('2d');
+
+    var qrSource = new Image();
+    qrSource.crossOrigin = 'anonymous';
+    qrSource.onload = function() {
+      ctx.drawImage(qrSource, 0, 0, size, size);
+
+      var logo = new Image();
+      logo.crossOrigin = 'anonymous';
+      logo.onload = function() {
+        var logoSize = size * 0.22;
+        var pos = (size - logoSize) / 2;
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.arc(size / 2, size / 2, logoSize / 2 + 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(size / 2, size / 2, logoSize / 2, 0, Math.PI * 2);
+        ctx.clip();
+        ctx.drawImage(logo, pos, pos, logoSize, logoSize);
+        ctx.restore();
+
+        wrap.innerHTML = '';
+        wrap.appendChild(canvas);
+      };
+      logo.src = 'assets/icons/logo.webp';
+    };
+    qrSource.src = qrImg.src || qrImg.toDataURL();
+  }, 120);
+}
+
+window.closeQr = function() {
+  qrModal.classList.remove('on');
+  document.body.style.overflow = '';
+};
+
+document.getElementById('qr-btn').addEventListener('click', function() {
+  buildQr();
+  qrModal.classList.add('on');
+  document.body.style.overflow = 'hidden';
+});
+
+document.getElementById('qr-share-native').addEventListener('click', function() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'QUIROMASAJES.GAP',
+      text: 'Quiropraxia y masajes terapéuticos a domicilio en Soacha y Bogotá D.C.',
+      url: pageUrl
+    }).catch(function() {});
+  } else {
+    navigator.clipboard.writeText(pageUrl).then(function() {
+      var btn = document.getElementById('qr-share-native');
+      var original = btn.textContent;
+      btn.textContent = '¡Enlace copiado!';
+      setTimeout(function() { btn.textContent = original; }, 2000);
+    });
+  }
 });
