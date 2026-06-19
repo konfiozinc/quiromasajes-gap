@@ -14,6 +14,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<!-- QRCode.js -->
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -22,8 +24,12 @@
   <svg viewBox="0 0 24 24" width="26" height="26" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- ═══ HERO ═══ -->
+<!-- Botón Compartir QR (fijo) -->
+<button id="qr-fab" onclick="openQR()" aria-label="Compartir QR">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M3 9h4V5H3v4zm0 10h4v-4H3v4zm10 0h4v-4h-4v4zm0-10h4V5h-4v4zm-6 0h4V5H7v4zm0 10h4v-4H7v4zm10-10h4V5h-4v4z"/></svg>
+</button>
 
+<!-- ===== HERO ===== -->
 <section id="hero">
   <canvas id="hero-particles" style="position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;" aria-hidden="true"></canvas>
   <div class="hero-ring hero-ring-enter">
@@ -72,6 +78,7 @@
   </div>
 </section>
 
+<!-- ===== PROBLEMAS ===== -->
 <section id="problemas" class="sec sec-alt">
   <p class="eyebrow fu">¿Te identificas?</p>
   <h2 class="sec-title fu">¿Sufres alguno de estos problemas?</h2>
@@ -89,12 +96,12 @@
   </a>
 </section>
 
+<!-- ===== SERVICIOS ===== -->
 <section id="services" class="sec">
   <p class="eyebrow fu">Lo que ofrezco</p>
   <h2 class="sec-title fu">Servicios</h2>
 
   <div class="svc-cat-grid fu">
-
     <div class="svc-cat-card">
       <img src="assets/gallery/postural.webp" alt="Corrección Postural" class="svc-cat-img" loading="lazy">
       <div class="svc-cat-body">
@@ -107,7 +114,6 @@
         <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Correcci%C3%B3n%20Postural" target="_blank" rel="noopener" class="svc-cat-btn">Reservar</a>
       </div>
     </div>
-
     <div class="svc-cat-card">
       <img src="assets/gallery/dolor.webp" alt="Terapia del Dolor" class="svc-cat-img" loading="lazy">
       <div class="svc-cat-body">
@@ -120,7 +126,6 @@
         <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Terapia%20del%20Dolor" target="_blank" rel="noopener" class="svc-cat-btn">Reservar</a>
       </div>
     </div>
-
     <div class="svc-cat-card">
       <img src="assets/gallery/relajacion.webp" alt="Relajación Muscular" class="svc-cat-img" loading="lazy">
       <div class="svc-cat-body">
@@ -133,16 +138,19 @@
         <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Relajaci%C3%B3n%20Muscular" target="_blank" rel="noopener" class="svc-cat-btn">Reservar</a>
       </div>
     </div>
-
   </div>
-  <p class="svc-domicilio-note fu" style="color:#B3261E; font-weight:700; font-size:14px;">🏠 Todos los servicios disponibles también a domicilio en Soacha y Bogotá D.C.</p>
+
+  <!-- TEXTO DE DOMICILIO CON EFECTO DESTACADO -->
+  <div class="domicilio-destacado fu">
+    <span class="domicilio-icono">🏠</span>
+    <span class="domicilio-texto">Todos los servicios disponibles también a domicilio en Soacha y Bogotá D.C.</span>
+  </div>
 </section>
 
+<!-- ===== PROMOCIÓN ===== -->
 <section id="tarifas" class="sec">
   <p class="eyebrow fu">Precios</p>
   <h2 class="sec-title fu">💰 Promoción</h2>
-
-  <!-- TARJETA PROMOCIONAL DESTACADA -->
   <div class="promo-card fu">
     <div class="promo-badge">🔥 OFERTA PROMOCIONAL 🔥</div>
     <div class="promo-title">QUIROPRAXIA + MASAJE CORPORAL COMPLETO</div>
@@ -160,6 +168,7 @@
   </div>
 </section>
 
+<!-- ===== VIDEOS ===== -->
 <section id="videos" class="sec sec-alt" style="padding-bottom:32px;">
   <p class="eyebrow fu">Mira el trabajo</p>
   <h2 class="sec-title fu">Galería profesional</h2>
@@ -170,14 +179,14 @@
     <div class="vid-car" id="vid-car">
       <div class="vid-trk" id="vid-trk">
 
-        <!-- VIDEO 1 – NUEVO: Presentación del consultorio -->
+        <!-- VIDEO 1 -->
         <div class="vid-slide" data-drive="1yzxGaGtAT606Rx2SJkDbQSi-2qDpPOSb" data-title="Presentación del consultorio" onclick="openVid(this)">
           <div class="vid-thumb-wrap">
             <img src="assets/thumbnails/poster1.webp" alt="Presentación del consultorio" class="vid-poster" loading="lazy">
             <div class="vid-grad"></div>
             <div class="vid-play-btn"><svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
             <div class="vid-counter">1 / 10</div>
-            <div class="vid-overlay-label">Video 1 · Presentación del consultorio</div>
+            <div class="vid-overlay-label">Video 1 · Presentación</div>
           </div>
           <div class="vid-slide-sub">▶ Conoce Quiromasajes GAP</div>
         </div>
@@ -185,13 +194,13 @@
         <!-- VIDEO 2 -->
         <div class="vid-slide" data-drive="13n3FSzI1bn5xutM1MYkxr-dyaz0lJP8c" data-title="Presentación principal del servicio" onclick="openVid(this)">
           <div class="vid-thumb-wrap">
-            <img src="assets/thumbnails/poster2.webp" alt="Presentación principal del servicio" class="vid-poster" loading="lazy">
+            <img src="assets/thumbnails/poster2.webp" alt="Servicio" class="vid-poster" loading="lazy">
             <div class="vid-grad"></div>
             <div class="vid-play-btn"><svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
             <div class="vid-counter">2 / 10</div>
-            <div class="vid-overlay-label">Video 2 · Presentación principal del servicio</div>
+            <div class="vid-overlay-label">Video 2 · Servicio</div>
           </div>
-          <div class="vid-slide-sub">▶ Conoce el servicio de Quiromasajes GAP</div>
+          <div class="vid-slide-sub">▶ Conoce el servicio</div>
         </div>
 
         <!-- VIDEO 3 -->
@@ -203,7 +212,7 @@
             <div class="vid-counter">3 / 10</div>
             <div class="vid-overlay-label">Video 3 · Quiropraxia</div>
           </div>
-          <div class="vid-slide-sub">▶ Manipulación quiropráctica para liberar el dolor</div>
+          <div class="vid-slide-sub">▶ Manipulación quiropráctica</div>
         </div>
 
         <!-- VIDEO 4 -->
@@ -215,67 +224,67 @@
             <div class="vid-counter">4 / 10</div>
             <div class="vid-overlay-label">Video 4 · Osteopatía</div>
           </div>
-          <div class="vid-slide-sub">▶ Terapia manual integral del sistema musculoesquelético</div>
+          <div class="vid-slide-sub">▶ Terapia manual integral</div>
         </div>
 
         <!-- VIDEO 5 -->
         <div class="vid-slide" data-drive="19cFLWjNPtL-jwEYXK1K4R6X6GUmqP6-n" data-title="Masaje terapéutico" onclick="openVid(this)">
           <div class="vid-thumb-wrap">
-            <img src="assets/thumbnails/poster5.webp" alt="Masaje terapéutico" class="vid-poster" loading="lazy">
+            <img src="assets/thumbnails/poster5.webp" alt="Masaje" class="vid-poster" loading="lazy">
             <div class="vid-grad"></div>
             <div class="vid-play-btn"><svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
             <div class="vid-counter">5 / 10</div>
             <div class="vid-overlay-label">Video 5 · Masaje terapéutico</div>
           </div>
-          <div class="vid-slide-sub">▶ Técnicas manuales para aliviar tensión muscular</div>
+          <div class="vid-slide-sub">▶ Técnicas manuales</div>
         </div>
 
         <!-- VIDEO 6 -->
         <div class="vid-slide" data-drive="1Pr-cKHWDCdTaHoHaFfrFSsy6BKraYtfN" data-title="Recuperación muscular" onclick="openVid(this)">
           <div class="vid-thumb-wrap">
-            <img src="assets/thumbnails/poster6.webp" alt="Recuperación muscular" class="vid-poster" loading="lazy">
+            <img src="assets/thumbnails/poster6.webp" alt="Recuperación" class="vid-poster" loading="lazy">
             <div class="vid-grad"></div>
             <div class="vid-play-btn"><svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
             <div class="vid-counter">6 / 10</div>
-            <div class="vid-overlay-label">Video 6 · Recuperación muscular</div>
+            <div class="vid-overlay-label">Video 6 · Recuperación</div>
           </div>
-          <div class="vid-slide-sub">▶ Resultados visibles en movilidad y bienestar</div>
+          <div class="vid-slide-sub">▶ Resultados visibles</div>
         </div>
 
         <!-- VIDEO 7 -->
         <div class="vid-slide" data-drive="1sZQhFcAnWcHF0jVCoCXuQdAtfTP2p88z" data-title="Atención a domicilio" onclick="openVid(this)">
           <div class="vid-thumb-wrap">
-            <img src="assets/thumbnails/poster7.webp" alt="Atención a domicilio" class="vid-poster" loading="lazy">
+            <img src="assets/thumbnails/poster7.webp" alt="Domicilio" class="vid-poster" loading="lazy">
             <div class="vid-grad"></div>
             <div class="vid-play-btn"><svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
             <div class="vid-counter">7 / 10</div>
-            <div class="vid-overlay-label">Video 7 · Atención a domicilio</div>
+            <div class="vid-overlay-label">Video 7 · Domicilio</div>
           </div>
-          <div class="vid-slide-sub">▶ Llevamos la terapia hasta tu hogar</div>
+          <div class="vid-slide-sub">▶ Terapia en tu hogar</div>
         </div>
 
         <!-- VIDEO 8 -->
         <div class="vid-slide" data-drive="1FwCbp5QXSaPXSVNMOmkIio86hbcadMWl" data-title="Experiencia del profesional" onclick="openVid(this)">
           <div class="vid-thumb-wrap">
-            <img src="assets/thumbnails/poster8.webp" alt="Experiencia del profesional" class="vid-poster" loading="lazy">
+            <img src="assets/thumbnails/poster8.webp" alt="Experiencia" class="vid-poster" loading="lazy">
             <div class="vid-grad"></div>
             <div class="vid-play-btn"><svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
             <div class="vid-counter">8 / 10</div>
-            <div class="vid-overlay-label">Video 8 · Experiencia del profesional</div>
+            <div class="vid-overlay-label">Video 8 · Experiencia</div>
           </div>
-          <div class="vid-slide-sub">▶ Germán Agudelo, terapeuta certificado</div>
+          <div class="vid-slide-sub">▶ Germán Agudelo</div>
         </div>
 
         <!-- VIDEO 9 -->
         <div class="vid-slide" data-drive="1AKJP8P1UDRgp_rdXjmgCNlfrf4yZlTRO" data-title="Resultados o demostración" onclick="openVid(this)">
           <div class="vid-thumb-wrap">
-            <img src="assets/thumbnails/poster9.webp" alt="Resultados o demostración" class="vid-poster" loading="lazy">
+            <img src="assets/thumbnails/poster9.webp" alt="Resultados" class="vid-poster" loading="lazy">
             <div class="vid-grad"></div>
             <div class="vid-play-btn"><svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
             <div class="vid-counter">9 / 10</div>
-            <div class="vid-overlay-label">Video 9 · Resultados o demostración</div>
+            <div class="vid-overlay-label">Video 9 · Resultados</div>
           </div>
-          <div class="vid-slide-sub">▶ Casos reales y mejoras evidentes</div>
+          <div class="vid-slide-sub">▶ Casos reales</div>
         </div>
 
         <!-- VIDEO 10 -->
@@ -285,9 +294,9 @@
             <div class="vid-grad"></div>
             <div class="vid-play-btn"><svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
             <div class="vid-counter">10 / 10</div>
-            <div class="vid-overlay-label">Video 10 · Piedras volcánicas</div>
+            <div class="vid-overlay-label">Video 10 · Piedras</div>
           </div>
-          <div class="vid-slide-sub">▶ Terapia con piedras volcánicas</div>
+          <div class="vid-slide-sub">▶ Piedras volcánicas</div>
         </div>
 
       </div>
@@ -308,7 +317,7 @@
     <button class="vdot" onclick="goVid(9)" aria-label="Video 10"></button>
   </div>
 
-  <!-- Modal de reproducción con VIDEO NATIVO -->
+  <!-- Modal de video con reproductor nativo -->
   <div id="vid-modal" class="modal" onclick="if(event.target===this)closeVid()">
     <div class="modal-box vid-modal-box">
       <button class="modal-close" onclick="closeVid()">← Volver</button>
@@ -323,6 +332,7 @@
   </div>
 </section>
 
+<!-- ===== CERTIFICACIONES ===== -->
 <section id="certifications" class="sec sec-alt" style="padding-bottom:0;">
   <p class="eyebrow fu">Formación</p>
   <h2 class="sec-title fu">Certificaciones</h2>
@@ -345,6 +355,7 @@
   </div>
 </section>
 
+<!-- ===== TESTIMONIALS ===== -->
 <section id="testimonials" class="sec">
   <p class="eyebrow fu">Lo que dicen</p>
   <h2 class="sec-title fu">Pacientes reales</h2>
@@ -370,6 +381,7 @@
   </div>
 </section>
 
+<!-- ===== COBERTURA ===== -->
 <section id="cobertura" class="sec sec-alt">
   <p class="eyebrow fu">Zona de servicio</p>
   <h2 class="sec-title fu">Cobertura</h2>
@@ -398,6 +410,7 @@
   </div>
 </section>
 
+<!-- ===== CONTACTO ===== -->
 <section id="contact" class="sec">
   <p class="eyebrow fu">Hablemos</p>
   <h2 class="sec-title fu">Contáctame</h2>
@@ -417,7 +430,7 @@
   <button class="btn-save fu" id="save-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V8H4v2H2v2h2v2h2v-2h2v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> Guardar Contacto</button>
 </section>
 
-<!-- FOOTER -->
+<!-- ===== FOOTER ===== -->
 <footer>
   <img src="assets/images/german.webp" alt="Germán Agudelo" class="foot-logo">
   <div class="foot-brand">QUIROMASAJES.GAP</div>
@@ -425,7 +438,9 @@
   <div class="foot-konfio">Desarrollado por <span>KONFÍO ZINC</span></div>
 </footer>
 
-<!-- MODAL CERT -->
+<!-- ===== MODALES ===== -->
+
+<!-- Modal de certificados -->
 <div id="cert-modal" class="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">← Volver</button>
@@ -434,9 +449,7 @@
   </div>
 </div>
 
-<script src="script.js" defer></script>
-
-<!-- CALENDLY MODAL -->
+<!-- Modal de calendario (Agendar) -->
 <div id="cal-modal" class="modal" onclick="if(event.target===this)closeCalendly()" style="align-items:flex-end;padding:0;">
   <div class="modal-box" style="max-width:480px;width:100%;border-radius:var(--r-lg) var(--r-lg) 0 0;padding:0;max-height:90vh;overflow:hidden;margin:0;">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);background:#fff;">
@@ -456,8 +469,21 @@
   </div>
 </div>
 
+<!-- Modal de QR para compartir -->
+<div id="qr-modal" class="modal" onclick="if(event.target===this)closeQR()">
+  <div class="modal-box" style="max-width:340px;">
+    <button class="modal-close" onclick="closeQR()">← Volver</button>
+    <div style="text-align:center;margin-bottom:12px;">
+      <div id="qr-code-container" style="display:inline-block;background:white;padding:12px;border-radius:12px;"></div>
+    </div>
+    <p style="font-size:13px;text-align:center;color:var(--ink-s);">Escanea este código QR para compartir la tarjeta</p>
+    <div style="text-align:center;margin-top:10px;">
+      <button onclick="descargarQR()" style="background:var(--teal);color:white;border:none;padding:10px 24px;border-radius:50px;font-weight:600;font-size:13px;">Descargar QR</button>
+    </div>
+  </div>
+</div>
 
-
+<!-- ===== CTA FINAL ===== -->
 <section id="cta-final" class="sec cta-final">
   <div class="cta-final-glow"></div>
   <h2 class="cta-final-title fu">¿Listo para sentirte mejor?</h2>
@@ -473,5 +499,7 @@
   </a>
   <p class="cta-final-foot fu">Quiromasajes GAP · Soacha &amp; Bogotá D.C.</p>
 </section>
+
+<script src="script.js" defer></script>
 </body>
 </html>
