@@ -9,7 +9,7 @@
   document.querySelectorAll('.fu').forEach(function(e){io.observe(e);});
 })();
 
-// Animated counters (trigger when hero visible)
+// Animated counters
 function runCounters(){
   document.querySelectorAll('.counter').forEach(function(el){
     var target=parseInt(el.dataset.target)||0,prefix=el.dataset.prefix||'';
@@ -81,7 +81,6 @@ function resetVidTimer() {
   clearInterval(vidTimer);
   if (!vidPaused) vidTimer = setInterval(function() { goVid(vidCur + 1); }, 6000);
 }
-
 resetVidTimer();
 
 // Swipe + pause on hover
@@ -126,51 +125,7 @@ document.getElementById('save-btn').addEventListener('click',function(){
   var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='german-quiromasajes.vcf';a.click();
 });
 
-// MAPA — estrategia múltiple sin iframes ni URLs externas que disparen popup
-function abrirMapa(){
-  // 1. intent: abre Google Maps nativo en Android sin confirmación
-  var intent='intent://maps.google.com/?q=Soacha+Cundinamarca+Colombia#Intent;scheme=https;package=com.google.android.apps.maps;end';
-  // 2. geo: URI — interceptado nativamente por Android
-  var geo='geo:4.5921,-74.2155?q=Soacha,Cundinamarca,Colombia&zoom=12';
-  // 3. Fallback universal
-  var web='https://maps.google.com/?q=Soacha+Cundinamarca+Colombia';
-
-  // Detectar Android
-  var isAndroid=/android/i.test(navigator.userAgent);
-  var isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
-
-  if(isAndroid){
-    // En Android: geo: es interceptado por el OS antes de que el WebView lo procese
-    window.location.href=geo;
-  } else if(isIOS){
-    window.location.href='maps://?q=Soacha+Cundinamarca+Colombia';
-  } else{
-    window.open(web,'_blank','noopener,noreferrer');
-  }
-}
-// ── Auto testimonials ──────────────────────────────────
-(function() {
-  var ts = document.getElementById('test-slider');
-  var dots = document.querySelectorAll('#tdots .dot');
-  if (!ts) return;
-  var cur = 0, total = ts.querySelectorAll('.test-card').length, timer, paused = false;
-  function goTest(n) {
-    cur = ((n % total) + total) % total;
-    ts.scrollTo({ left: cur * ts.offsetWidth, behavior: 'smooth' });
-    dots.forEach(function(d, i) { d.classList.toggle('on', i === cur); });
-  }
-  function start() { timer = setInterval(function() { if (!paused) goTest(cur + 1); }, 6000); }
-  ts.addEventListener('touchstart', function() { paused = true; }, { passive: true });
-  ts.addEventListener('touchend', function() { setTimeout(function() { paused = false; }, 3000); }, { passive: true });
-  ts.addEventListener('scroll', function() {
-    var i = Math.round(ts.scrollLeft / ts.offsetWidth);
-    dots.forEach(function(d, j) { d.classList.toggle('on', i === j); });
-    cur = i;
-  }, { passive: true });
-  start();
-})();
-
-// ── Video modal (CON VIDEO NATIVO Y FALLBACK) ─────────
+// ── Video modal (REPRODUCTOR NATIVO) ──────────────────
 function openVid(slide) {
   var driveId = slide.dataset.drive;
   var title   = slide.dataset.title;
@@ -178,15 +133,13 @@ function openVid(slide) {
   var modal   = document.getElementById('vid-modal');
   var fallbackLink = document.getElementById('vid-fallback-link');
 
-  // Asignar la URL de descarga directa (streaming)
+  // Construir URL de streaming directo
   var directUrl = 'https://drive.google.com/uc?export=download&id=' + driveId;
   var previewUrl = 'https://drive.google.com/file/d/' + driveId + '/preview';
 
-  // Cargar el video en el elemento nativo
   player.src = directUrl;
   player.load();
 
-  // Actualizar título y enlace de fallback
   document.getElementById('vid-modal-title').textContent = title;
   fallbackLink.href = previewUrl;
   fallbackLink.textContent = 'Abrir en Google Drive';
@@ -199,18 +152,15 @@ function openVid(slide) {
   // Intentar reproducción automática
   var playPromise = player.play();
   if (playPromise !== undefined) {
-    playPromise.catch(function() {
-      // El usuario debe presionar play manualmente
-    });
+    playPromise.catch(function() { /* el usuario debe tocar play */ });
   }
 }
 
 function closeVid() {
   var player = document.getElementById('vid-player');
   player.pause();
-  player.src = ''; // liberar recurso
+  player.src = '';
   player.load();
-
   document.getElementById('vid-modal').classList.remove('on');
   document.body.style.overflow = '';
   vidPaused = false;
@@ -258,6 +208,88 @@ function closeCalendly(){
   document.getElementById('cal-modal').classList.remove('on');
   document.body.style.overflow='';
 }
+
+// ── QR Compartir ──────────────────────────────────────
+var qrCodeInstance = null;
+
+function openQR() {
+  var modal = document.getElementById('qr-modal');
+  var container = document.getElementById('qr-code-container');
+  container.innerHTML = ''; // Limpiar
+
+  // Obtener la URL actual
+  var url = window.location.href;
+
+  // Crear QR con logo integrado (usando la librería QRCode.js)
+  qrCodeInstance = new QRCode(container, {
+    text: url,
+    width: 220,
+    height: 220,
+    colorDark: '#1A5F7A',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H // Alta corrección para incluir logo
+  });
+
+  // Esperar a que se dibuje y luego agregar el logo manualmente (overlay)
+  setTimeout(function() {
+    var canvas = container.querySelector('canvas');
+    if (canvas) {
+      var ctx = canvas.getContext('2d');
+      var logo = new Image();
+      logo.src = 'assets/icons/logo.webp'; // Ruta del logo
+      logo.onload = function() {
+        var size = 50; // Tamaño del logo
+        var x = (canvas.width - size) / 2;
+        var y = (canvas.height - size) / 2;
+        // Fondo blanco para legibilidad
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.arc(x + size/2, y + size/2, size/2 + 2, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.drawImage(logo, x, y, size, size);
+      };
+      logo.onerror = function() {
+        // Si no carga el logo, mostrar solo el QR
+        console.warn('Logo no encontrado, solo QR');
+      };
+    }
+  }, 300);
+
+  modal.classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeQR() {
+  document.getElementById('qr-modal').classList.remove('on');
+  document.body.style.overflow = '';
+  // Limpiar el QR para liberar memoria
+  var container = document.getElementById('qr-code-container');
+  container.innerHTML = '';
+  qrCodeInstance = null;
+}
+
+function descargarQR() {
+  var canvas = document.querySelector('#qr-code-container canvas');
+  if (canvas) {
+    var link = document.createElement('a');
+    link.download = 'QR_QuiromasajesGAP.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  } else {
+    alert('Aún no se ha generado el código QR. Intenta de nuevo.');
+  }
+}
+
+// Cerrar QR con Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeQR();
+    closeVid();
+    closeModal();
+    closeCalendly();
+  }
+});
+
 // ── FAQ accordion ────────────────────────────────────────
 function toggleFaq(btn) {
   var item = btn.closest('.faq-item');
