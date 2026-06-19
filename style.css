@@ -423,11 +423,21 @@ button {
   background: var(--azul-oscuro);
 }
 .svc-domicilio {
-  margin-top: 12px;
+  margin-top: 16px;
   text-align: center;
-  font-size: 12px;
-  color: var(--gris);
-  font-weight: 600;
+  font-size: 16px;
+  color: var(--rojo);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  padding: 10px 14px;
+  border-radius: var(--radio);
+  background: rgba(179, 38, 30, 0.07);
+  border: 1.5px solid rgba(179, 38, 30, 0.25);
+  animation: svcPulse 2.2s ease-in-out infinite;
+}
+@keyframes svcPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(179, 38, 30, 0.25); }
+  50% { box-shadow: 0 0 0 8px rgba(179, 38, 30, 0); }
 }
 
 /* ===== 5. CASOS REALES ===== */
@@ -971,6 +981,32 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* ===== MODAL QR / COMPARTIR ===== */
+.qr-modal-box {
+  text-align: center;
+}
+.qr-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 4px;
+}
+#qr-canvas-wrap {
+  background: var(--blanco);
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: var(--sombra);
+  border: 1.5px solid var(--gris-claro);
+  display: inline-flex;
+}
+.qr-share-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 14px;
+  border: none;
+  cursor: pointer;
 }
 
 /* ===== MODAL DE VIDEO ===== */
