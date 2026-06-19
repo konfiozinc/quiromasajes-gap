@@ -25,6 +25,10 @@ h2.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,6
 
 /* FAB */
 #fab{position:fixed;bottom:22px;right:max(18px, calc((100vw - 480px) / 2 + 18px));width:56px;height:56px;border-radius:50%;background:#25D366;box-shadow:0 4px 18px rgba(37,211,102,0.5);display:flex;align-items:center;justify-content:center;z-index:999;animation:fabP 3s ease-in-out infinite}
+/* QR FAB */
+#qr-fab{position:fixed;bottom:88px;right:max(18px, calc((100vw - 480px) / 2 + 18px));width:52px;height:52px;border-radius:50%;background:#1A5F7A;box-shadow:0 4px 16px rgba(26,95,122,0.5);display:flex;align-items:center;justify-content:center;z-index:998;border:2px solid rgba(255,255,255,0.25);transition:transform .2s;}
+#qr-fab:active{transform:scale(.92)}
+#qr-fab svg{width:26px;height:26px;fill:white}
 @keyframes logoFloat{0%,100%{transform:translateY(0) scale(1);filter:drop-shadow(0 0 12px rgba(26,95,122,.5))}50%{transform:translateY(-7px) scale(1.01);filter:drop-shadow(0 8px 20px rgba(26,95,122,.65))}}
 @keyframes pulseWa{0%,100%{box-shadow:0 4px 20px rgba(18,140,126,.5)}50%{box-shadow:0 4px 28px rgba(18,140,126,.75),0 0 0 4px rgba(18,140,126,.12)}}
 @keyframes fabP{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,0.5)}50%{box-shadow:0 4px 28px rgba(37,211,102,0.75),0 0 0 7px rgba(37,211,102,0.1)}}
@@ -159,32 +163,24 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 .loc-waze{background:linear-gradient(135deg,#33CCFF,#00AAFF);box-shadow:0 4px 18px rgba(0,170,255,.35)}
 .loc-maps{background:linear-gradient(135deg,#34A853,#2d9445);color:#fff;box-shadow:0 4px 18px rgba(52,168,83,.35)}
 
-/* ── WAZE EN CONTACTO ── */
-
 /* ── VIDEO CAROUSEL ── */
 .vid-car-wrap{position:relative;display:flex;align-items:center;margin-top:4px}
 .vid-car{overflow:hidden;flex:1}
 .vid-trk{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
 .vid-slide{flex:0 0 100%;padding:0 20px;box-sizing:border-box;cursor:pointer}
-/* thumbnail container — estilo Netflix/TikTok (vertical) */
+/* thumbnail container */
 .vid-thumb-wrap{position:relative;height:200px;width:112px;max-width:100%;margin:0 auto;aspect-ratio:9/16;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 22px rgba(0,0,0,.28);background:#111}
 .vid-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--r-lg);display:block;z-index:1}
 .vid-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.75) 100%);border-radius:var(--r-lg)}
-/* play button overlay */
 .vid-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);border:2.5px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;transition:transform .18s,background .18s}
 .vid-slide:hover .vid-play-btn,.vid-slide:active .vid-play-btn{background:rgba(139,26,26,.7);transform:translate(-50%,-50%) scale(1.08)}
-/* counter badge */
 .vid-counter{position:absolute;top:10px;right:12px;z-index:3;background:rgba(0,0,0,.55);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:20px;backdrop-filter:blur(4px)}
-/* title overlay sobre el gradiente (estilo Netflix) */
 .vid-overlay-label{position:absolute;left:12px;right:44px;bottom:10px;z-index:3;color:#fff;font-family:'Playfair Display',Georgia,serif;font-size:14px;font-weight:700;line-height:1.3;text-shadow:0 1px 6px rgba(0,0,0,.5)}
-/* sub label debajo de la tarjeta */
 .vid-slide-sub{font-size:12px;color:var(--ink-m);text-align:center;margin-top:8px}
-/* arrows */
 .vid-arr{position:absolute;top:40%;transform:translateY(-50%);z-index:10;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(0,0,0,.14);border:none;font-size:22px;color:var(--teal);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
 .vid-arr:active{background:var(--off)}
 .vid-arr-l{left:-4px}
 .vid-arr-r{right:-4px}
-/* dots */
 .vid-dots{display:flex;justify-content:center;gap:7px;margin-top:14px}
 .vdot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all .2s;padding:0}
 .vdot-on{background:var(--teal);transform:scale(1.35)}
@@ -276,7 +272,35 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 .svc-cat-btn{display:flex;align-items:center;justify-content:center;gap:5px;width:100%;background:#128C7E;color:#fff;border-radius:50px;font-size:12.5px;font-weight:600;padding:8px 12px}
 .svc-domicilio-note{margin-top:12px;text-align:center;font-size:12px;color:var(--ink-m);font-weight:600}
 
-/* ── HERO: identidad del profesional (glassmorphism) ── */
+/* ── DOMICILIO DESTACADO ── */
+.domicilio-destacado {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(179,38,30,0.08), rgba(26,95,122,0.12));
+  border-left: 5px solid var(--red);
+  border-radius: var(--r);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(179,38,30,0.15);
+  animation: destello 2.5s ease-in-out infinite;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--red);
+}
+.domicilio-icono {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+.domicilio-texto {
+  line-height: 1.4;
+}
+@keyframes destello {
+  0%, 100% { box-shadow: 0 4px 16px rgba(179,38,30,0.15); transform: scale(1); }
+  50% { box-shadow: 0 4px 28px rgba(179,38,30,0.3); transform: scale(1.01); }
+}
+
+/* ── HERO: identidad del profesional ── */
 .hero-id{display:flex;align-items:center;gap:12px;margin-top:14px;z-index:1;width:100%;max-width:330px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:10px 14px;backdrop-filter:blur(8px)}
 .hero-id-photo{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:top center;flex-shrink:0;border:2px solid rgba(255,255,255,.25)}
 .hero-id-name{font-family:'Playfair Display',Georgia,serif;font-size:14px;font-weight:700;color:#fff}
@@ -290,13 +314,13 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 .cta-final-btn{margin:18px auto 0;width:fit-content;position:relative;z-index:1;box-shadow:0 6px 24px rgba(0,0,0,.25)}
 .cta-final-foot{font-size:11px;color:rgba(255,255,255,.45);margin-top:16px;letter-spacing:.04em;position:relative;z-index:1}
 
-/* ── COBERTURA: banner de servicio a domicilio ── */
+/* ── COBERTURA: banner ── */
 .cov-banner{position:relative;border-radius:var(--r-lg);overflow:hidden;margin-bottom:12px;box-shadow:0 4px 20px rgba(14,61,80,.15)}
 .cov-banner img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
 .cov-banner-tag{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;background:linear-gradient(180deg,transparent,rgba(14,61,80,.85));color:#fff;font-size:12.5px;font-weight:700}
 
 
-/* ── VIDEO GALLERY: alto responsive (móvil 320px / escritorio 420px) ── */
+/* ── VIDEO GALLERY: alto responsive ── */
 @media (min-width:481px){
   .vid-thumb-wrap{height:420px;width:236px}
 }
@@ -305,10 +329,8 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 .cta-final-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px;position:relative;z-index:1}
 .cta-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:11px;font-weight:600;padding:6px 12px;border-radius:20px;backdrop-filter:blur(4px);white-space:nowrap}
 
-/* ── ELIMINADOS: ver más videos y extras ── */
-.vid-extra, .vid-extra-dot, .vid-more-btn {
-  display: none !important;
-}
+/* ── ELIMINADOS ── */
+.vid-extra, .vid-extra-dot, .vid-more-btn { display: none !important; }
 
 /* ── Ajustes de modal de video ── */
 #vid-modal .modal-box {
@@ -342,7 +364,6 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
   color: var(--ink);
   padding: 12px 0 4px;
 }
-/* Botón de cierre dentro del modal de video */
 #vid-modal .modal-close {
   position: static;
   display: inline-block;
@@ -357,4 +378,16 @@ footer{background:var(--teal-d);padding:24px 20px;text-align:center}
 }
 #vid-modal .modal-close:hover {
   text-decoration: underline;
+}
+
+/* ── QR MODAL ── */
+#qr-modal .modal-box {
+  max-width: 340px;
+  text-align: center;
+}
+#qr-code-container img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
 }
