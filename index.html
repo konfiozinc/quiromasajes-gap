@@ -115,7 +115,7 @@
   <p class="svc-domicilio">🏠 Todos los servicios disponibles también a domicilio en Soacha y Bogotá D.C.</p>
 </section>
 
-<!-- ===== 5. CASOS REALES (TEXTO CENTRADO) ===== -->
+<!-- ===== 5. CASOS REALES ===== -->
 <section id="casos" class="sec sec-alt">
   <p class="eyebrow">Resultados</p>
   <h2 class="sec-title" style="text-align:center;">Casos reales</h2>
@@ -300,8 +300,8 @@
 <div id="vid-modal" class="modal" onclick="if(event.target===this) closeVid()">
   <div class="modal-box vid-modal-box">
     <button class="modal-close" onclick="closeVid()">← Volver</button>
-    <div class="vid-frame-wrap">
-      <video id="vid-player" controls playsinline webkit-playsinline></video>
+    <div class="vid-frame-wrap" id="vid-frame-wrap">
+      <!-- El iframe se inserta dinámicamente con JavaScript -->
     </div>
     <div class="modal-title" id="vid-modal-title"></div>
   </div>
