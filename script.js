@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
   crearSliderFinito('vid-slider', 'vid-track', 'vid-dots', 4000);
 });
 
-// ===== VIDEOS: REPRODUCCIÓN CON IFRAME (COMPATIBLE MÓVIL) =====
+// ===== VIDEOS: REPRODUCCIÓN CON IFRAME (CORREGIDO) =====
 window.openVid = function(el) {
   var driveId = el.dataset.drive;
   if (!driveId) {
@@ -116,15 +116,16 @@ window.openVid = function(el) {
     return;
   }
 
-  var videoPlayer = document.getElementById('vid-player');
   var modalTitle = document.getElementById('vid-modal-title');
+  var frameWrap = document.getElementById('vid-frame-wrap');
 
-  // Usar iframe embebido con parámetros para móviles
-  var videoUrl = 'https://drive.google.com/file/d/' + driveId + '/preview?usp=drivesdk';
+  // Limpiar el contenedor
+  frameWrap.innerHTML = '';
 
-  // Crear un iframe en lugar de usar el elemento video nativo
+  // Crear el iframe con la URL correcta para móviles
   var iframe = document.createElement('iframe');
-  iframe.src = videoUrl;
+  // Usar la URL de vista previa con el parámetro correcto para que funcione en móviles
+  iframe.src = 'https://drive.google.com/file/d/' + driveId + '/preview?usp=drivesdk';
   iframe.allow = 'autoplay; fullscreen';
   iframe.allowFullscreen = true;
   iframe.frameborder = '0';
@@ -134,9 +135,7 @@ window.openVid = function(el) {
   iframe.style.border = '0';
   iframe.style.display = 'block';
 
-  // Limpiar y agregar el iframe al contenedor
-  var frameWrap = document.querySelector('.vid-frame-wrap');
-  frameWrap.innerHTML = '';
+  // Agregar el iframe al contenedor
   frameWrap.appendChild(iframe);
 
   var label = el.querySelector('.vid-label') ? el.querySelector('.vid-label').textContent : 'Video';
@@ -149,7 +148,8 @@ window.openVid = function(el) {
 };
 
 window.closeVid = function() {
-  var frameWrap = document.querySelector('.vid-frame-wrap');
+  var frameWrap = document.getElementById('vid-frame-wrap');
+  // Limpiar el iframe para detener la reproducción
   frameWrap.innerHTML = '';
 
   document.getElementById('vid-modal').classList.remove('on');
