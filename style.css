@@ -1278,17 +1278,23 @@ body {
 .q-logo-wrap {
   position: absolute;
   top: 14px; right: 14px;
-  width: 82px; height: 82px;
+  width: 96px; height: 96px;
   border-radius: 50%;
   background: var(--blanco);
   padding: 5px;
   box-shadow: 0 0 0 3px var(--turquesa, #00D084), 0 0 22px rgba(0,208,132,0.55), 0 6px 18px rgba(0,0,0,0.35);
   z-index: 5;
-  animation: qLogoGlow 2.6s ease-in-out infinite;
+  animation: qLogoBreathe 3.2s ease-in-out infinite;
 }
-@keyframes qLogoGlow {
-  0%, 100% { box-shadow: 0 0 0 3px var(--turquesa, #00D084), 0 0 16px rgba(0,208,132,0.4), 0 6px 18px rgba(0,0,0,0.35); }
-  50% { box-shadow: 0 0 0 3px var(--turquesa, #00D084), 0 0 32px rgba(0,208,132,0.85), 0 6px 18px rgba(0,0,0,0.35); }
+@keyframes qLogoBreathe {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 3px var(--turquesa, #00D084), 0 0 16px rgba(0,208,132,0.4), 0 6px 18px rgba(0,0,0,0.35);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 3px var(--turquesa, #00D084), 0 0 34px rgba(0,208,132,0.9), 0 6px 18px rgba(0,0,0,0.35);
+  }
 }
 .q-logo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .q-avatar-wrap {
@@ -1331,11 +1337,15 @@ body {
   margin-bottom: 8px;
 }
 .q-tagline {
-  font-size: 13px; font-weight: 700;
-  background: linear-gradient(135deg, var(--azul, #1A5F7A), var(--turquesa, #00D084));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  display: inline-block;
+  font-size: 13px; font-weight: 800;
+  color: var(--blanco);
+  background: linear-gradient(135deg, var(--azul-oscuro, #071A2E), var(--azul, #1A5F7A));
   line-height: 1.6; max-width: 280px; margin: 0 auto 16px;
   letter-spacing: 0.01em;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(7,26,46,0.3);
 }
 .q-stats {
   display: flex; justify-content: center; gap: 14px;
