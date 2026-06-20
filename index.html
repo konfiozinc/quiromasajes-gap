@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
   <meta name="description" content="Quiropraxia, osteopatía y masajes terapéuticos a domicilio en Soacha y Bogotá. Germán Agudelo, terapeuta certificado." />
   <meta name="theme-color" content="#1A5F7A" />
   <meta property="og:title" content="Quiromasajes GAP | Germán Agudelo" />
@@ -16,284 +16,207 @@
 </head>
 <body>
 
-<!-- ===== WHATSAPP FAB ===== -->
+<!-- ===== WHATSAPP FAB (flotante) ===== -->
 <a id="fab" href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20vi%20tu%20tarjeta%20y%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" width="26" height="26" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- ===== 1. HERO ===== -->
-<section id="hero">
-  <div class="hero-inner">
-    <div class="hero-logo-wrap">
-      <img src="assets/icons/logo.webp" alt="Quiromasajes GAP" class="hero-logo" />
-      <div class="hero-logo-glow"></div>
-    </div>
-    <div class="hero-profile">
-      <img src="assets/images/german.webp" alt="Germán Agudelo" class="hero-photo" />
-      <div class="hero-text">
-        <h1>Germán Agudelo</h1>
-        <p>Terapeuta certificado · Quiropraxia · Osteopatía · Quirofisiatría</p>
+<!-- ===== TARJETA PRINCIPAL ===== -->
+<div id="card">
+
+  <!-- CABECERA -->
+  <header class="card-header">
+    <div class="header-top">
+      <div class="logo-wrap">
+        <img src="assets/icons/logo.webp" alt="Quiromasajes GAP" class="logo" />
+        <div class="logo-glow"></div>
+      </div>
+      <div class="profile">
+        <img src="assets/images/german.webp" alt="Germán Agudelo" class="avatar" />
+        <div class="profile-text">
+          <h1>Germán Agudelo</h1>
+          <p>Terapeuta certificado · Quiropraxia · Osteopatía · Quirofisiatría</p>
+        </div>
       </div>
     </div>
-    <div class="hero-actions">
+
+    <div class="header-actions">
       <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20vi%20tu%20tarjeta%20y%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener" class="btn-wa">WhatsApp</a>
       <a href="tel:+573213735117" class="btn-call">Llamar</a>
     </div>
     <button class="btn-save" id="save-btn">Guardar contacto</button>
-  </div>
-</section>
+  </header>
 
-<!-- ===== 2. PROBLEMAS QUE TRATA ===== -->
-<section id="problemas" class="sec">
-  <p class="eyebrow">¿Te identificas?</p>
-  <h2 class="sec-title">Tratamos estos problemas</h2>
-  <div class="prob-grid">
-    <span class="prob-item">Dolor cervical</span>
-    <span class="prob-item">Dolor lumbar</span>
-    <span class="prob-item">Ciática</span>
-    <span class="prob-item">Contracturas</span>
-    <span class="prob-item">Estrés muscular</span>
-    <span class="prob-item">Mala postura</span>
-  </div>
-</section>
+  <!-- PESTAÑAS (tabs) -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="servicios">Servicios</button>
+    <button class="tab" data-tab="videos">Videos</button>
+    <button class="tab" data-tab="certificados">Certificados</button>
+    <button class="tab" data-tab="promo">Promo</button>
+    <button class="tab" data-tab="contacto">Contacto</button>
+  </nav>
 
-<!-- ===== 3. SOBRE GERMÁN ===== -->
-<section id="sobre" class="sec sec-alt">
-  <p class="eyebrow">Conoce al terapeuta</p>
-  <h2 class="sec-title">Germán Agudelo</h2>
-  <div class="sobre-wrap">
-    <img src="assets/images/german.webp" alt="Germán Agudelo" class="sobre-foto" />
-    <div class="sobre-texto">
-      <p>Terapeuta certificado con más de 10 años de experiencia en quiropraxia, osteopatía y quirofisiatría. Especialista en alivio del dolor y recuperación de la movilidad mediante técnicas manuales avanzadas.</p>
-      <p class="sobre-domicilio">🏠 Atención personalizada a domicilio en Soacha y Bogotá D.C.</p>
-    </div>
-  </div>
-</section>
+  <!-- CONTENEDOR DE CONTENIDO (cambia con las pestañas) -->
+  <div class="tab-content" id="tab-content">
 
-<!-- ===== 4. SERVICIOS ===== -->
-<section id="servicios" class="sec">
-  <p class="eyebrow">Lo que ofrezco</p>
-  <h2 class="sec-title">Servicios</h2>
-  <div class="svc-grid">
-    <div class="svc-card">
-      <img src="assets/gallery/postural.webp" alt="Quiropraxia" class="svc-img" />
-      <div class="svc-body">
-        <h3>Quiropraxia</h3>
-        <p>Ajustes vertebrales para recuperar la movilidad y aliviar el dolor.</p>
-        <span class="svc-price">$80.000 – $100.000</span>
-        <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Quiropraxia" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-      </div>
-    </div>
-    <div class="svc-card">
-      <img src="assets/gallery/dolor.webp" alt="Recuperación Muscular" class="svc-img" />
-      <div class="svc-body">
-        <h3>Recuperación Muscular</h3>
-        <p>Terapia para contracturas, ciática y dolores crónicos.</p>
-        <span class="svc-price">$80.000 – $100.000</span>
-        <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Recuperación%20Muscular" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-      </div>
-    </div>
-    <div class="svc-card">
-      <img src="assets/gallery/relajacion.webp" alt="Masaje Terapéutico" class="svc-img" />
-      <div class="svc-body">
-        <h3>Masaje Terapéutico</h3>
-        <p>Relajación profunda con técnicas manuales, piedras calientes y reflexología.</p>
-        <span class="svc-price">$80.000</span>
-        <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Masaje%20Terapéutico" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 5. CASOS REALES ===== -->
-<section id="casos" class="sec sec-alt">
-  <p class="eyebrow">Resultados</p>
-  <h2 class="sec-title">Casos reales</h2>
-  <div class="casos-slider" id="casos-slider">
-    <div class="casos-track" id="casos-track">
-      <div class="casos-slide">
-        <img src="assets/thumbnails/poster6.webp" alt="Caso 1" loading="lazy" />
-        <div class="casos-info">
-          <h4>Recuperación de movilidad</h4>
-          <p>Paciente con dolor lumbar crónico recupera su calidad de vida tras 3 sesiones.</p>
+    <!-- PANEL: SERVICIOS -->
+    <div class="panel active" data-panel="servicios">
+      <div class="svc-list">
+        <div class="svc-item">
+          <img src="assets/gallery/postural.webp" alt="Quiropraxia" />
+          <div>
+            <h4>Quiropraxia</h4>
+            <p>Ajustes vertebrales para aliviar el dolor.</p>
+            <span class="price">$80.000 – $100.000</span>
+            <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Quiropraxia" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
+          </div>
+        </div>
+        <div class="svc-item">
+          <img src="assets/gallery/dolor.webp" alt="Recuperación Muscular" />
+          <div>
+            <h4>Recuperación Muscular</h4>
+            <p>Terapia para contracturas y ciática.</p>
+            <span class="price">$80.000 – $100.000</span>
+            <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Recuperación%20Muscular" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
+          </div>
+        </div>
+        <div class="svc-item">
+          <img src="assets/gallery/relajacion.webp" alt="Masaje Terapéutico" />
+          <div>
+            <h4>Masaje Terapéutico</h4>
+            <p>Relajación profunda y reflexología.</p>
+            <span class="price">$80.000</span>
+            <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Masaje%20Terapéutico" target="_blank" rel="noopener" class="svc-btn">Reservar</a>
+          </div>
         </div>
       </div>
-      <div class="casos-slide">
-        <img src="assets/thumbnails/poster7.webp" alt="Caso 2" loading="lazy" />
-        <div class="casos-info">
-          <h4>Atención a domicilio</h4>
-          <p>Terapia personalizada en la comodidad del hogar del paciente.</p>
+      <p class="domicilio">🏠 Atención personalizada a domicilio en Soacha y Bogotá D.C.</p>
+    </div>
+
+    <!-- PANEL: VIDEOS (miniaturas en grilla) -->
+    <div class="panel" data-panel="videos">
+      <div class="vid-grid">
+        <div class="vid-thumb" data-drive="1yzxGaGtAT606Rx2SJkDbQSi-2qDpPOSb" onclick="openVid(this)">
+          <img src="assets/thumbnails/poster1.webp" alt="Presentación" loading="lazy" />
+          <div class="play-icon">▶</div>
+          <span class="vid-label">Presentación</span>
+        </div>
+        <div class="vid-thumb" data-drive="13n3FSzI1bn5xutM1MYkxr-dyaz0lJP8c" onclick="openVid(this)">
+          <img src="assets/thumbnails/poster2.webp" alt="Servicio" loading="lazy" />
+          <div class="play-icon">▶</div>
+          <span class="vid-label">Servicio</span>
+        </div>
+        <div class="vid-thumb" data-drive="1Cmg9L0Sfuk7kuspadMfQov1OlaocqrJL" onclick="openVid(this)">
+          <img src="assets/thumbnails/poster3.webp" alt="Quiropraxia" loading="lazy" />
+          <div class="play-icon">▶</div>
+          <span class="vid-label">Quiropraxia</span>
+        </div>
+        <div class="vid-thumb" data-drive="1DvY6elTIdAIsjTxQeX84T-ri8mnCk4Ut" onclick="openVid(this)">
+          <img src="assets/thumbnails/poster4.webp" alt="Osteopatía" loading="lazy" />
+          <div class="play-icon">▶</div>
+          <span class="vid-label">Osteopatía</span>
+        </div>
+        <div class="vid-thumb" data-drive="19cFLWjNPtL-jwEYXK1K4R6X6GUmqP6-n" onclick="openVid(this)">
+          <img src="assets/thumbnails/poster5.webp" alt="Masaje" loading="lazy" />
+          <div class="play-icon">▶</div>
+          <span class="vid-label">Masaje</span>
+        </div>
+        <div class="vid-thumb" data-drive="1Pr-cKHWDCdTaHoHaFfrFSsy6BKraYtfN" onclick="openVid(this)">
+          <img src="assets/thumbnails/poster6.webp" alt="Recuperación" loading="lazy" />
+          <div class="play-icon">▶</div>
+          <span class="vid-label">Recuperación</span>
+        </div>
+        <div class="vid-thumb" data-drive="1sZQhFcAnWcHF0jVCoCXuQdAtfTP2p88z" onclick="openVid(this)">
+          <img src="assets/thumbnails/poster7.webp" alt="Domicilio" loading="lazy" />
+          <div class="play-icon">▶</div>
+          <span class="vid-label">Domicilio</span>
+        </div>
+        <div class="vid-thumb" data-drive="1FwCbp5QXSaPXSVNMOmkIio86hbcadMWl" onclick="openVid(this)">
+          <img src="assets/thumbnails/poster8.webp" alt="Experiencia" loading="lazy" />
+          <div class="play-icon">▶</div>
+          <span class="vid-label">Experiencia</span>
+        </div>
+        <div class="vid-thumb" data-drive="1AKJP8P1UDRgp_rdXjmgCNlfrf4yZlTRO" onclick="openVid(this)">
+          <img src="assets/thumbnails/poster9.webp" alt="Resultados" loading="lazy" />
+          <div class="play-icon">▶</div>
+          <span class="vid-label">Resultados</span>
+        </div>
+        <div class="vid-thumb" data-drive="1R7w3aNdQecJK9Ry2GF4R87WSMwLbdIib" onclick="openVid(this)">
+          <img src="assets/thumbnails/poster10.webp" alt="Piedras volcánicas" loading="lazy" />
+          <div class="play-icon">▶</div>
+          <span class="vid-label">Piedras</span>
         </div>
       </div>
-      <div class="casos-slide">
-        <img src="assets/thumbnails/poster8.webp" alt="Caso 3" loading="lazy" />
-        <div class="casos-info">
-          <h4>Liberación de tensiones</h4>
-          <p>Masaje terapéutico profundo para aliviar el estrés muscular acumulado.</p>
+    </div>
+
+    <!-- PANEL: CERTIFICADOS -->
+    <div class="panel" data-panel="certificados">
+      <div class="cert-list">
+        <div class="cert-item" onclick="openCert(this)" data-title="Diplomado Quiropraxia y Osteopatía – ESLACIENCIAS">
+          <img src="assets/certificates/certificado1.webp" alt="Quiropraxia y Osteopatía" />
+          <div>
+            <span>Quiropraxia y Osteopatía</span>
+            <small>🇨🇴 ESLACIENCIAS · 120h</small>
+          </div>
+        </div>
+        <div class="cert-item" onclick="openCert(this)" data-title="Diplomado Quirofisiatría – Florida USA">
+          <img src="assets/certificates/certificado2.webp" alt="Quirofisiatría" />
+          <div>
+            <span>Quirofisiatría</span>
+            <small>🇺🇸 Florida, USA</small>
+          </div>
+        </div>
+        <div class="cert-item" onclick="openCert(this)" data-title="Acreditación ASOQUIROPRAXIA LATAM">
+          <img src="assets/certificates/certificado3.webp" alt="ASOQUIROPRAXIA" />
+          <div>
+            <span>Quiropraxia y Quiromasaje</span>
+            <small>🌎 ASOQUIROPRAXIA LATAM</small>
+          </div>
         </div>
       </div>
-      <div class="casos-slide">
-        <img src="assets/thumbnails/poster9.webp" alt="Caso 4" loading="lazy" />
-        <div class="casos-info">
-          <h4>Quiropraxia exitosa</h4>
-          <p>Paciente con ciática recupera su movilidad después del tratamiento.</p>
+    </div>
+
+    <!-- PANEL: PROMOCIÓN -->
+    <div class="panel" data-panel="promo">
+      <div class="promo-card">
+        <div class="promo-badge">🔥 OFERTA</div>
+        <div class="promo-title">Quiropraxia + Masaje Completo</div>
+        <div class="promo-sub">1.5 horas · De pies a cabeza</div>
+        <div class="promo-precios">
+          <span class="promo-antes">$200.000</span>
+          <span class="promo-ahora">$170.000</span>
         </div>
+        <div class="promo-ahorro">✅ Ahorras $30.000</div>
+        <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20la%20promoci%C3%B3n%20completa." target="_blank" rel="noopener" class="promo-btn">Quiero esta oferta</a>
       </div>
     </div>
-    <button class="casos-arrow casos-prev" onclick="moveCasos(-1)">‹</button>
-    <button class="casos-arrow casos-next" onclick="moveCasos(1)">›</button>
-    <div class="casos-dots" id="casos-dots"></div>
-  </div>
-</section>
 
-<!-- ===== 6. GALERÍA DE VIDEOS (SLIDER FINITO) ===== -->
-<section id="videos" class="sec">
-  <p class="eyebrow">Mira el trabajo</p>
-  <h2 class="sec-title">Videos profesionales</h2>
-  <div class="vid-slider" id="vid-slider">
-    <div class="vid-track" id="vid-track">
-      <!-- Video 1 -->
-      <div class="vid-slide" data-drive="1yzxGaGtAT606Rx2SJkDbQSi-2qDpPOSb" onclick="openVid(this)">
-        <img src="assets/thumbnails/poster1.webp" alt="Presentación" loading="lazy" />
-        <div class="vid-play-overlay"><span>▶</span></div>
-        <div class="vid-label">Presentación</div>
+    <!-- PANEL: CONTACTO + QR -->
+    <div class="panel" data-panel="contacto">
+      <div class="contact-grid">
+        <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20vi%20tu%20tarjeta%20y%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener" class="contact-btn wa">WhatsApp</a>
+        <a href="tel:+573213735117" class="contact-btn call">Llamar</a>
+        <a href="https://www.instagram.com/quiromasajes1986" target="_blank" rel="noopener" class="contact-btn ig">Instagram</a>
+        <a href="https://www.tiktok.com/@germanagudelopest" target="_blank" rel="noopener" class="contact-btn tt">TikTok</a>
       </div>
-      <!-- Video 2 -->
-      <div class="vid-slide" data-drive="13n3FSzI1bn5xutM1MYkxr-dyaz0lJP8c" onclick="openVid(this)">
-        <img src="assets/thumbnails/poster2.webp" alt="Servicio" loading="lazy" />
-        <div class="vid-play-overlay"><span>▶</span></div>
-        <div class="vid-label">Servicio a domicilio</div>
-      </div>
-      <!-- Video 3 -->
-      <div class="vid-slide" data-drive="1Cmg9L0Sfuk7kuspadMfQov1OlaocqrJL" onclick="openVid(this)">
-        <img src="assets/thumbnails/poster3.webp" alt="Quiropraxia" loading="lazy" />
-        <div class="vid-play-overlay"><span>▶</span></div>
-        <div class="vid-label">Quiropraxia</div>
-      </div>
-      <!-- Video 4 -->
-      <div class="vid-slide" data-drive="1DvY6elTIdAIsjTxQeX84T-ri8mnCk4Ut" onclick="openVid(this)">
-        <img src="assets/thumbnails/poster4.webp" alt="Osteopatía" loading="lazy" />
-        <div class="vid-play-overlay"><span>▶</span></div>
-        <div class="vid-label">Osteopatía</div>
-      </div>
-      <!-- Video 5 -->
-      <div class="vid-slide" data-drive="19cFLWjNPtL-jwEYXK1K4R6X6GUmqP6-n" onclick="openVid(this)">
-        <img src="assets/thumbnails/poster5.webp" alt="Masaje" loading="lazy" />
-        <div class="vid-play-overlay"><span>▶</span></div>
-        <div class="vid-label">Masaje terapéutico</div>
-      </div>
-      <!-- Video 6 -->
-      <div class="vid-slide" data-drive="1Pr-cKHWDCdTaHoHaFfrFSsy6BKraYtfN" onclick="openVid(this)">
-        <img src="assets/thumbnails/poster6.webp" alt="Recuperación" loading="lazy" />
-        <div class="vid-play-overlay"><span>▶</span></div>
-        <div class="vid-label">Recuperación muscular</div>
-      </div>
-      <!-- Video 7 -->
-      <div class="vid-slide" data-drive="1sZQhFcAnWcHF0jVCoCXuQdAtfTP2p88z" onclick="openVid(this)">
-        <img src="assets/thumbnails/poster7.webp" alt="Domicilio" loading="lazy" />
-        <div class="vid-play-overlay"><span>▶</span></div>
-        <div class="vid-label">Atención a domicilio</div>
-      </div>
-      <!-- Video 8 -->
-      <div class="vid-slide" data-drive="1FwCbp5QXSaPXSVNMOmkIio86hbcadMWl" onclick="openVid(this)">
-        <img src="assets/thumbnails/poster8.webp" alt="Experiencia" loading="lazy" />
-        <div class="vid-play-overlay"><span>▶</span></div>
-        <div class="vid-label">Experiencia profesional</div>
-      </div>
-      <!-- Video 9 -->
-      <div class="vid-slide" data-drive="1AKJP8P1UDRgp_rdXjmgCNlfrf4yZlTRO" onclick="openVid(this)">
-        <img src="assets/thumbnails/poster9.webp" alt="Resultados" loading="lazy" />
-        <div class="vid-play-overlay"><span>▶</span></div>
-        <div class="vid-label">Resultados</div>
-      </div>
-      <!-- Video 10 – PIEDRAS VOLCÁNICAS (corregido) -->
-      <div class="vid-slide" data-drive="1R7w3aNdQecJK9Ry2GF4R87WSMwLbdIib" onclick="openVid(this)">
-        <img src="assets/thumbnails/poster10.webp" alt="Piedras volcánicas" loading="lazy" />
-        <div class="vid-play-overlay"><span>▶</span></div>
-        <div class="vid-label">Piedras volcánicas</div>
-      </div>
+      <button class="btn-qr" id="qr-btn">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zm-2 10h8v8h-8v-8zm2 2v4h4v-4h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5z"/></svg>
+        Compartir QR
+      </button>
+      <button class="btn-save full" id="save-btn-bottom">Guardar contacto</button>
     </div>
-    <button class="vid-arrow vid-prev" onclick="moveVid(-1)">‹</button>
-    <button class="vid-arrow vid-next" onclick="moveVid(1)">›</button>
-    <div class="vid-dots" id="vid-dots"></div>
-  </div>
-</section>
 
-<!-- ===== 7. CERTIFICACIONES ===== -->
-<section id="certificaciones" class="sec sec-alt">
-  <p class="eyebrow">Formación</p>
-  <h2 class="sec-title">Certificaciones</h2>
-  <div class="cert-grid">
-    <div class="cert-card" onclick="openCert(this)" data-title="Diplomado Quiropraxia y Osteopatía – ESLACIENCIAS">
-      <img src="assets/certificates/certificado1.webp" alt="Quiropraxia y Osteopatía" loading="lazy" />
-      <div class="cert-info"><span>Quiropraxia y Osteopatía</span><small>🇨🇴 ESLACIENCIAS · 120h</small></div>
-    </div>
-    <div class="cert-card" onclick="openCert(this)" data-title="Diplomado Quirofisiatría – Florida USA">
-      <img src="assets/certificates/certificado2.webp" alt="Quirofisiatría" loading="lazy" />
-      <div class="cert-info"><span>Quirofisiatría</span><small>🇺🇸 Florida, USA</small></div>
-    </div>
-    <div class="cert-card" onclick="openCert(this)" data-title="Acreditación ASOQUIROPRAXIA LATAM">
-      <img src="assets/certificates/certificado3.webp" alt="ASOQUIROPRAXIA" loading="lazy" />
-      <div class="cert-info"><span>Quiropraxia y Quiromasaje</span><small>🌎 ASOQUIROPRAXIA LATAM</small></div>
-    </div>
-  </div>
-</section>
+  </div><!-- /tab-content -->
 
-<!-- ===== 8. PROMOCIÓN ===== -->
-<section id="promo" class="sec">
-  <p class="eyebrow">Oferta especial</p>
-  <h2 class="sec-title">💥 Promoción</h2>
-  <div class="promo-card">
-    <div class="promo-badge">🔥 OFERTA PROMOCIONAL</div>
-    <div class="promo-title">Quiropraxia + Masaje Corporal Completo</div>
-    <div class="promo-sub">De pies a cabeza · 1.5 horas</div>
-    <div class="promo-precios">
-      <span class="promo-antes">$200.000</span>
-      <span class="promo-ahora">$170.000</span>
-    </div>
-    <div class="promo-ahorro">✅ Ahorras $30.000</div>
-    <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20la%20promoci%C3%B3n%20completa." target="_blank" rel="noopener" class="btn-wa promo-btn">Quiero esta oferta</a>
-  </div>
-</section>
-
-<!-- ===== 9. COBERTURA ===== -->
-<section id="cobertura" class="sec sec-alt">
-  <p class="eyebrow">Zona de servicio</p>
-  <h2 class="sec-title">Cobertura</h2>
-  <p class="cov-text">Atención a domicilio en Soacha y Bogotá D.C. También en <strong>ESCLAT S.A.S.</strong></p>
-  <div class="cov-map">
-    <iframe src="https://www.google.com/maps?q=Soacha,Cundinamarca,Colombia&output=embed" width="100%" height="180" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa"></iframe>
-  </div>
-  <div class="cov-buttons">
-    <a href="https://waze.com/ul/hd2g61v59g" target="_blank" rel="noopener" class="cov-btn waze">Waze</a>
-    <a href="https://maps.google.com/?q=ESCLAT+SAS+Soacha+Colombia" target="_blank" rel="noopener" class="cov-btn maps">Google Maps</a>
-  </div>
-</section>
-
-<!-- ===== 10. CONTACTO ===== -->
-<section id="contacto" class="sec">
-  <p class="eyebrow">Contáctame</p>
-  <h2 class="sec-title">Hablemos</h2>
-  <div class="contact-grid">
-    <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20vi%20tu%20tarjeta%20y%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener" class="contact-btn wa">WhatsApp</a>
-    <a href="tel:+573213735117" class="contact-btn call">Llamar</a>
-    <a href="https://www.instagram.com/quiromasajes1986" target="_blank" rel="noopener" class="contact-btn ig">Instagram</a>
-    <a href="https://www.tiktok.com/@germanagudelopest" target="_blank" rel="noopener" class="contact-btn tt">TikTok</a>
-  </div>
-  <button class="btn-save full" id="save-btn-bottom">Guardar contacto</button>
-  <button class="btn-qr" id="qr-btn">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zm-2 10h8v8h-8v-8zm2 2v4h4v-4h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5z"/></svg>
-    Compartir QR
-  </button>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer>
-  <img src="assets/images/german.webp" alt="Germán Agudelo" class="foot-logo" />
-  <div class="foot-brand">QUIROMASAJES.GAP</div>
-  <div class="foot-sub">Germán Agudelo · Quiropraxia · Masajes · Terapias</div>
-  <div class="foot-konfio">Desarrollado por <span>KONFÍO ZINC</span></div>
-</footer>
+  <!-- PIE DE TARJETA (mini footer) -->
+  <footer class="card-footer">
+    <span>QUIROMASAJES.GAP</span>
+    <span>·</span>
+    <span>Germán Agudelo</span>
+    <span>·</span>
+    <span>KONFÍO ZINC</span>
+  </footer>
+</div>
 
 <!-- ===== MODALES ===== -->
 
@@ -323,7 +246,7 @@
     <button class="modal-close" onclick="closeQR()">← Volver</button>
     <div class="qr-content">
       <img id="qr-image" src="" alt="Código QR" />
-      <p>Escanea este código con tu celular para acceder a la tarjeta digital de Quiromasajes GAP</p>
+      <p>Escanea este código con tu celular</p>
     </div>
   </div>
 </div>
