@@ -1089,13 +1089,15 @@ footer {
 
 /* ===== MODAL DE VIDEO ===== */
 .vid-modal-box {
-  max-width: 400px;
+  max-width: 340px;
   padding: 12px;
 }
 .vid-frame-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 9/16;
+  max-height: 75vh;
+  margin: 0 auto;
   border-radius: var(--radio);
   overflow: hidden;
   background: #000;
