@@ -246,3 +246,49 @@ window.closeCert = function() {
   certModal.classList.remove('on');
   document.body.style.overflow = '';
 };
+
+// ===== PARTÍCULAS DE FONDO (paleta de marca, no interfieren con la tarjeta) =====
+(function() {
+  var canvas = document.getElementById('q-particles');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var colors = ['rgba(0,208,132,0.55)', 'rgba(26,95,122,0.5)', 'rgba(179,38,30,0.4)', 'rgba(255,255,255,0.25)'];
+  var particles = [];
+  var W, H;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  var count = Math.min(60, Math.floor((W * H) / 22000));
+  for (var i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.8 + 0.6,
+      vy: -(Math.random() * 0.35 + 0.08),
+      vx: (Math.random() - 0.5) * 0.15,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    });
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(function(p) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
+      if (p.x < -10) p.x = W + 10;
+      if (p.x > W + 10) p.x = -10;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();

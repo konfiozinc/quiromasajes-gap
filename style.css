@@ -1195,23 +1195,43 @@ footer {
    TARJETA ÚNICA (formato card, no landing) — v2
    ================================================================ */
 body {
-  background: #E8ECF1;
+  background: radial-gradient(ellipse at top, #0d2b47 0%, #071A2E 55%, #04101d 100%);
   display: flex;
   align-items: flex-start;
   justify-content: center;
   min-height: 100vh;
   padding: 20px 14px;
   max-width: none;
+  overflow-x: hidden;
+}
+#q-particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 .q-card {
   position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 390px;
-  background: var(--blanco);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-radius: 26px;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(7, 26, 46, 0.25);
+  border: 1px solid rgba(0, 208, 132, 0.25);
+  box-shadow: 0 0 0 1px rgba(0,208,132,0.08), 0 30px 70px rgba(0,0,0,0.55), 0 0 60px rgba(0,208,132,0.08);
   animation: qCardEnter 0.6s cubic-bezier(.22,1,.36,1) both;
+}
+.q-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--turquesa, #00D084), var(--rojo, #B3261E), transparent);
+  z-index: 6;
 }
 @keyframes qCardEnter {
   from { opacity: 0; transform: translateY(24px) scale(0.97); }
@@ -1220,43 +1240,46 @@ body {
 .q-banner {
   position: relative;
   width: 100%;
-  height: 150px;
-  background: linear-gradient(135deg, var(--azul-oscuro, #071A2E), var(--azul, #1A5F7A));
+  height: 160px;
+  background: linear-gradient(135deg, var(--azul-oscuro, #071A2E) 0%, var(--azul, #1A5F7A) 55%, var(--turquesa, #00D084) 130%);
   overflow: hidden;
 }
 .q-banner img {
-  width: 100%; height: 100%; object-fit: cover; opacity: 0.55;
+  width: 100%; height: 100%; object-fit: cover; opacity: 0.45; mix-blend-mode: luminosity;
 }
 .q-banner::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(to top, var(--blanco) 0%, transparent 55%);
+  background: linear-gradient(to top, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.15) 60%, rgba(7,26,46,0.25) 100%);
 }
 .q-logo-wrap {
   position: absolute;
   top: 14px; right: 14px;
-  width: 46px; height: 46px;
+  width: 64px; height: 64px;
   border-radius: 50%;
   background: var(--blanco);
-  padding: 3px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  padding: 4px;
+  box-shadow: 0 0 0 2px var(--turquesa, #00D084), 0 6px 18px rgba(0,0,0,0.35);
   z-index: 5;
 }
 .q-logo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .q-avatar-wrap {
-  text-align: center;
-  margin-top: -54px;
+  display: flex;
+  justify-content: center;
+  margin-top: -56px;
   position: relative;
   z-index: 5;
 }
 .q-avatar {
-  width: 104px; height: 104px;
+  width: 110px; height: 110px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: top center;
+  object-position: 50% 22%;
   border: 4px solid var(--blanco);
-  box-shadow: 0 0 0 3px var(--turquesa, #00D084), 0 10px 26px rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 3px var(--turquesa, #00D084), 0 0 24px rgba(0,208,132,0.45), 0 10px 26px rgba(0,0,0,0.3);
   background: var(--azul-oscuro);
+  display: block;
+  margin: 0 auto;
 }
 .q-profile { padding: 12px 22px 18px; text-align: center; }
 .q-live-badge {
@@ -1284,18 +1307,21 @@ body {
   line-height: 1.55; max-width: 280px; margin: 0 auto 16px;
 }
 .q-stats {
-  display: flex; justify-content: center; gap: 26px;
+  display: flex; justify-content: center; gap: 14px;
   margin-bottom: 16px;
-  padding: 12px 0;
-  border-top: 1px solid var(--gris-claro, #eef1f4);
-  border-bottom: 1px solid var(--gris-claro, #eef1f4);
+  padding: 12px 10px;
+  background: linear-gradient(135deg, rgba(7,26,46,0.05), rgba(0,208,132,0.07));
+  border-radius: 16px;
+  border: 1px solid rgba(0,208,132,0.15);
 }
-.q-stat { display: flex; flex-direction: column; align-items: center; }
+.q-stat { display: flex; flex-direction: column; align-items: center; flex: 1; }
 .q-stat span {
   font-family: 'Playfair Display', serif;
-  font-size: 19px; font-weight: 700; color: var(--azul-oscuro, #071A2E);
+  font-size: 19px; font-weight: 700;
+  background: linear-gradient(135deg, var(--azul-oscuro, #071A2E), var(--turquesa, #00D084));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.q-stat small { font-size: 9.5px; color: var(--gris, #888); margin-top: 1px; }
+.q-stat small { font-size: 9.5px; color: var(--gris, #5b6b7a); margin-top: 1px; font-weight: 600; }
 .q-btn-wa {
   display: flex; align-items: center; justify-content: center; gap: 9px;
   width: 100%; padding: 13px 20px;
@@ -1312,8 +1338,8 @@ body {
   transform: skewX(-20deg); animation: qShine 3.5s ease-in-out infinite;
 }
 @keyframes qShine { 0%{left:-75%;} 40%,100%{left:130%;} }
-.q-divider { height: 1px; background: var(--gris-claro, #eef1f4); margin: 0 22px; }
-.q-actions-wrap { padding: 16px 18px; }
+.q-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,208,132,0.35), rgba(179,38,30,0.25), transparent); margin: 0 22px; }
+.q-actions-wrap { padding: 16px 18px; background: linear-gradient(180deg, rgba(0,208,132,0.04), transparent); }
 .q-section { padding: 4px 22px 18px; }
 .q-section-label {
   font-size: 10px; color: var(--gris, #888);
@@ -1327,21 +1353,25 @@ body {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 5px; padding: 12px 4px;
   border-radius: 14px;
-  background: #F5F7FA;
-  border: 1px solid var(--gris-claro, #eef1f4);
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0,208,132,0.18);
   text-decoration: none; cursor: pointer; color: inherit;
   font-size: 9px; font-weight: 700; letter-spacing: 0.02em; text-align: center;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.q-icon-box i { font-size: 19px; }
+.q-icon-box i { font-size: 20px; }
 .q-icon-box span { color: var(--azul-oscuro, #071A2E); }
-.q-icon-box:active { transform: scale(0.93); box-shadow: 0 0 0 2px rgba(0,208,132,0.25); }
+.q-icon-box:active { transform: scale(0.93); box-shadow: 0 0 0 2px rgba(0,208,132,0.3); }
 .q-prob-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .q-prob-item {
-  font-size: 11.5px; font-weight: 600; color: var(--azul-oscuro, #071A2E);
-  background: #F5F7FA; border: 1px solid var(--gris-claro, #eef1f4);
+  font-size: 11.5px; font-weight: 700; color: var(--blanco);
+  background: linear-gradient(135deg, var(--azul-oscuro, #071A2E), var(--azul, #1A5F7A));
+  border: 1px solid rgba(0,208,132,0.3);
   border-radius: 9999px; padding: 6px 14px;
 }
+.q-prob-item:nth-child(3n+2) { background: linear-gradient(135deg, var(--turquesa, #00D084), #00a868); }
+.q-prob-item:nth-child(3n+3) { background: linear-gradient(135deg, var(--rojo, #B3261E), #8a1d17); }
 .q-footer {
   text-align: center; padding: 16px 20px 20px;
   border-top: 1px solid var(--gris-claro, #eef1f4);
@@ -1351,14 +1381,30 @@ body {
 .q-konfio span { color: var(--turquesa, #00D084); font-weight: 700; }
 
 /* WhatsApp flotante */
-.q-fab {
+.q-fab-wrap {
   position: fixed; bottom: 24px; right: 20px; z-index: 999;
-  width: 54px; height: 54px; border-radius: 50%;
-  background: #25D366; color: #fff;
+  width: 58px; height: 58px;
+}
+.q-fab {
+  position: relative; z-index: 2;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #2bdb78, #1fb955 60%, #169c47);
+  color: #fff;
   display: flex; align-items: center; justify-content: center;
-  font-size: 26px; box-shadow: 0 6px 24px rgba(37,211,102,0.5);
-  text-decoration: none;
-  animation: qFabFloat 6s ease-in-out infinite;
+  font-size: 28px; box-shadow: 0 8px 28px rgba(37,211,102,0.65), 0 0 0 3px rgba(255,255,255,0.15);
+  text-decoration: none; border: 2px solid rgba(255,255,255,0.3);
+  animation: qFabFloat 5s ease-in-out infinite;
+}
+.q-fab-ring {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid rgba(37,211,102,0.55);
+  animation: qFabRing 2.2s ease-out infinite;
+  pointer-events: none;
+}
+.q-fab-ring.q-fab-ring-2 { animation-delay: 0.9s; }
+@keyframes qFabRing {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.9); opacity: 0; }
 }
 @keyframes qFabFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
 
