@@ -19,7 +19,7 @@ document.querySelectorAll('#save-btn, #save-btn-bottom').forEach(function(btn) {
   });
 });
 
-// ===== SLIDER FINITO =====
+// ===== SLIDER FINITO (sin loop infinito) =====
 function crearSliderFinito(containerId, trackId, dotId, autoTime) {
   var container = document.getElementById(containerId);
   if (!container) return;
@@ -31,6 +31,7 @@ function crearSliderFinito(containerId, trackId, dotId, autoTime) {
   var index = 0;
   var timer;
 
+  // Crear dots
   var dotsContainer = document.getElementById(dotId);
   if (dotsContainer) {
     dotsContainer.innerHTML = '';
@@ -86,6 +87,7 @@ function crearSliderFinito(containerId, trackId, dotId, autoTime) {
   var moveFnName = containerId === 'casos-slider' ? 'moveCasos' : 'moveVid';
   window[moveFnName] = move;
 
+  // Touch support
   var startX = 0;
   container.addEventListener('touchstart', function(e) {
     startX = e.touches[0].clientX;
@@ -103,80 +105,86 @@ function crearSliderFinito(containerId, trackId, dotId, autoTime) {
   resetAuto();
 }
 
+// Inicializar sliders finitos
 document.addEventListener('DOMContentLoaded', function() {
   crearSliderFinito('casos-slider', 'casos-track', 'casos-dots', 5000);
   crearSliderFinito('vid-slider', 'vid-track', 'vid-dots', 4000);
 });
 
-// ===== VIDEOS: REPRODUCCIÓN CON IFRAME DE GOOGLE DRIVE =====
+// ===== VIDEOS: CLICK → MODAL FULLSCREEN =====
+var vidPlayer = document.getElementById('vid-player');
+var vidModal = document.getElementById('vid-modal');
+var vidTitle = document.getElementById('vid-modal-title');
+
 window.openVid = function(el) {
   var driveId = el.dataset.drive;
   if (!driveId) {
-    alert('No se pudo cargar el video. ID no encontrado.');
+    console.error('No se encontró el ID del video');
     return;
   }
-
-  var videoFrame = document.getElementById('vid-player');
-  var modalTitle = document.getElementById('vid-modal-title');
-
-  // Limpiar src previo primero para evitar que quede el video anterior
-  videoFrame.src = '';
-
-  // URL de previsualización embebida de Drive (más confiable que el link de descarga)
-  var videoUrl = 'https://drive.google.com/file/d/' + driveId + '/preview';
-  videoFrame.src = videoUrl;
-
+  var url = 'https://drive.google.com/file/d/' + driveId + '/preview';
+  vidPlayer.src = url;
   var label = el.querySelector('.vid-label') ? el.querySelector('.vid-label').textContent : 'Video';
-  modalTitle.textContent = label;
-
-  // Mostrar modal
-  document.getElementById('vid-modal').classList.add('on');
+  vidTitle.textContent = label;
+  vidModal.classList.add('on');
   document.body.style.overflow = 'hidden';
-
-  // Pausar slider
   clearInterval(window._vidTimer);
 };
 
 window.closeVid = function() {
-  var videoFrame = document.getElementById('vid-player');
-  videoFrame.src = '';
-
-  document.getElementById('vid-modal').classList.remove('on');
+  vidPlayer.src = '';
+  vidModal.classList.remove('on');
   document.body.style.overflow = '';
-
   // Reactivar slider
-  var slider = document.getElementById('vid-slider');
-  if (slider) {
-    var dots = document.querySelectorAll('#vid-dots span');
-    var total = dots.length;
-    var current = 0;
-    dots.forEach(function(d, i) {
-      if (d.classList.contains('active')) current = i;
-    });
-    if (current < total - 1) {
-      clearInterval(window._vidTimer);
-      window._vidTimer = setInterval(function() {
-        var newIndex = current + 1;
-        if (newIndex >= total) {
-          clearInterval(window._vidTimer);
-          return;
-        }
-        var track = document.getElementById('vid-track');
-        track.style.transform = 'translateX(-' + (newIndex * 100) + '%)';
-        dots.forEach(function(d, i) {
-          d.classList.toggle('active', i === newIndex);
-        });
-        current = newIndex;
-      }, 4000);
-    }
+  var dots = document.querySelectorAll('#vid-dots span');
+  var total = dots.length;
+  var current = 0;
+  dots.forEach(function(d, i) {
+    if (d.classList.contains('active')) current = i;
+  });
+  if (current < total - 1) {
+    clearInterval(window._vidTimer);
+    window._vidTimer = setInterval(function() {
+      var newIndex = current + 1;
+      if (newIndex >= total) {
+        clearInterval(window._vidTimer);
+        return;
+      }
+      var track = document.getElementById('vid-track');
+      track.style.transform = 'translateX(-' + (newIndex * 100) + '%)';
+      dots.forEach(function(d, i) {
+        d.classList.toggle('active', i === newIndex);
+      });
+      current = newIndex;
+    }, 4000);
   }
 };
 
-// Cerrar modales con Escape
+// ===== QR: GENERAR Y ABRIR MODAL =====
+var qrModal = document.getElementById('qr-modal');
+var qrImage = document.getElementById('qr-image');
+
+document.getElementById('qr-btn').addEventListener('click', function() {
+  var url = encodeURIComponent(window.location.href);
+  var logoUrl = encodeURIComponent('https://konfiozinc.github.io/quiromasajes-gap/assets/icons/logo.webp');
+  // Usar API de QR con logo integrado
+  var qrApiUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + url + '&logo=' + logoUrl;
+  qrImage.src = qrApiUrl;
+  qrModal.classList.add('on');
+  document.body.style.overflow = 'hidden';
+});
+
+window.closeQR = function() {
+  qrModal.classList.remove('on');
+  document.body.style.overflow = '';
+};
+
+// ===== CERRAR MODALES CON ESC =====
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     closeVid();
     closeCert();
+    closeQR();
   }
 });
 
@@ -198,26 +206,3 @@ window.closeCert = function() {
   certModal.classList.remove('on');
   document.body.style.overflow = '';
 };
-
-// ===== BOTÓN QR =====
-document.getElementById('qr-btn').addEventListener('click', function(e) {
-  e.preventDefault();
-  alert('Código QR de la tarjeta digital Quiromasajes GAP');
-});
-// ===== EFECTO DE APARICIÓN AL HACER SCROLL =====
-document.addEventListener('DOMContentLoaded', function() {
-  var secciones = document.querySelectorAll('.sec');
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    secciones.forEach(function(sec) { observer.observe(sec); });
-  } else {
-    secciones.forEach(function(sec) { sec.classList.add('in-view'); });
-  }
-});
