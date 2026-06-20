@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
   crearSliderFinito('vid-slider', 'vid-track', 'vid-dots', 4000);
 });
 
-// ===== VIDEOS: REPRODUCCIÓN CON ELEMENTO VIDEO NATIVO =====
+// ===== VIDEOS: REPRODUCCIÓN CON IFRAME DE GOOGLE DRIVE =====
 window.openVid = function(el) {
   var driveId = el.dataset.drive;
   if (!driveId) {
@@ -116,15 +116,15 @@ window.openVid = function(el) {
     return;
   }
 
-  var videoPlayer = document.getElementById('vid-player');
+  var videoFrame = document.getElementById('vid-player');
   var modalTitle = document.getElementById('vid-modal-title');
 
-  // URL de descarga directa (permite streaming en el reproductor nativo)
-  var videoUrl = 'https://drive.google.com/uc?export=download&id=' + driveId;
+  // Limpiar src previo primero para evitar que quede el video anterior
+  videoFrame.src = '';
 
-  // Configurar el video
-  videoPlayer.src = videoUrl;
-  videoPlayer.load();
+  // URL de previsualización embebida de Drive (más confiable que el link de descarga)
+  var videoUrl = 'https://drive.google.com/file/d/' + driveId + '/preview';
+  videoFrame.src = videoUrl;
 
   var label = el.querySelector('.vid-label') ? el.querySelector('.vid-label').textContent : 'Video';
   modalTitle.textContent = label;
@@ -133,24 +133,13 @@ window.openVid = function(el) {
   document.getElementById('vid-modal').classList.add('on');
   document.body.style.overflow = 'hidden';
 
-  // Intentar reproducción automática
-  var playPromise = videoPlayer.play();
-  if (playPromise !== undefined) {
-    playPromise.catch(function() {
-      // El usuario debe presionar play manualmente
-      console.log('Reproducción automática no permitida');
-    });
-  }
-
   // Pausar slider
   clearInterval(window._vidTimer);
 };
 
 window.closeVid = function() {
-  var videoPlayer = document.getElementById('vid-player');
-  videoPlayer.pause();
-  videoPlayer.src = '';
-  videoPlayer.load();
+  var videoFrame = document.getElementById('vid-player');
+  videoFrame.src = '';
 
   document.getElementById('vid-modal').classList.remove('on');
   document.body.style.overflow = '';
@@ -214,4 +203,21 @@ window.closeCert = function() {
 document.getElementById('qr-btn').addEventListener('click', function(e) {
   e.preventDefault();
   alert('Código QR de la tarjeta digital Quiromasajes GAP');
+});
+// ===== EFECTO DE APARICIÓN AL HACER SCROLL =====
+document.addEventListener('DOMContentLoaded', function() {
+  var secciones = document.querySelectorAll('.sec');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    secciones.forEach(function(sec) { observer.observe(sec); });
+  } else {
+    secciones.forEach(function(sec) { sec.classList.add('in-view'); });
+  }
 });
