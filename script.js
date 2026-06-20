@@ -105,10 +105,10 @@ function crearSliderFinito(containerId, trackId, dotId, autoTime) {
 
 document.addEventListener('DOMContentLoaded', function() {
   crearSliderFinito('casos-slider', 'casos-track', 'casos-dots', 5000);
-  crearSliderFinito('vid-slider', 'vid-track', 'vid-dots', 0);
+  crearSliderFinito('vid-slider', 'vid-track', 'vid-dots', 4000);
 });
 
-// ===== VIDEOS: REPRODUCCIÓN CON IFRAME (CORREGIDO) =====
+// ===== VIDEOS: REPRODUCCIÓN CON ELEMENTO VIDEO NATIVO =====
 window.openVid = function(el) {
   var driveId = el.dataset.drive;
   if (!driveId) {
@@ -116,41 +116,41 @@ window.openVid = function(el) {
     return;
   }
 
+  var videoPlayer = document.getElementById('vid-player');
   var modalTitle = document.getElementById('vid-modal-title');
-  var frameWrap = document.getElementById('vid-frame-wrap');
 
-  // Limpiar el contenedor
-  frameWrap.innerHTML = '';
+  // URL de descarga directa (permite streaming en el reproductor nativo)
+  var videoUrl = 'https://drive.google.com/uc?export=download&id=' + driveId;
 
-  // Crear el iframe con la URL correcta para móviles
-  var iframe = document.createElement('iframe');
-  // Usar la URL de vista previa con el parámetro correcto para que funcione en móviles
-  iframe.src = 'https://drive.google.com/file/d/' + driveId + '/preview?usp=drivesdk';
-  iframe.allow = 'autoplay; fullscreen';
-  iframe.allowFullscreen = true;
-  iframe.frameborder = '0';
-  iframe.loading = 'lazy';
-  iframe.style.width = '100%';
-  iframe.style.height = '100%';
-  iframe.style.border = '0';
-  iframe.style.display = 'block';
-
-  // Agregar el iframe al contenedor
-  frameWrap.appendChild(iframe);
+  // Configurar el video
+  videoPlayer.src = videoUrl;
+  videoPlayer.load();
 
   var label = el.querySelector('.vid-label') ? el.querySelector('.vid-label').textContent : 'Video';
   modalTitle.textContent = label;
 
+  // Mostrar modal
   document.getElementById('vid-modal').classList.add('on');
   document.body.style.overflow = 'hidden';
 
+  // Intentar reproducción automática
+  var playPromise = videoPlayer.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(function() {
+      // El usuario debe presionar play manualmente
+      console.log('Reproducción automática no permitida');
+    });
+  }
+
+  // Pausar slider
   clearInterval(window._vidTimer);
 };
 
 window.closeVid = function() {
-  var frameWrap = document.getElementById('vid-frame-wrap');
-  // Limpiar el iframe para detener la reproducción
-  frameWrap.innerHTML = '';
+  var videoPlayer = document.getElementById('vid-player');
+  videoPlayer.pause();
+  videoPlayer.src = '';
+  videoPlayer.load();
 
   document.getElementById('vid-modal').classList.remove('on');
   document.body.style.overflow = '';
@@ -183,6 +183,7 @@ window.closeVid = function() {
   }
 };
 
+// Cerrar modales con Escape
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     closeVid();
@@ -209,92 +210,8 @@ window.closeCert = function() {
   document.body.style.overflow = '';
 };
 
-// ===== BOTÓN QR + COMPARTIR =====
-var qrModal = document.getElementById('qr-modal');
-var pageUrl = window.location.href.split('#')[0].split('?')[0];
-
-function buildQr() {
-  var wrap = document.getElementById('qr-canvas-wrap');
-  wrap.innerHTML = '';
-  if (typeof QRCode === 'undefined') {
-    wrap.innerHTML = '<p style="font-size:13px;color:var(--gris)">No se pudo generar el QR. Verifica tu conexión.</p>';
-    return;
-  }
-  // Genera el QR en alta corrección de error (H) para poder cubrir el centro con el logo
-  new QRCode(wrap, {
-    text: pageUrl,
-    width: 220,
-    height: 220,
-    colorDark: '#0E3D50',
-    colorLight: '#FFFFFF',
-    correctLevel: QRCode.CorrectLevel.H
-  });
-
-  // Espera a que la librería pinte el <img>/<canvas> y le superpone el logo
-  setTimeout(function() {
-    var qrImg = wrap.querySelector('img, canvas');
-    if (!qrImg) return;
-
-    var size = 220;
-    var canvas = document.createElement('canvas');
-    canvas.width = size;
-    canvas.height = size;
-    var ctx = canvas.getContext('2d');
-
-    var qrSource = new Image();
-    qrSource.crossOrigin = 'anonymous';
-    qrSource.onload = function() {
-      ctx.drawImage(qrSource, 0, 0, size, size);
-
-      var logo = new Image();
-      logo.crossOrigin = 'anonymous';
-      logo.onload = function() {
-        var logoSize = size * 0.22;
-        var pos = (size - logoSize) / 2;
-        ctx.fillStyle = '#FFFFFF';
-        ctx.beginPath();
-        ctx.arc(size / 2, size / 2, logoSize / 2 + 6, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(size / 2, size / 2, logoSize / 2, 0, Math.PI * 2);
-        ctx.clip();
-        ctx.drawImage(logo, pos, pos, logoSize, logoSize);
-        ctx.restore();
-
-        wrap.innerHTML = '';
-        wrap.appendChild(canvas);
-      };
-      logo.src = 'assets/icons/logo.webp';
-    };
-    qrSource.src = qrImg.src || qrImg.toDataURL();
-  }, 120);
-}
-
-window.closeQr = function() {
-  qrModal.classList.remove('on');
-  document.body.style.overflow = '';
-};
-
-document.getElementById('qr-btn').addEventListener('click', function() {
-  buildQr();
-  qrModal.classList.add('on');
-  document.body.style.overflow = 'hidden';
-});
-
-document.getElementById('qr-share-native').addEventListener('click', function() {
-  if (navigator.share) {
-    navigator.share({
-      title: 'QUIROMASAJES.GAP',
-      text: 'Quiropraxia y masajes terapéuticos a domicilio en Soacha y Bogotá D.C.',
-      url: pageUrl
-    }).catch(function() {});
-  } else {
-    navigator.clipboard.writeText(pageUrl).then(function() {
-      var btn = document.getElementById('qr-share-native');
-      var original = btn.textContent;
-      btn.textContent = '¡Enlace copiado!';
-      setTimeout(function() { btn.textContent = original; }, 2000);
-    });
-  }
+// ===== BOTÓN QR =====
+document.getElementById('qr-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  alert('Código QR de la tarjeta digital Quiromasajes GAP');
 });

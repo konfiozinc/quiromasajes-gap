@@ -190,6 +190,36 @@ button {
   }
 }
 
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--blanco);
+  margin: 0 auto 10px;
+  max-width: 320px;
+  position: relative;
+  z-index: 2;
+}
+.hero-tagline {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 2;
+}
+.hero-zone {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
+}
+.hero-wa-full {
+  width: 100%;
+  margin-bottom: 10px;
+  gap: 8px;
+}
 .hero-photo {
   width: 64px;
   height: 64px;
@@ -199,6 +229,38 @@ button {
   border: 2px solid rgba(255, 255, 255, 0.25);
   flex-shrink: 0;
   background: var(--azul-oscuro);
+}
+.hero-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 14px 0 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  z-index: 2;
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--blanco);
+}
+.hero-stat-label {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.3;
+  text-align: center;
+}
+.hero-stat-label small {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.45);
 }
 .hero-profile {
   display: flex;
@@ -214,9 +276,9 @@ button {
   position: relative;
   z-index: 2;
 }
-.hero-text h1 {
+.hero-text h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--blanco);
 }
@@ -231,6 +293,9 @@ button {
   margin-bottom: 10px;
   position: relative;
   z-index: 2;
+}
+.hero-actions .btn-call {
+  font-size: 13px;
 }
 .btn-wa {
   flex: 1;
@@ -423,21 +488,11 @@ button {
   background: var(--azul-oscuro);
 }
 .svc-domicilio {
-  margin-top: 16px;
+  margin-top: 12px;
   text-align: center;
-  font-size: 16px;
-  color: var(--rojo);
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  padding: 10px 14px;
-  border-radius: var(--radio);
-  background: rgba(179, 38, 30, 0.07);
-  border: 1.5px solid rgba(179, 38, 30, 0.25);
-  animation: svcPulse 2.2s ease-in-out infinite;
-}
-@keyframes svcPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(179, 38, 30, 0.25); }
-  50% { box-shadow: 0 0 0 8px rgba(179, 38, 30, 0); }
+  font-size: 12px;
+  color: var(--gris);
+  font-weight: 600;
 }
 
 /* ===== 5. CASOS REALES ===== */
@@ -983,32 +1038,6 @@ footer {
   object-fit: contain;
 }
 
-/* ===== MODAL QR / COMPARTIR ===== */
-.qr-modal-box {
-  text-align: center;
-}
-.qr-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 12px 0 4px;
-}
-#qr-canvas-wrap {
-  background: var(--blanco);
-  padding: 12px;
-  border-radius: 16px;
-  box-shadow: var(--sombra);
-  border: 1.5px solid var(--gris-claro);
-  display: inline-flex;
-}
-.qr-share-btn {
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-top: 14px;
-  border: none;
-  cursor: pointer;
-}
-
 /* ===== MODAL DE VIDEO ===== */
 .vid-modal-box {
   max-width: 400px;
@@ -1022,13 +1051,17 @@ footer {
   overflow: hidden;
   background: #000;
 }
-.vid-frame-wrap iframe {
+.vid-frame-wrap video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
   display: block;
+  background: #000;
+}
+.vid-frame-wrap video:fullscreen {
+  object-fit: contain;
 }
 
 /* ================================================================
