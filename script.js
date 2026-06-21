@@ -69,7 +69,7 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// ===== CÓDIGO QR =====
+// ===== CÓDIGO QR (con logo incrustado al centro) =====
 function generarQR() {
   var container = document.getElementById('qrcode-container');
   if (!container || container.dataset.done) return;
@@ -77,11 +77,20 @@ function generarQR() {
   container.innerHTML = '';
   new QRCode(container, {
     text: 'https://konfiozinc.github.io/quiromasajes-gap/',
-    width: 180,
-    height: 180,
+    width: 200,
+    height: 200,
     colorDark: '#071A2E',
-    colorLight: '#ffffff'
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
   });
+  // Logo centrado encima del QR (requiere correctLevel H para mantenerse legible)
+  var logoWrap = document.createElement('div');
+  logoWrap.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px #fff,0 2px 8px rgba(0,0,0,0.25);';
+  var logoImg = document.createElement('img');
+  logoImg.src = 'assets/icons/logo.webp';
+  logoImg.style.cssText = 'width:38px;height:38px;border-radius:50%;object-fit:cover;';
+  logoWrap.appendChild(logoImg);
+  container.appendChild(logoWrap);
   container.dataset.done = '1';
 }
 
