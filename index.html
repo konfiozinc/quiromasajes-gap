@@ -1,399 +1,337 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="theme-color" content="#071A2E" />
-<meta name="description" content="Quiropraxia, osteopatía y masajes terapéuticos a domicilio en Soacha y Bogotá. Germán Agudelo, terapeuta certificado." />
-<meta property="og:title" content="Quiromasajes GAP | Germán Agudelo" />
-<meta property="og:image" content="assets/images/og-image.webp" />
-<title>Quiromasajes GAP | Germán Agudelo</title>
-<link rel="icon" href="assets/icons/logo.webp" type="image/webp" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Germán Agudelo | Quiromasajes GAP</title>
+  <meta name="description" content="Quiropraxia, osteopatía y masajes terapéuticos a domicilio en Soacha y Bogotá. Germán Agudelo, terapeuta certificado." />
+  <meta name="theme-color" content="#071A2E" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    :root {
+      --azul-oscuro: #071A2E;
+      --azul: #1A5F7A;
+      --turquesa: #00D084;
+      --rojo: #B3261E;
+      --blanco: #FFFFFF;
+      --text: #1A1A1A;
+      --text-light: #4A4A4A;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(ellipse at top, #0d2b47 0%, #071A2E 55%, #04101d 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .font-playfair { font-family: 'Playfair Display', serif; }
+    .turquesa-text { color: var(--turquesa); }
+    .rojo-text { color: var(--rojo); }
+
+    .card-container {
+      width: 100%; max-width: 420px; margin: 0 auto;
+      min-height: 100vh; background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(18px);
+      display: flex; flex-direction: column;
+      position: relative;
+      border-radius: 0;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.55);
+    }
+    @media (min-width:450px) {
+      .card-container { min-height: calc(100vh - 2rem); margin: 1rem auto; border-radius: 28px; overflow: hidden; }
+    }
+
+    #splash { position:fixed; inset:0; background:var(--azul-oscuro); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:9999; transition:opacity .6s; }
+    #splash.hidden { opacity:0; pointer-events:none; }
+    #splash img { width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid var(--turquesa); animation:pulse 1.8s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+
+    .top-header { background:var(--blanco); padding:12px 16px; display:flex; align-items:center; gap:10px; border-bottom:1px solid rgba(0,0,0,0.05); }
+    .brand-logo { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--turquesa); }
+    .brand-tagline { font-size:10px; color:var(--text-light); letter-spacing:.1em; text-transform:uppercase; font-weight:600; line-height:1.3; }
+
+    .hero { text-align:center; padding:16px 20px 8px; background:var(--blanco); }
+    .hero-ring { width:120px; height:120px; border-radius:50%; border:2px solid var(--turquesa); margin:-60px auto 8px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--azul-oscuro); }
+    .hero-ring img { width:100%; height:100%; object-fit:cover; }
+    .profile-pic { display:none; }
+    .name { font-size:1.8rem; font-weight:800; color:var(--azul-oscuro); }
+    .badge { display:inline-block; background:rgba(0,208,132,0.12); color:var(--turquesa); font-size:10px; font-weight:600; padding:4px 10px; border-radius:999px; margin:4px 4px 0 0; border:1px solid rgba(0,208,132,0.2); }
+    .badge-red { background:rgba(179,38,30,0.12); color:var(--rojo); border-color:rgba(179,38,30,0.2); }
+
+    .quick-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:16px 20px; background:var(--blanco); }
+    .quick-btn { display:flex; flex-direction:column; align-items:center; gap:4px; background:#F5F7FA; border-radius:16px; padding:12px 0; transition:all .2s; text-decoration:none; color:var(--text); }
+    .quick-btn i { font-size:1.3rem; color:var(--azul); }
+    .quick-btn span { font-size:10px; font-weight:500; color:var(--text-light); }
+    .quick-btn:active { transform:scale(.96); }
+
+    .social-row { display:flex; justify-content:center; gap:18px; padding:8px 20px 16px; background:var(--blanco); }
+    .social-row a { display:inline-flex; width:44px; height:44px; border-radius:50%; background:#F5F7FA; align-items:center; justify-content:center; color:var(--azul-oscuro); font-size:1.1rem; transition:all .25s; text-decoration:none; }
+    .social-row a:hover { background:var(--turquesa); color:#fff; transform:translateY(-3px); }
+
+    .main-wa { margin:0 20px 12px; background:var(--blanco); }
+    .main-wa a { display:flex; align-items:center; justify-content:center; gap:10px; background:linear-gradient(135deg,var(--turquesa),#00a868); color:#fff; font-weight:700; padding:14px; border-radius:999px; text-decoration:none; box-shadow:0 8px 20px rgba(0,208,132,0.3); transition:all .3s; }
+    .main-wa a:active { transform:scale(.97); }
+
+    .grid-access { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:8px 20px 16px; background:var(--blanco); }
+    .access-btn { display:flex; flex-direction:column; align-items:center; gap:4px; background:transparent; border:1px solid rgba(0,0,0,0.06); border-radius:16px; padding:12px 0; cursor:pointer; transition:all .2s; color:var(--text); }
+    .access-btn i { font-size:1.2rem; color:var(--azul); }
+    .access-btn span { font-size:10px; font-weight:500; color:var(--text-light); }
+    .access-btn:active { transform:scale(.96); background:rgba(0,208,132,0.05); }
+
+    .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.7); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; z-index:1000; opacity:0; visibility:hidden; transition:opacity .3s, visibility .3s; padding:20px; }
+    .modal-overlay.active { opacity:1; visibility:visible; }
+    .modal-content { background:#fff; border-radius:24px; max-width:460px; width:100%; max-height:85vh; display:flex; flex-direction:column; overflow:hidden; transform:scale(.95) translateY(20px); transition:transform .3s; box-shadow:0 20px 40px rgba(0,0,0,0.2); }
+    .modal-overlay.active .modal-content { transform:scale(1) translateY(0); }
+    .modal-header { padding:16px 20px; border-bottom:1px solid #f0f0f0; display:flex; justify-content:space-between; align-items:center; }
+    .modal-header h2 { font-size:1.2rem; font-weight:700; color:var(--azul-oscuro); margin:0; }
+    .modal-close { background:#f0f0f0; border:none; width:32px; height:32px; border-radius:50%; font-size:1.4rem; cursor:pointer; transition:all .2s; display:flex; align-items:center; justify-content:center; color:#333; }
+    .modal-close:hover { background:var(--rojo); color:#fff; transform:rotate(90deg); }
+    .modal-body { padding:20px; overflow-y:auto; flex:1; }
+
+    .swiper-container { width:100%; border-radius:16px; overflow:hidden; }
+    .swiper-slide img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+
+    .cta-bar { position:sticky; bottom:0; background:#fff; border-top:1px solid #eee; padding:10px 12px; display:flex; justify-content:space-around; align-items:center; z-index:50; box-shadow:0 -4px 20px rgba(0,0,0,0.05); }
+    .cta-item { display:flex; flex-direction:column; align-items:center; gap:2px; text-decoration:none; color:var(--text-light); font-size:9px; font-weight:500; transition:all .2s; cursor:pointer; background:none; border:none; }
+    .cta-item i { font-size:1.2rem; color:var(--azul); }
+    .cta-item:active { transform:scale(.92); }
+
+    .footer-credit { text-align:center; font-size:9px; color:#aaa; padding:8px 0 4px; background:#fff; letter-spacing:.05em; border-top:1px solid #eee; }
+    .footer-credit a { color:var(--turquesa); text-decoration:none; font-weight:600; }
+
+    .toast { position:fixed; bottom:80px; left:50%; transform:translateX(-50%) translateY(20px); background:#1a1a1a; color:#fff; padding:8px 20px; border-radius:999px; font-size:13px; opacity:0; pointer-events:none; transition:all .3s; z-index:2000; }
+    .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+    .svc-card { display:flex; gap:14px; background:#F8FAFC; border-radius:14px; padding:12px; margin-bottom:12px; border:1px solid #eee; }
+    .svc-card img { width:70px; height:70px; border-radius:10px; object-fit:cover; flex-shrink:0; }
+    .svc-card h3 { font-size:14px; font-weight:700; color:var(--azul-oscuro); }
+    .svc-card p { font-size:11px; color:var(--text-light); }
+    .svc-card .price { font-weight:700; color:var(--rojo); }
+  </style>
 </head>
 <body>
 
-<!-- ===== CONTROL DE PAGO (cambia a false para reactivar) ===== -->
-<script>var TARJETA_ACTIVA = false;</script>
+<div class="card-container">
 
-<!-- ===== PANTALLA DE BLOQUEO ===== -->
-<div id="q-paywall" style="display:none;position:fixed;inset:0;z-index:99999;background:radial-gradient(circle at 50% 40%,#0d2b47,#071A2E 70%,#04101d);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center;">
-  <div style="font-size:52px;margin-bottom:16px;">🔒</div>
-  <h2 style="font-family:'Playfair Display',serif;color:#fff;font-size:22px;margin-bottom:10px;">Tarjeta desactivada</h2>
-  <p style="color:rgba(255,255,255,0.7);font-size:14px;line-height:1.6;max-width:280px;margin-bottom:28px;">Esta tarjeta digital tiene un pago pendiente. Contáctanos para reactivarla.</p>
-  <a href="https://wa.me/573206411340?text=Hola%2C%20quiero%20reactivar%20mi%20tarjeta%20Quiromasajes%20GAP" target="_blank" style="display:flex;align-items:center;gap:9px;background:linear-gradient(135deg,#00D084,#00a868);color:#fff;font-weight:700;font-size:15px;padding:14px 28px;border-radius:9999px;text-decoration:none;box-shadow:0 6px 20px rgba(0,208,132,0.4);">
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Contactar KONFÍO ZINC
-  </a>
-  <p style="color:rgba(255,255,255,0.3);font-size:10px;margin-top:24px;letter-spacing:0.05em;">KONFÍO ZINC · Tarjetas Digitales Premium</p>
-</div>
-<script>
-  if (!TARJETA_ACTIVA) {
-    document.getElementById('q-paywall').style.display = 'flex';
-    document.getElementById('q-intro') && (document.getElementById('q-intro').style.display = 'none');
-  }
-</script>
-
-<!-- ===== INTRO "WOW" ===== -->
-<div id="q-intro">
-  <div class="q-intro-ring q-intro-ring-1"></div>
-  <div class="q-intro-ring q-intro-ring-2"></div>
-  <div class="q-intro-ring q-intro-ring-3"></div>
-  <img src="assets/icons/logo.webp" alt="Quiromasajes GAP" class="q-intro-logo" />
-  <p class="q-intro-text">QUIROMASAJES.GAP</p>
-</div>
-
-<!-- ===== PARTÍCULAS DE FONDO ===== -->
-<canvas id="q-particles"></canvas>
-
-<!-- ===== TARJETA PRINCIPAL ===== -->
-<div class="q-page">
-<div class="q-card" id="mainCard">
-
-  <!-- BANNER -->
-  <div class="q-banner">
-    <img src="assets/images/banner.webp" alt="Quiromasajes GAP" loading="lazy" onerror="this.style.display='none'" />
+  <!-- SPLASH -->
+  <div id="splash">
+    <img src="assets/icons/logo.webp" alt="Quiromasajes GAP" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+    <p class="font-playfair text-lg mt-3" style="color:var(--turquesa);">QUIROMASAJES.GAP</p>
   </div>
 
-  <!-- LOGO BADGE -->
-  <div class="q-logo-wrap">
-    <img src="assets/icons/logo.webp" alt="Quiromasajes GAP" class="q-logo" />
+  <!-- TOP HEADER -->
+  <div class="top-header">
+    <img src="assets/icons/logo.webp" alt="Logo" class="brand-logo" onerror="this.style.display='none';" />
+    <span class="brand-tagline">Quiropraxia · Osteopatía<br />Masajes Terapéuticos</span>
   </div>
 
-  <!-- AVATAR -->
-  <div class="q-avatar-wrap">
-    <img src="assets/images/german.webp" alt="Germán Agudelo" class="q-avatar" />
-  </div>
-
-  <!-- PERFIL -->
-  <div class="q-profile">
-    <div class="q-live-badge"><span class="q-dot"></span> Disponible ahora</div>
-    <h1 class="q-name">Germán Agudelo</h1>
-    <span class="q-brand">QUIROMASAJES.GAP</span>
-    <p class="q-tagline">Quiropraxia · Osteopatía · Masajes terapéuticos · A domicilio en Soacha y Bogotá D.C.</p>
-
-    <div class="q-stats">
-      <div class="q-stat"><span>+10</span><small>Años exp.</small></div>
-      <div class="q-stat"><span>+500</span><small>Pacientes</small></div>
-      <div class="q-stat"><span>3</span><small>Certs.</small></div>
+  <!-- PORTADA -->
+  <div class="hero">
+    <div class="hero-ring">
+      <img src="assets/images/german.webp" alt="Germán Agudelo" onerror="this.style.display='none';" />
     </div>
+    <h1 class="name font-playfair">Germán Agudelo</h1>
+    <p class="text-sm font-semibold" style="color:var(--azul);">QUIROMASAJES.GAP</p>
+    <p class="text-xs" style="color:var(--text-light);">Quiropraxia · Osteopatía · Masajes terapéuticos</p>
+    <div class="flex flex-wrap justify-center gap-1 mt-2">
+      <span class="badge">🏠 A domicilio</span>
+      <span class="badge badge-red">📍 Soacha</span>
+      <span class="badge">📍 Bogotá D.C.</span>
+    </div>
+  </div>
 
-    <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20vi%20tu%20tarjeta%20y%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener" class="q-btn-wa">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Escribir por WhatsApp
+  <!-- BOTONES RÁPIDOS -->
+  <div class="quick-grid">
+    <a href="tel:+573213735117" class="quick-btn"><i class="fas fa-phone-alt"></i><span>Llamar</span></a>
+    <a href="https://wa.me/573213735117" target="_blank" class="quick-btn"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+    <a href="https://maps.google.com/?q=Soacha+Cundinamarca" target="_blank" class="quick-btn"><i class="fas fa-map-marker-alt"></i><span>Ubicación</span></a>
+    <a href="#" id="saveContactBtn" class="quick-btn"><i class="fas fa-address-card"></i><span>Guardar</span></a>
+  </div>
+
+  <!-- REDES SOCIALES -->
+  <div class="social-row">
+    <a href="https://www.instagram.com/quiromasajes1986" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@germanagudelopest" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+  <!-- BOTÓN PRINCIPAL WHATSAPP -->
+  <div class="main-wa">
+    <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20vi%20tu%20tarjeta%20y%20quiero%20agendar%20una%20cita." target="_blank">
+      <i class="fab fa-whatsapp fa-lg"></i> Agendar cita
     </a>
   </div>
 
-  <div class="q-divider"></div>
-
-  <!-- GRID DE ACCIONES -->
-  <div class="q-actions-wrap">
-    <p class="q-section-label">Interactúa · Conoce · Agenda</p>
-    <div class="q-grid">
-      <a href="tel:+573213735117" class="q-icon-box" aria-label="Llamar" style="background:rgba(0,208,132,0.12);border-color:rgba(0,208,132,0.35);">
-        <i class="fas fa-phone-alt" style="color:#00D084;"></i><span>Llamar</span>
-      </a>
-      <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20agendar%20una%20cita.%20%C2%BFQu%C3%A9%20disponibilidad%20tienes%3F" target="_blank" rel="noopener" class="q-icon-box" aria-label="Agendar" style="background:rgba(26,95,122,0.12);border-color:rgba(26,95,122,0.35);">
-        <i class="fas fa-calendar-alt" style="color:#1A5F7A;"></i><span>Agendar</span>
-      </a>
-      <button class="q-icon-box" id="btn-servicios" aria-label="Servicios" style="background:rgba(26,95,122,0.12);border-color:rgba(26,95,122,0.35);">
-        <i class="fas fa-spa" style="color:#1A5F7A;"></i><span>Servicios</span>
-      </button>
-      <button class="q-icon-box" id="btn-casos" aria-label="Casos reales" style="background:rgba(0,208,132,0.12);border-color:rgba(0,208,132,0.35);">
-        <i class="fas fa-chart-line" style="color:#00D084;"></i><span>Casos</span>
-      </button>
-      <button class="q-icon-box" id="btn-videos" aria-label="Videos" style="background:rgba(179,38,30,0.12);border-color:rgba(179,38,30,0.35);">
-        <i class="fas fa-circle-play" style="color:#B3261E;"></i><span>Videos</span>
-      </button>
-      <button class="q-icon-box" id="btn-certs" aria-label="Certificaciones" style="background:rgba(26,95,122,0.12);border-color:rgba(26,95,122,0.35);">
-        <i class="fas fa-award" style="color:#1A5F7A;"></i><span>Certificados</span>
-      </button>
-      <button class="q-icon-box" id="btn-promo" aria-label="Promoción" style="background:rgba(179,38,30,0.12);border-color:rgba(179,38,30,0.35);">
-        <i class="fas fa-fire" style="color:#B3261E;"></i><span>Promoción</span>
-      </button>
-      <button class="q-icon-box" id="btn-cobertura" aria-label="Cobertura" style="background:rgba(0,208,132,0.12);border-color:rgba(0,208,132,0.35);">
-        <i class="fas fa-location-dot" style="color:#00D084;"></i><span>Cobertura</span>
-      </button>
-      <a href="https://www.instagram.com/quiromasajes1986" target="_blank" rel="noopener" class="q-icon-box" aria-label="Instagram" style="background:linear-gradient(135deg,rgba(240,148,51,0.15),rgba(188,24,136,0.15));border-color:rgba(188,24,136,0.35);">
-        <i class="fab fa-instagram" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"></i><span>Instagram</span>
-      </a>
-      <a href="https://www.tiktok.com/@germanagudelopest" target="_blank" rel="noopener" class="q-icon-box" aria-label="TikTok" style="background:rgba(7,26,46,0.1);border-color:rgba(7,26,46,0.3);">
-        <i class="fab fa-tiktok" style="color:#071A2E;"></i><span>TikTok</span>
-      </a>
-      <button class="q-icon-box" id="save-btn" aria-label="Guardar contacto" style="background:rgba(0,208,132,0.12);border-color:rgba(0,208,132,0.35);">
-        <i class="fas fa-address-card" style="color:#00D084;"></i><span>Guardar</span>
-      </button>
-      <button class="q-icon-box" id="qr-btn" aria-label="Código QR" style="background:rgba(26,95,122,0.12);border-color:rgba(26,95,122,0.35);">
-        <i class="fas fa-qrcode" style="color:#1A5F7A;"></i><span>QR</span>
-      </button>
-    </div>
+  <!-- ACCESOS (MODALES) -->
+  <div class="grid-access">
+    <div class="access-btn" data-modal="servicesModal"><i class="fas fa-spa"></i><span>Servicios</span></div>
+    <div class="access-btn" data-modal="galleryModal"><i class="fas fa-images"></i><span>Galería</span></div>
+    <div class="access-btn" data-modal="videosModal"><i class="fas fa-circle-play"></i><span>Videos</span></div>
+    <div class="access-btn" data-modal="infoModal"><i class="fas fa-info-circle"></i><span>Información</span></div>
   </div>
 
-  <div class="q-divider"></div>
-
-  <!-- PROBLEMAS QUE TRATA -->
-  <div class="q-section">
-    <p class="q-section-label">¿Te identificas?</p>
-    <div class="q-prob-grid">
-      <span class="q-prob-item">Dolor cervical</span>
-      <span class="q-prob-item">Dolor lumbar</span>
-      <span class="q-prob-item">Ciática</span>
-      <span class="q-prob-item">Contracturas</span>
-      <span class="q-prob-item">Estrés muscular</span>
-      <span class="q-prob-item">Mala postura</span>
-    </div>
+  <!-- CTA FIJO INFERIOR -->
+  <div class="cta-bar">
+    <a href="https://wa.me/573213735117" target="_blank" class="cta-item"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+    <a href="tel:+573213735117" class="cta-item"><i class="fas fa-phone-alt"></i><span>Llamar</span></a>
+    <button class="cta-item" id="shareBtn"><i class="fas fa-share-alt"></i><span>Compartir</span></button>
+    <button class="cta-item" id="saveContactBtn2"><i class="fas fa-address-card"></i><span>Guardar</span></button>
   </div>
 
-  <!-- FOOTER -->
-  <div class="q-footer">
-    <p>© 2026 QUIROMASAJES.GAP · Germán Agudelo</p>
-    <p class="q-konfio">Desarrollado por <span>KONFÍO ZINC</span></p>
+  <!-- PIE DE TARJETA -->
+  <div class="footer-credit">
+    Tarjeta creada por <a href="https://konfiozinc.github.io/" target="_blank">KONFÍO ZINC</a>
   </div>
-
 </div>
 
-<!-- ===== WHATSAPP FLOTANTE (anclado a la tarjeta) ===== -->
-<div class="q-fab-wrap">
-  <div class="q-fab-ring"></div>
-  <div class="q-fab-ring q-fab-ring-2"></div>
-  <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20vi%20tu%20tarjeta%20y%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener" class="q-fab" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-</div>
-</div>
+<!-- ===== MODALES ===== -->
 
-<!-- ===== MODAL: SERVICIOS ===== -->
-<div id="modal-servicios" class="q-modal-overlay">
-  <div class="q-modal">
-    <div class="q-modal-head"><i class="fas fa-spa"></i><span>Servicios</span><button class="q-modal-close">&times;</button></div>
-    <div class="q-modal-body">
-      <div class="q-svc-card">
-        <img src="assets/gallery/postural.webp" alt="Corrección Postural" loading="lazy" />
-        <div class="q-svc-info">
-          <h3>Corrección Postural</h3>
-          <p>Quiropraxia · Osteopatía · Quirofisiatría</p>
-          <div class="q-svc-meta"><span>⏱ 15-45 min</span><span>$80.000-$100.000</span></div>
-          <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Correcci%C3%B3n%20Postural" target="_blank" rel="noopener" class="q-svc-btn">Reservar</a>
-        </div>
+<!-- SERVICIOS -->
+<div class="modal-overlay" id="servicesModal">
+  <div class="modal-content">
+    <div class="modal-header"><h2>Servicios</h2><button class="modal-close">&times;</button></div>
+    <div class="modal-body">
+      <div class="svc-card">
+        <img src="assets/gallery/postural.webp" alt="Corrección Postural" onerror="this.style.display='none';" />
+        <div><h3>Corrección Postural</h3><p>Quiropraxia · Osteopatía · Quirofisiatría</p><span class="price">$80.000-$100.000</span> <span class="text-xs text-gray-500">| 15-45 min</span><br><a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Correcci%C3%B3n%20Postural" target="_blank" class="text-xs font-bold" style="color:var(--turquesa);">Reservar →</a></div>
       </div>
-      <div class="q-svc-card">
-        <img src="assets/gallery/dolor.webp" alt="Terapia del Dolor" loading="lazy" />
-        <div class="q-svc-info">
-          <h3>Terapia del Dolor</h3>
-          <p>Quiromasaje · Descontracturante · Nervio ciático</p>
-          <div class="q-svc-meta"><span>⏱ 30-45 min</span><span>$80.000-$100.000</span></div>
-          <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Terapia%20del%20Dolor" target="_blank" rel="noopener" class="q-svc-btn">Reservar</a>
-        </div>
+      <div class="svc-card">
+        <img src="assets/gallery/dolor.webp" alt="Terapia del Dolor" onerror="this.style.display='none';" />
+        <div><h3>Terapia del Dolor</h3><p>Quiromasaje · Descontracturante · Nervio ciático</p><span class="price">$80.000-$100.000</span> <span class="text-xs text-gray-500">| 30-45 min</span><br><a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Terapia%20del%20Dolor" target="_blank" class="text-xs font-bold" style="color:var(--turquesa);">Reservar →</a></div>
       </div>
-      <div class="q-svc-card">
-        <img src="assets/gallery/relajacion.webp" alt="Relajación Muscular" loading="lazy" />
-        <div class="q-svc-info">
-          <h3>Relajación Muscular</h3>
-          <p>Masaje relajante · Vibratorio · Piedras volcánicas · Reflexología</p>
-          <div class="q-svc-meta"><span>⏱ 30-40 min</span><span>$80.000</span></div>
-          <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Relajaci%C3%B3n%20Muscular" target="_blank" rel="noopener" class="q-svc-btn">Reservar</a>
-        </div>
+      <div class="svc-card">
+        <img src="assets/gallery/relajacion.webp" alt="Relajación Muscular" onerror="this.style.display='none';" />
+        <div><h3>Relajación Muscular</h3><p>Masaje relajante · Vibratorio · Piedras volcánicas</p><span class="price">$80.000</span> <span class="text-xs text-gray-500">| 30-40 min</span><br><a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20informaci%C3%B3n%20sobre%20Relajaci%C3%B3n%20Muscular" target="_blank" class="text-xs font-bold" style="color:var(--turquesa);">Reservar →</a></div>
       </div>
-      <p class="q-svc-domicilio">🏠 Todos los servicios disponibles también a domicilio en Soacha y Bogotá D.C.</p>
+      <p class="text-center text-sm font-semibold mt-2" style="color:var(--azul-oscuro);">🏠 Todos los servicios disponibles a domicilio.</p>
     </div>
   </div>
 </div>
 
-<!-- ===== MODAL: CASOS REALES ===== -->
-<div id="modal-casos" class="q-modal-overlay">
-  <div class="q-modal">
-    <div class="q-modal-head"><i class="fas fa-chart-line"></i><span>Casos reales</span><button class="q-modal-close">&times;</button></div>
-    <div class="q-modal-body q-modal-body-tight">
-      <div class="casos-slider" id="casos-slider">
-        <div class="casos-track" id="casos-track">
-          <div class="casos-slide">
-            <img src="assets/thumbnails/poster6.webp" alt="Caso 1" loading="lazy" />
-            <div class="casos-info"><h4>Recuperación de movilidad</h4><p>Paciente con dolor lumbar crónico recupera su calidad de vida tras 3 sesiones.</p></div>
-          </div>
-          <div class="casos-slide">
-            <img src="assets/thumbnails/poster7.webp" alt="Caso 2" loading="lazy" />
-            <div class="casos-info"><h4>Atención a domicilio</h4><p>Terapia personalizada en la comodidad del hogar del paciente.</p></div>
-          </div>
-          <div class="casos-slide">
-            <img src="assets/thumbnails/poster8.webp" alt="Caso 3" loading="lazy" />
-            <div class="casos-info"><h4>Liberación de tensiones</h4><p>Masaje terapéutico profundo para aliviar el estrés muscular acumulado.</p></div>
-          </div>
-          <div class="casos-slide">
-            <img src="assets/thumbnails/poster9.webp" alt="Caso 4" loading="lazy" />
-            <div class="casos-info"><h4>Quiropraxia exitosa</h4><p>Paciente con ciática recupera su movilidad después del tratamiento.</p></div>
-          </div>
+<!-- GALERÍA -->
+<div class="modal-overlay" id="galleryModal">
+  <div class="modal-content">
+    <div class="modal-header"><h2>Galería</h2><button class="modal-close">&times;</button></div>
+    <div class="modal-body">
+      <div class="swiper-container gallery-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="assets/thumbnails/poster1.webp" alt="Poster 1" onerror="this.style.display='none';" /></div>
+          <div class="swiper-slide"><img src="assets/thumbnails/poster2.webp" alt="Poster 2" onerror="this.style.display='none';" /></div>
+          <div class="swiper-slide"><img src="assets/thumbnails/poster3.webp" alt="Poster 3" onerror="this.style.display='none';" /></div>
+          <div class="swiper-slide"><img src="assets/thumbnails/poster4.webp" alt="Poster 4" onerror="this.style.display='none';" /></div>
+          <div class="swiper-slide"><img src="assets/thumbnails/poster5.webp" alt="Poster 5" onerror="this.style.display='none';" /></div>
+          <div class="swiper-slide"><img src="assets/thumbnails/poster6.webp" alt="Poster 6" onerror="this.style.display='none';" /></div>
+          <div class="swiper-slide"><img src="assets/thumbnails/poster7.webp" alt="Poster 7" onerror="this.style.display='none';" /></div>
+          <div class="swiper-slide"><img src="assets/thumbnails/poster8.webp" alt="Poster 8" onerror="this.style.display='none';" /></div>
+          <div class="swiper-slide"><img src="assets/thumbnails/poster9.webp" alt="Poster 9" onerror="this.style.display='none';" /></div>
+          <div class="swiper-slide"><img src="assets/thumbnails/poster10.webp" alt="Poster 10" onerror="this.style.display='none';" /></div>
         </div>
-        <button class="casos-arrow casos-prev" onclick="moveCasos(-1)">‹</button>
-        <button class="casos-arrow casos-next" onclick="moveCasos(1)">›</button>
-        <div class="casos-dots" id="casos-dots"></div>
+        <div class="swiper-pagination"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== MODAL: VIDEOS ===== -->
-<div id="modal-videos" class="q-modal-overlay">
-  <div class="q-modal">
-    <div class="q-modal-head"><i class="fas fa-circle-play"></i><span>Videos profesionales</span><button class="q-modal-close">&times;</button></div>
-    <div class="q-modal-body q-modal-body-tight">
-      <div class="vid-slider" id="vid-slider">
-        <div class="vid-track" id="vid-track">
-          <div class="vid-slide" data-drive="1yzxGaGtAT606Rx2SJkDbQSi-2qDpPOSb" onclick="openVid(this)">
-            <img src="assets/thumbnails/poster1.webp" alt="Presentación" loading="lazy" />
-            <div class="vid-play-overlay"><span>▶</span></div>
-            <div class="vid-label">Presentación del consultorio</div>
-          </div>
-          <div class="vid-slide" data-drive="13n3FSzI1bn5xutM1MYkxr-dyaz0lJP8c" onclick="openVid(this)">
-            <img src="assets/thumbnails/poster2.webp" alt="Servicio" loading="lazy" />
-            <div class="vid-play-overlay"><span>▶</span></div>
-            <div class="vid-label">Servicio a domicilio</div>
-          </div>
-          <div class="vid-slide" data-drive="1Cmg9L0Sfuk7kuspadMfQov1OlaocqrJL" onclick="openVid(this)">
-            <img src="assets/thumbnails/poster3.webp" alt="Quiropraxia" loading="lazy" />
-            <div class="vid-play-overlay"><span>▶</span></div>
-            <div class="vid-label">Quiropraxia</div>
-          </div>
-          <div class="vid-slide" data-drive="1DvY6elTIdAIsjTxQeX84T-ri8mnCk4Ut" onclick="openVid(this)">
-            <img src="assets/thumbnails/poster4.webp" alt="Osteopatía" loading="lazy" />
-            <div class="vid-play-overlay"><span>▶</span></div>
-            <div class="vid-label">Osteopatía</div>
-          </div>
-          <div class="vid-slide" data-drive="19cFLWjNPtL-jwEYXK1K4R6X6GUmqP6-n" onclick="openVid(this)">
-            <img src="assets/thumbnails/poster5.webp" alt="Masaje" loading="lazy" />
-            <div class="vid-play-overlay"><span>▶</span></div>
-            <div class="vid-label">Masaje terapéutico</div>
-          </div>
-          <div class="vid-slide" data-drive="1Pr-cKHWDCdTaHoHaFfrFSsy6BKraYtfN" onclick="openVid(this)">
-            <img src="assets/thumbnails/poster6.webp" alt="Recuperación" loading="lazy" />
-            <div class="vid-play-overlay"><span>▶</span></div>
-            <div class="vid-label">Recuperación muscular</div>
-          </div>
-          <div class="vid-slide" data-drive="1sZQhFcAnWcHF0jVCoCXuQdAtfTP2p88z" onclick="openVid(this)">
-            <img src="assets/thumbnails/poster7.webp" alt="Domicilio" loading="lazy" />
-            <div class="vid-play-overlay"><span>▶</span></div>
-            <div class="vid-label">Atención a domicilio</div>
-          </div>
-          <div class="vid-slide" data-drive="1FwCbp5QXSaPXSVNMOmkIio86hbcadMWl" onclick="openVid(this)">
-            <img src="assets/thumbnails/poster8.webp" alt="Experiencia" loading="lazy" />
-            <div class="vid-play-overlay"><span>▶</span></div>
-            <div class="vid-label">Experiencia profesional</div>
-          </div>
-          <div class="vid-slide" data-drive="1AKJP8P1UDRgp_rdXjmgCNlfrf4yZlTRO" onclick="openVid(this)">
-            <img src="assets/thumbnails/poster9.webp" alt="Resultados" loading="lazy" />
-            <div class="vid-play-overlay"><span>▶</span></div>
-            <div class="vid-label">Resultados</div>
-          </div>
-          <div class="vid-slide" data-drive="1R7w3aNdQecJK9Ry2GF4R87WSMwLbdIib" onclick="openVid(this)">
-            <img src="assets/thumbnails/poster10.webp" alt="Piedras volcánicas" loading="lazy" />
-            <div class="vid-play-overlay"><span>▶</span></div>
-            <div class="vid-label">Piedras volcánicas</div>
-          </div>
+<!-- VIDEOS -->
+<div class="modal-overlay" id="videosModal">
+  <div class="modal-content">
+    <div class="modal-header"><h2>Videos</h2><button class="modal-close">&times;</button></div>
+    <div class="modal-body">
+      <div class="swiper-container videos-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><div style="aspect-ratio:9/16;background:#000;display:flex;align-items:center;justify-content:center;color:#fff;flex-direction:column;padding:20px;"><i class="fas fa-play-circle text-4xl text-turquesa"></i><p class="text-xs mt-2">Presentación</p><a href="https://drive.google.com/file/d/1yzxGaGtAT606Rx2SJkDbQSi-2qDpPOSb/preview" target="_blank" class="text-xs text-turquesa underline">Ver</a></div></div>
+          <div class="swiper-slide"><div style="aspect-ratio:9/16;background:#000;display:flex;align-items:center;justify-content:center;color:#fff;flex-direction:column;padding:20px;"><i class="fas fa-play-circle text-4xl text-turquesa"></i><p class="text-xs mt-2">Servicio a domicilio</p><a href="https://drive.google.com/file/d/13n3FSzI1bn5xutM1MYkxr-dyaz0lJP8c/preview" target="_blank" class="text-xs text-turquesa underline">Ver</a></div></div>
+          <div class="swiper-slide"><div style="aspect-ratio:9/16;background:#000;display:flex;align-items:center;justify-content:center;color:#fff;flex-direction:column;padding:20px;"><i class="fas fa-play-circle text-4xl text-turquesa"></i><p class="text-xs mt-2">Quiropraxia</p><a href="https://drive.google.com/file/d/1Cmg9L0Sfuk7kuspadMfQov1OlaocqrJL/preview" target="_blank" class="text-xs text-turquesa underline">Ver</a></div></div>
+          <div class="swiper-slide"><div style="aspect-ratio:9/16;background:#000;display:flex;align-items:center;justify-content:center;color:#fff;flex-direction:column;padding:20px;"><i class="fas fa-play-circle text-4xl text-turquesa"></i><p class="text-xs mt-2">Osteopatía</p><a href="https://drive.google.com/file/d/1DvY6elTIdAIsjTxQeX84T-ri8mnCk4Ut/preview" target="_blank" class="text-xs text-turquesa underline">Ver</a></div></div>
+          <div class="swiper-slide"><div style="aspect-ratio:9/16;background:#000;display:flex;align-items:center;justify-content:center;color:#fff;flex-direction:column;padding:20px;"><i class="fas fa-play-circle text-4xl text-turquesa"></i><p class="text-xs mt-2">Masaje terapéutico</p><a href="https://drive.google.com/file/d/19cFLWjNPtL-jwEYXK1K4R6X6GUmqP6-n/preview" target="_blank" class="text-xs text-turquesa underline">Ver</a></div></div>
         </div>
-        <button class="vid-arrow vid-prev" onclick="moveVid(-1)">‹</button>
-        <button class="vid-arrow vid-next" onclick="moveVid(1)">›</button>
-        <div class="vid-dots" id="vid-dots"></div>
+        <div class="swiper-pagination"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== MODAL: CERTIFICACIONES ===== -->
-<div id="modal-certs" class="q-modal-overlay">
-  <div class="q-modal">
-    <div class="q-modal-head"><i class="fas fa-award"></i><span>Certificaciones</span><button class="q-modal-close">&times;</button></div>
-    <div class="q-modal-body">
-      <div class="cert-grid">
-        <div class="cert-card" onclick="openCert(this)" data-title="Diplomado Quiropraxia y Osteopatía – ESLACIENCIAS">
-          <img src="assets/certificates/certificado1.webp" alt="Quiropraxia y Osteopatía" loading="lazy" />
-          <div class="cert-info"><span>Quiropraxia y Osteopatía</span><small>🇨🇴 ESLACIENCIAS · 120h</small></div>
-        </div>
-        <div class="cert-card" onclick="openCert(this)" data-title="Diplomado Quirofisiatría – Florida USA">
-          <img src="assets/certificates/certificado2.webp" alt="Quirofisiatría" loading="lazy" />
-          <div class="cert-info"><span>Quirofisiatría</span><small>🇺🇸 Florida, USA</small></div>
-        </div>
-        <div class="cert-card" onclick="openCert(this)" data-title="Acreditación ASOQUIROPRAXIA LATAM">
-          <img src="assets/certificates/certificado3.webp" alt="ASOQUIROPRAXIA" loading="lazy" />
-          <div class="cert-info"><span>Quiropraxia y Quiromasaje</span><small>🌎 ASOQUIROPRAXIA LATAM</small></div>
-        </div>
-      </div>
+<!-- INFORMACIÓN -->
+<div class="modal-overlay" id="infoModal">
+  <div class="modal-content">
+    <div class="modal-header"><h2>Información</h2><button class="modal-close">&times;</button></div>
+    <div class="modal-body space-y-3">
+      <p><i class="fas fa-phone-alt" style="color:var(--azul);width:24px;"></i> +57 321 373 5117</p>
+      <p><i class="fas fa-map-marker-alt" style="color:var(--azul);width:24px;"></i> Soacha y Bogotá D.C.</p>
+      <p><i class="fas fa-credit-card" style="color:var(--azul);width:24px;"></i> Medios de pago: Efectivo, Nequi, Codensa</p>
+      <p><i class="fas fa-clock" style="color:var(--azul);width:24px;"></i> Atención con cita previa</p>
+      <p class="text-sm text-gray-500 mt-2">🏠 Servicio a domicilio disponible.</p>
     </div>
   </div>
 </div>
 
-<!-- ===== MODAL: PROMOCIÓN ===== -->
-<div id="modal-promo" class="q-modal-overlay">
-  <div class="q-modal">
-    <div class="q-modal-head"><i class="fas fa-fire"></i><span>Promoción</span><button class="q-modal-close">&times;</button></div>
-    <div class="q-modal-body">
-      <div class="promo-card">
-        <div class="promo-badge">🔥 OFERTA PROMOCIONAL</div>
-        <div class="promo-title">Quiropraxia + Masaje Corporal Completo</div>
-        <div class="promo-sub">De pies a cabeza · 1.5 horas</div>
-        <div class="promo-precios">
-          <span class="promo-antes">$250.000</span>
-          <span class="promo-ahora">$170.000</span>
-        </div>
-        <div class="promo-ahorro">✅ Ahorras $80.000</div>
-        <a href="https://wa.me/573213735117?text=Hola%20Germ%C3%A1n%2C%20quiero%20la%20promoci%C3%B3n%20completa." target="_blank" rel="noopener" class="btn-wa promo-btn">Quiero esta oferta</a>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
-<!-- ===== MODAL: COBERTURA ===== -->
-<div id="modal-cobertura" class="q-modal-overlay">
-  <div class="q-modal">
-    <div class="q-modal-head"><i class="fas fa-location-dot"></i><span>Cobertura</span><button class="q-modal-close">&times;</button></div>
-    <div class="q-modal-body">
-      <p class="cov-text cov-destaque">Atención a domicilio en Soacha y Bogotá D.C. También en <strong>ESCLAT S.A.S.</strong></p>
-      <div class="cov-map">
-        <iframe src="https://www.google.com/maps?q=Soacha,Cundinamarca,Colombia&output=embed" width="100%" height="180" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa"></iframe>
-      </div>
-      <div class="cov-buttons">
-        <a href="https://waze.com/ul/hd2g61v59g" target="_blank" rel="noopener" class="cov-btn waze">Waze</a>
-        <a href="https://maps.google.com/?q=ESCLAT+SAS+Soacha+Colombia" target="_blank" rel="noopener" class="cov-btn maps">Google Maps</a>
-      </div>
-    </div>
-  </div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  (function(){
+    setTimeout(() => document.getElementById('splash').classList.add('hidden'), 1200);
 
-<!-- ===== MODAL: QR ===== -->
-<div id="modal-qr" class="q-modal-overlay">
-  <div class="q-modal q-modal-narrow">
-    <div class="q-modal-head"><i class="fas fa-qrcode"></i><span>Escanea y comparte</span><button class="q-modal-close">&times;</button></div>
-    <div class="q-modal-body" style="text-align:center;">
-      <div id="qrcode-container" style="display:flex;justify-content:center;align-items:center;position:relative;margin:10px 0 16px;"></div>
-      <p style="font-size:12px;color:#777;margin-bottom:14px;">Apunta la cámara de tu móvil a este código, o comparte el link directamente.</p>
-      <button id="native-share-btn" class="q-btn-wa" style="width:100%;justify-content:center;"><i class="fas fa-share-alt"></i> Compartir tarjeta</button>
-    </div>
-  </div>
-</div>
+    const modals = document.querySelectorAll('.modal-overlay');
+    const openModal = (id) => { const m = document.getElementById(id); if(m) m.classList.add('active'); };
+    const closeModal = (modal) => modal.classList.remove('active');
 
-<!-- Modal de video player -->
-<div id="vid-modal" class="modal" onclick="if(event.target===this) closeVid()">
-  <div class="modal-box vid-modal-box">
-    <button class="modal-close" onclick="closeVid()">← Volver</button>
-    <div class="vid-frame-wrap">
-      <iframe id="vid-player" allow="autoplay" allowfullscreen frameborder="0"></iframe>
-    </div>
-    <div class="modal-title" id="vid-modal-title"></div>
-  </div>
-</div>
+    document.querySelectorAll('[data-modal]').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.modal));
+    });
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay')));
+    });
+    modals.forEach(modal => {
+      modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(modal); });
+    });
 
-<!-- Modal de certificado ampliado -->
-<div id="cert-modal" class="modal" onclick="if(event.target===this) closeCert()">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeCert()">← Volver</button>
-    <div class="modal-img" id="cert-img"></div>
-    <div class="modal-title" id="cert-title"></div>
-  </div>
-</div>
+    new Swiper('.gallery-swiper', {
+      slidesPerView: 1,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      loop: true,
+      autoplay: { delay: 3000, disableOnInteraction: false }
+    });
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
-<script src="script.js" defer></script>
+    new Swiper('.videos-swiper', {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      loop: false,
+    });
+
+    const toast = document.getElementById('toast');
+    const showToast = (msg) => { toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2500); };
+
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+      try {
+        if(navigator.share) await navigator.share({ title: 'Germán Agudelo - Quiromasajes GAP', url: window.location.href });
+        else { await navigator.clipboard.writeText(window.location.href); showToast('Enlace copiado'); }
+      } catch(e) {}
+    });
+
+    const saveFn = () => {
+      const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Germán Agudelo\nORG:QUIROMASAJES.GAP\nTITLE:Terapeuta - Quiropraxia y Masajes\nTEL:+573213735117\nURL:https://www.instagram.com/quiromasajes1986\nNOTE:Quiropraxia, Osteopatía, Masajes terapéuticos. Soacha y Bogotá D.C.\nEND:VCARD`;
+      const blob = new Blob([vcard], {type: 'text/vcard'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'German_Agudelo_Quiromasajes.vcf';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Contacto guardado');
+    };
+    document.getElementById('saveContactBtn').addEventListener('click', saveFn);
+    document.getElementById('saveContactBtn2').addEventListener('click', saveFn);
+  })();
+</script>
 </body>
 </html>
